@@ -1,5 +1,6 @@
 // File: src/Utils/LogUtils.cs
-// Purpose: Provides popup-safe logging helpers for City Watchdog diagnostics.
+// Version: 0.5.2
+// Purpose: Popup-safe logging helpers for City Watchdog.
 
 namespace CityWatchdog
 {
@@ -13,7 +14,7 @@ namespace CityWatchdog
         private static readonly object s_WarnOnceLock = new object();
         private static readonly object s_FileWriteLock = new object();
 
-        // Per-process key cache so hot-path warnings show once instead of spamming every update.
+        // Per-process key cache so hot-path warnings show once instead of repeating every update.
         private static readonly HashSet<string> s_WarnOnceKeys =
             new HashSet<string>(StringComparer.Ordinal);
 
