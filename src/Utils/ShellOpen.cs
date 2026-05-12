@@ -1,7 +1,7 @@
-// File: Utils/ShellOpen.cs
-// Purpose: Cross-platform-ish file/folder opening helpers for Options UI buttons.
+// File: src/Utils/ShellOpen.cs
+// Purpose: Provides safe file/folder opening helpers for Options UI buttons.
 
-namespace FastBoarding
+namespace CityWatchdog
 {
     using System;
     using System.Diagnostics;
@@ -31,7 +31,6 @@ namespace FastBoarding
         {
             try
             {
-                // CS2 puts Player.log beside the Logs folder; use that as the install-independent anchor.
                 string consoleLogPath = Application.consoleLogPath;
                 if (string.IsNullOrEmpty(consoleLogPath))
                 {
@@ -83,7 +82,6 @@ namespace FastBoarding
                     return;
                 }
 
-                // If Unity's opener is ignored by the platform/Proton layer, fall back to OS shell tools.
                 TryOpenWithOsShell(fullPath);
             }
             catch (Exception ex)
@@ -104,7 +102,6 @@ namespace FastBoarding
                     path += Path.DirectorySeparatorChar;
                 }
 
-                // Unity handles many platforms, but Proton/macOS/Linux file associations vary.
                 Application.OpenURL(new Uri(path).AbsoluteUri);
                 return true;
             }
@@ -143,7 +140,6 @@ namespace FastBoarding
 
                 if (platform == RuntimePlatform.LinuxPlayer || platform == RuntimePlatform.LinuxEditor)
                 {
-                    // Common desktop-opener fallback for Linux and Proton users.
                     Process.Start(new ProcessStartInfo("xdg-open", QuoteArg(fullPath))
                     {
                         UseShellExecute = false,

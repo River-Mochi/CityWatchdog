@@ -1,9 +1,7 @@
-// File: Utils/LogUtils.cs
-// version : 0.5.2
-// Purpose: popup-safe logging helpers for CS2 mods.
-// Based on River-Mochi shared CS2 utilities.
+// File: src/Utils/LogUtils.cs
+// Purpose: Provides popup-safe logging helpers for City Watchdog diagnostics.
 
-namespace FastBoarding
+namespace CityWatchdog
 {
     using Colossal.Logging;
     using System;
@@ -92,8 +90,6 @@ namespace FastBoarding
 
             try
             {
-                // Routine FB logs bypass Colossal's Unity logger path; that path can show
-                // a UI popup if its internal file stream fails while writing.
                 AppendDirect(log, level, message, exception);
             }
             catch
@@ -125,8 +121,6 @@ namespace FastBoarding
 
             lock (s_FileWriteLock)
             {
-                // Direct append keeps routine mod diagnostics out of Colossal's fragile UI-log path.
-                // ShareReadWrite lets the file stay viewable while the game keeps running.
                 string? dir = Path.GetDirectoryName(logPath);
                 if (!string.IsNullOrEmpty(dir))
                 {
@@ -158,7 +152,6 @@ namespace FastBoarding
         {
             try
             {
-                // Prefer the path Colossal assigned to this custom logger.
                 if (!string.IsNullOrEmpty(log.logPath))
                 {
                     return log.logPath;
@@ -198,7 +191,6 @@ namespace FastBoarding
             }
             catch
             {
-                // If Colossal logging state is in flux, prefer keeping direct-file logging alive.
                 return true;
             }
         }

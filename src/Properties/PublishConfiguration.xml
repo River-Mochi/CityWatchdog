@@ -1,39 +1,77 @@
 <Publish>
+	<!--Id must be set in order to update existing mod. Leave blank for first publish.-->
 	<ModId Value="" />
+	<!--Name of the mod to display to players-->
 	<DisplayName Value="City Watchdog" />
-	<ShortDescription Value="Provides more options to control various city settings." />
+	<!--Short description of the mod-->
+	<ShortDescription Value="Adds options to manage money, milestones, achievements, and notification icons." />
+	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
+	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
 # City Watchdog
 
-## All functions of this mod are in the development stage.
+City Watchdog is a takeover and repair project for the abandoned **City Controller** mod.
 
-### Features
-- Automatic add money, manual add/subtract money, unlimited money and limited money conversion.
-- Custom milestone.
-- Notification icon displayed/hidden.
+The goal is to keep the useful city-control features working with current Cities: Skylines II patches, clean up the codebase, and make the mod easier to maintain.
 
-### Plans
-- Custom unlock.
-- City service control, fire, death, etc.
-- Any interesting features?
+## Development status
 
-### Translation
-This mod provides the same custom mod language as Cities Skylines 1, but the translation needs to be improved by volunteers.
+This mod is still being repaired and modernized.
 
-### Feedback
-Give feedback through discord or via GitHub.
+Use it as a work-in-progress utility mod while the takeover cleanup continues.
+
+### Current features
+
+- Manual add/subtract money controls.
+- Automatic add money option.
+- Unlimited money to limited money conversion.
+- Custom starting milestone option.
+- Achievement-enabler option when no separate achievement-enabler mod is detected.
+- Notification icon display/hide controls.
+
+### Planned cleanup
+
+- Remove old/unused shared-library code where possible.
+- Replace temporary legacy shared helpers with River-Mochi shared utilities where useful.
+- Improve publish text, Options UI labels, and translations.
+- Review notification controls against current game patch data.
+- Add cleaner diagnostics and status reporting.
+
+### Notes
+
+- This project is based on the abandoned MIT-licensed City Controller mod.
+- City Watchdog is maintained as a new River-Mochi takeover project.
+- Some code still temporarily depends on the original author's CS2Shared project while cleanup is in progress.
+- No Harmony dependency is intended for the final cleaned version.
+
+### Support and feedback
+
+Feedback is welcome through GitHub or Discord.
 	</LongDescription>
+	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail.png" />
+	<!--Screenshot, can be set multiple times-->
 	<Screenshot Value="Properties/Previews/NotificationPanel.png" />
-	<Tag Value="Code Mod" />
-	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1702575/" />
-	<ModVersion Value="0.5.0" />
-	<GameVersion Value="1.5.*" />
-	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.14" />
-	<ChangeLog>
 
+	<!--Tag, can be set multiple times-->
+	<Tag Value="Code Mod" />
+	<!--Link to the forum post where the mod can be discussed-->
+	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1702575/" />
+	<!--Version of the mod-->
+	<ModVersion Value="0.5.0" />
+	<!--Recommended version of the base game to use the mod-->
+	<GameVersion Value="1.5.*" />
+	<!--Dependency for the mod, can be set multiple times-->
+	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.14" />
+	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
+	<ChangeLog>
+- Import and rebrand abandoned City Controller base as City Watchdog.
+- Rename project and assembly identity.
+- Convert C# 10 file-scoped namespaces to C# 9-compatible block namespaces.
+- Restore full PublishConfiguration.xml structure.
+- Begin cleanup of old shared-code dependency and generated files.
 	</ChangeLog>
+	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />
 	<ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
-
 </Publish>

@@ -1,7 +1,7 @@
-// File: Utils/LocaleUtils.cs
-// Purpose: safe localization lookup and formatting helpers for Options UI strings.
+// File: src/Utils/LocaleUtils.cs
+// Purpose: Provides safe localization lookup and formatting helpers for Options UI strings.
 
-namespace FastBoarding
+namespace CityWatchdog
 {
     using Colossal.Localization;
     using Game.SceneFlow;
