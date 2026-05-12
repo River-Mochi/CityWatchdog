@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CityController\CityController.csproj" />
+    <ProjectReference Include="..\src\CityWatchdog.csproj" />
   </ItemGroup>
 
 </Project>

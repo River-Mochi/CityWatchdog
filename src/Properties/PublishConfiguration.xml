@@ -1,0 +1,39 @@
+<Publish>
+	<ModId Value="" />
+	<DisplayName Value="City Watchdog" />
+	<ShortDescription Value="Provides more options to control various city settings." />
+	<LongDescription>
+# City Watchdog
+
+## All functions of this mod are in the development stage.
+
+### Features
+- Automatic add money, manual add/subtract money, unlimited money and limited money conversion.
+- Custom milestone.
+- Notification icon displayed/hidden.
+
+### Plans
+- Custom unlock.
+- City service control, fire, death, etc.
+- Any interesting features?
+
+### Translation
+This mod provides the same custom mod language as Cities Skylines 1, but the translation needs to be improved by volunteers.
+
+### Feedback
+Give feedback through discord or via GitHub.
+	</LongDescription>
+	<Thumbnail Value="Properties/Thumbnail.png" />
+	<Screenshot Value="Properties/Previews/NotificationPanel.png" />
+	<Tag Value="Code Mod" />
+	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1702575/" />
+	<ModVersion Value="0.5.0" />
+	<GameVersion Value="1.5.*" />
+	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.11" />
+	<ChangeLog>
+
+	</ChangeLog>
+	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />
+	<ExternalLink Type="discord" Url="https://discord.gg/HTav7ARPs2" />
+
+</Publish>

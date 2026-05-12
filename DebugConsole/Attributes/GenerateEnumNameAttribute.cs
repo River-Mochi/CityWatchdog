@@ -1,6 +1,11 @@
-﻿namespace DebugConsole.Attributes;
+// File: DebugConsole/Attributes/GenerateEnumNameAttribute.cs
+// Purpose: Contains debug-console support code for City Watchdog development.
 
-[AttributeUsage(AttributeTargets.Method)]
-internal class GenerateEnumNameAttribute(string value) : Attribute {
-    public string EnumName { get; } = value;
+namespace DebugConsole.Attributes
+{
+    [AttributeUsage(AttributeTargets.Method)]
+    internal class GenerateEnumNameAttribute(string value) : Attribute {
+        public string EnumName { get; } = value;
+    }
+
 }
