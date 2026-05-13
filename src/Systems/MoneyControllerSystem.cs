@@ -5,7 +5,6 @@ namespace CityWatchdog.Systems
 {
     using CityWatchdog.Settings;
     using Colossal.Serialization.Entities;
-    using CS2Shared.Common;
     using Game;
     using Game.City;
     using Game.Input;
@@ -19,8 +18,8 @@ namespace CityWatchdog.Systems
     {
         private CitySystem citySystem = null!;
         private CityConfigurationSystem cityConfigurationSystem = null!;
-        private ProxyAction addMoneyAction = null!;
-        private ProxyAction subtractMoneyAction = null!;
+        private ProxyAction? addMoneyAction;
+        private ProxyAction? subtractMoneyAction;
 
         public enum ModifyMoneyType
         {
@@ -101,11 +100,17 @@ namespace CityWatchdog.Systems
             citySystem = World.GetOrCreateSystemManaged<CitySystem>();
             cityConfigurationSystem = World.GetOrCreateSystemManaged<CityConfigurationSystem>();
 
-            addMoneyAction = Setting.Instance.GetAction(Setting.AddMoneyAction);
-            addMoneyAction.shouldBeEnabled = true;
+            addMoneyAction = TryGetAction(Setting.AddMoneyAction);
+            if (addMoneyAction != null)
+            {
+                addMoneyAction.shouldBeEnabled = true;
+            }
 
-            subtractMoneyAction = Setting.Instance.GetAction(Setting.SubtractMoneyAction);
-            subtractMoneyAction.shouldBeEnabled = true;
+            subtractMoneyAction = TryGetAction(Setting.SubtractMoneyAction);
+            if (subtractMoneyAction != null)
+            {
+                subtractMoneyAction.shouldBeEnabled = true;
+            }
         }
 
         protected override void OnGameLoaded(Context serializationContext)
@@ -143,14 +148,30 @@ namespace CityWatchdog.Systems
                 }
             }
 
-            if (InGame && addMoneyAction.WasPerformedThisFrame())
+            if (InGame && addMoneyAction != null && addMoneyAction.WasPerformedThisFrame())
             {
                 OnAddMoney();
             }
 
-            if (InGame && subtractMoneyAction.WasPerformedThisFrame())
+            if (InGame && subtractMoneyAction != null && subtractMoneyAction.WasPerformedThisFrame())
             {
                 OnSubtractMoney();
+            }
+        }
+
+        private ProxyAction? TryGetAction(string actionName)
+        {
+            try
+            {
+                return Setting.Instance.GetAction(actionName);
+            }
+            catch (System.Exception ex)
+            {
+                LogUtils.WarnOnce(
+                    "missing-keybind-" + actionName,
+                    () => $"Keybinding action '{actionName}' is unavailable: {ex.GetType().Name}: {ex.Message}",
+                    ex);
+                return null;
             }
         }
 

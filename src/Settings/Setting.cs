@@ -5,10 +5,10 @@ namespace CityWatchdog.Settings
 {
     using CityWatchdog.Systems;
     using Colossal.IO.AssetDatabase;
-    using CS2Shared.Settings;
-    using CS2Shared.Tools;
+    using Game;
     using Game.Input;
     using Game.Modding;
+    using Game.SceneFlow;
     using Game.Settings;
     using Game.UI;
     using Game.UI.Widgets;
@@ -25,9 +25,17 @@ namespace CityWatchdog.Settings
     [SettingsUIGroupOrder(ModInfo, Achievements, Money, Reset)]
     [SettingsUIShowGroupName(ModInfo, Achievements, Money, Reset)]
 #endif
-    public partial class Setting : ModSettingBase
+    public partial class Setting : ModSetting
     {
         internal static Setting Instance { get; set; } = null!;
+
+        internal const string General = nameof(General);
+        internal const string KeyBindings = nameof(KeyBindings);
+        internal const string Advanced = nameof(Advanced);
+        internal const string Debug = nameof(Debug);
+        internal const string ModInfo = nameof(ModInfo);
+        internal const string Reset = nameof(Reset);
+        internal const string Serialize = nameof(Serialize);
 
         public const string AddMoneyAction = nameof(AddMoneyAction);
         public const string SubtractMoneyAction = nameof(SubtractMoneyAction);
@@ -38,6 +46,7 @@ namespace CityWatchdog.Settings
 
         public Setting(IMod mod) : base(mod)
         {
+            SetDefaults();
         }
 
         [SettingsUISection(General, Achievements)]
@@ -133,6 +142,17 @@ namespace CityWatchdog.Settings
             "Megalopolis",
         };
 
+        private bool IsInGame()
+        {
+            return GameManager.instance != null && GameManager.instance.gameMode == GameMode.Game;
+        }
+
+        public bool NotInGame => !IsInGame();
+
+        public bool InEditor => GameManager.instance != null && GameManager.instance.gameMode == GameMode.Editor;
+
+        public bool InMainMenu => GameManager.instance != null && GameManager.instance.gameMode == GameMode.MainMenu;
+
         public bool EnsureAutomaticAddMoneyEnabled()
         {
             return !AutomaticAddMoney;
@@ -185,8 +205,6 @@ namespace CityWatchdog.Settings
 
         public override void SetDefaults()
         {
-            base.SetDefaults();
-
             AchievementsEnabled = true;
             ManualMoneyAmount = 1000000;
             AutomaticAddMoney = false;
@@ -197,11 +215,12 @@ namespace CityWatchdog.Settings
             MilestoneLevel = 19;
 
             Notification.SetDefaults();
+            Hidden.SetDefaults();
         }
 
         private bool IsAchievementEnablerIncluded()
         {
-            return ModTools.IsModInclusive("AchievementEnabler");
+            return ModTools.IsAnyModEnabled("AchievementFixer", "AchievementEnabler");
         }
 
         private void OnAchievementsOptionChanged(bool value)
@@ -213,7 +232,7 @@ namespace CityWatchdog.Settings
 
         private bool GetMilestoneLevelStatus()
         {
-            return InGame || !CustomMilestone;
+            return IsInGame() || !CustomMilestone;
         }
 
         private DropdownItem<int>[] GetMilestoneLevelItems()
@@ -238,6 +257,16 @@ namespace CityWatchdog.Settings
                 value = value,
                 displayName = value.ToString("N0"),
             };
+        }
+
+        public string GetOptionLocaleID(string localeId)
+        {
+            return $"Options[{id}.{localeId}]";
+        }
+
+        public string GetUILocaleID(string entryId)
+        {
+            return $"{Mod.ModId}.UI[{entryId}]";
         }
     }
 }

@@ -1,5 +1,7 @@
-// File: src/Utils/LogUtils.cs
-// Purpose: Writes routine City Watchdog log lines directly to the dedicated mod log file.
+// File: Utils/LogUtils.cs
+// Version: 0.6.2
+// Purpose: popup-safe direct-file logging helpers for CS2 mods.
+// Based on River-Mochi shared CS2 utilities.
 
 namespace CityWatchdog
 {
@@ -18,7 +20,8 @@ namespace CityWatchdog
 
         private const int MaxWarnOnceKeys = 2048;
 
-        private static string s_FallbackLogName = Mod.ModId;
+        private static string s_FallbackLogName = string.Empty;
+        private static ILog? s_DefaultLog;
 
         public static void Configure(string fallbackLogName)
         {
@@ -34,14 +37,25 @@ namespace CityWatchdog
             }
         }
 
-        public static bool WarnOnce(string key, Func<string> messageFactory, Exception? exception = null)
+        public static void Configure(string fallbackLogName, ILog? defaultLog)
         {
-            return WarnOnce(Mod.s_Log, key, messageFactory, exception);
+            Configure(fallbackLogName);
+            s_DefaultLog = defaultLog;
         }
 
-        public static bool WarnOnce(ILog log, string key, Func<string> messageFactory, Exception? exception = null)
+        public static void SetDefaultLog(ILog? log)
         {
-            if (log == null || string.IsNullOrEmpty(key) || messageFactory == null)
+            s_DefaultLog = log;
+        }
+
+        public static bool WarnOnce(string key, Func<string> messageFactory, Exception? exception = null)
+        {
+            return WarnOnce(s_DefaultLog, key, messageFactory, exception);
+        }
+
+        public static bool WarnOnce(ILog? log, string key, Func<string> messageFactory, Exception? exception = null)
+        {
+            if (string.IsNullOrEmpty(key) || messageFactory == null)
             {
                 return false;
             }
@@ -51,7 +65,8 @@ namespace CityWatchdog
                 return false;
             }
 
-            string fullKey = GetLogName(log) + "|" + key;
+            string logName = GetLogName(log);
+            string fullKey = string.IsNullOrEmpty(logName) ? key : logName + "|" + key;
 
             lock (s_WarnOnceLock)
             {
@@ -72,47 +87,47 @@ namespace CityWatchdog
 
         public static void Info(Func<string> messageFactory)
         {
-            TryLog(Mod.s_Log, Level.Info, messageFactory);
+            TryLog(s_DefaultLog, Level.Info, messageFactory);
         }
 
-        public static void Info(ILog log, Func<string> messageFactory)
+        public static void Info(ILog? log, Func<string> messageFactory)
         {
             TryLog(log, Level.Info, messageFactory);
         }
 
         public static void Warn(Func<string> messageFactory, Exception? exception = null)
         {
-            TryLog(Mod.s_Log, Level.Warn, messageFactory, exception);
+            TryLog(s_DefaultLog, Level.Warn, messageFactory, exception);
         }
 
-        public static void Warn(ILog log, Func<string> messageFactory, Exception? exception = null)
+        public static void Warn(ILog? log, Func<string> messageFactory, Exception? exception = null)
         {
             TryLog(log, Level.Warn, messageFactory, exception);
         }
 
         public static void Debug(Func<string> messageFactory)
         {
-            TryLog(Mod.s_Log, Level.Debug, messageFactory);
+            TryLog(s_DefaultLog, Level.Debug, messageFactory);
         }
 
-        public static void Debug(ILog log, Func<string> messageFactory)
+        public static void Debug(ILog? log, Func<string> messageFactory)
         {
             TryLog(log, Level.Debug, messageFactory);
         }
 
         public static void Error(Func<string> messageFactory, Exception? exception = null)
         {
-            TryLog(Mod.s_Log, Level.Error, messageFactory, exception);
+            TryLog(s_DefaultLog, Level.Error, messageFactory, exception);
         }
 
-        public static void Error(ILog log, Func<string> messageFactory, Exception? exception = null)
+        public static void Error(ILog? log, Func<string> messageFactory, Exception? exception = null)
         {
             TryLog(log, Level.Error, messageFactory, exception);
         }
 
-        public static void TryLog(ILog log, Level level, Func<string> messageFactory, Exception? exception = null)
+        public static void TryLog(ILog? log, Level level, Func<string> messageFactory, Exception? exception = null)
         {
-            if (log == null || messageFactory == null)
+            if (messageFactory == null)
             {
                 return;
             }
@@ -142,11 +157,11 @@ namespace CityWatchdog
             }
         }
 
-        private static void SafeLogNoException(ILog log, Level level, string message)
+        private static void SafeLogNoException(ILog? log, Level level, string message)
         {
             try
             {
-                if (log != null && IsLevelEnabled(log, level))
+                if (IsLevelEnabled(log, level))
                 {
                     AppendDirect(log, level, message, null);
                 }
@@ -156,7 +171,7 @@ namespace CityWatchdog
             }
         }
 
-        private static void AppendDirect(ILog log, Level level, string message, Exception? exception)
+        private static void AppendDirect(ILog? log, Level level, string message, Exception? exception)
         {
             string logPath = GetLogPath(log);
             if (string.IsNullOrEmpty(logPath))
@@ -194,11 +209,11 @@ namespace CityWatchdog
             }
         }
 
-        private static string GetLogPath(ILog log)
+        private static string GetLogPath(ILog? log)
         {
             try
             {
-                if (!string.IsNullOrEmpty(log.logPath))
+                if (log != null && !string.IsNullOrEmpty(log.logPath))
                 {
                     return log.logPath;
                 }
@@ -209,19 +224,28 @@ namespace CityWatchdog
                     return Path.Combine(LogManager.kDefaultLogPath, logName + ".log");
                 }
 
-                return Path.Combine(LogManager.kDefaultLogPath, s_FallbackLogName + ".log");
+                return string.IsNullOrEmpty(s_FallbackLogName)
+                    ? string.Empty
+                    : Path.Combine(LogManager.kDefaultLogPath, s_FallbackLogName + ".log");
             }
             catch
             {
-                return Path.Combine(LogManager.kDefaultLogPath, s_FallbackLogName + ".log");
+                return string.IsNullOrEmpty(s_FallbackLogName)
+                    ? string.Empty
+                    : Path.Combine(LogManager.kDefaultLogPath, s_FallbackLogName + ".log");
             }
         }
 
-        private static string GetLogName(ILog log)
+        private static string GetLogName(ILog? log)
         {
             try
             {
-                return string.IsNullOrEmpty(log.name) ? s_FallbackLogName : log.name;
+                if (log != null && !string.IsNullOrEmpty(log.name))
+                {
+                    return log.name;
+                }
+
+                return s_FallbackLogName;
             }
             catch
             {
@@ -229,11 +253,11 @@ namespace CityWatchdog
             }
         }
 
-        private static bool IsLevelEnabled(ILog log, Level level)
+        private static bool IsLevelEnabled(ILog? log, Level level)
         {
             try
             {
-                return log.isLevelEnabled(level);
+                return log == null || log.isLevelEnabled(level);
             }
             catch
             {

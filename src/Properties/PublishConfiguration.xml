@@ -41,7 +41,7 @@ Use it as a work-in-progress utility mod while the takeover cleanup continues.
 
 - This project is based on the abandoned MIT-licensed City Controller mod.
 - City Watchdog is maintained as a new River-Mochi takeover project.
-- Some code still temporarily depends on the original author's CS2Shared project while cleanup is in progress.
+- The old original-author CS2Shared project dependency has been removed from City Watchdog.
 - No Harmony dependency is intended for the final cleaned version.
 
 ### Support and feedback

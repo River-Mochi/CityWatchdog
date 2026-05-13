@@ -1,7 +1,7 @@
 // File: src/Utils/StringBuilderExtension.cs
 // Purpose: Provides legacy StringBuilder extension methods used by City Watchdog debug logging.
 
-namespace CS2Shared.Extension
+namespace CityWatchdog.Extensions
 {
     using System;
     using System.Collections.Generic;

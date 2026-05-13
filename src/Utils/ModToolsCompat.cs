@@ -1,7 +1,7 @@
 // File: src/Utils/ModToolsCompat.cs
-// Purpose: Provides a local compatibility shim for legacy CS2Shared ModTools calls.
+// Purpose: Provides small local mod-detection helpers.
 
-namespace CS2Shared.Tools
+namespace CityWatchdog
 {
     using Game.Modding;
     using System;
@@ -9,6 +9,16 @@ namespace CS2Shared.Tools
 
     public static class ModTools
     {
+        public static bool IsAnyModEnabled(params string[] modNames)
+        {
+            if (modNames == null || modNames.Length == 0)
+            {
+                return false;
+            }
+
+            return modNames.Any(IsModInclusive);
+        }
+
         public static bool IsModInclusive(string modName)
         {
             if (string.IsNullOrEmpty(modName))

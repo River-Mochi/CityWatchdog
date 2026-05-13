@@ -6,7 +6,6 @@ namespace CityWatchdog.Systems
     using CityWatchdog.Settings;
     using Colossal.PSI.Common;
     using Colossal.Serialization.Entities;
-    using CS2Shared.Common;
     using Game;
 
     public partial class AchievementsControllerSystem : GameSystemBaseExtension

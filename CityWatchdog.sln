@@ -5,8 +5,6 @@ VisualStudioVersion = 18.5.11723.231
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityWatchdog", "src\CityWatchdog.csproj", "{C66AE4E4-5A9A-708E-269E-C8ADD8B7A966}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CS2Shared", "..\CS2Shared\CS2Shared\CS2Shared.shproj", "{40793EA5-CC36-4B43-AAF2-B8CA3CBEF13D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugConsole", "DebugConsole\DebugConsole.csproj", "{F285E6BD-D43B-44A8-8CF0-34B6CB622E8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B4A8E53-6CB2-43F4-84FC-0E35DBEDCE07}"
@@ -36,9 +34,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AA8A862-6365-4E92-B296-A36E40711A49}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\CS2Shared\CS2Shared\CS2Shared.projitems*{40793ea5-cc36-4b43-aaf2-b8ca3cbef13d}*SharedItemsImports = 13
-		..\CS2Shared\CS2Shared\CS2Shared.projitems*{c66ae4e4-5a9a-708e-269e-c8add8b7a966}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

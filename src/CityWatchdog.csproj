@@ -7,8 +7,7 @@
     - UI build:
       - Debug/non-Release: warn only if npm fails.
       - Release: hard fail if npm ci/build fails, so published builds do not ship without UI.
-    - Temporary dependency:
-      - imports the original author's CS2Shared project items until useful pieces are migrated or removed.
+    - No external CS2Shared import: the few helpers this mod still needs are local and owned here.
     -->
 
     <PropertyGroup>
@@ -44,31 +43,7 @@
     <!-- Let the CS2 toolchain provide TargetFramework and resolve refs -->
     <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.props" />
 
-    <!-- Temporary legacy shared-code import from the original author. -->
-    <Import Project="..\..\CS2Shared\CS2Shared\CS2Shared.projitems"
-            Label="Shared"
-            Condition="Exists('..\..\CS2Shared\CS2Shared\CS2Shared.projitems')" />
-
     <Import Project="$([System.Environment]::GetEnvironmentVariable('CSII_TOOLPATH', 'EnvironmentVariableTarget.User'))\Mod.targets" />
-
-    <Target Name="VerifyLegacyCS2Shared"
-            BeforeTargets="PrepareForBuild"
-            Condition="!Exists('..\..\CS2Shared\CS2Shared\CS2Shared.projitems')">
-        <Error Text="City Watchdog still imports the original author's CS2Shared project items. Expected file: ..\..\CS2Shared\CS2Shared\CS2Shared.projitems" />
-    </Target>
-
-    <ItemGroup>
-        <!-- Keep current patched replacements under src/Utils and exclude stale legacy shared helpers. -->
-        <Compile Remove="..\..\CS2Shared\CS2Shared\tools\ModTools.cs" />
-        <Compile Remove="..\..\CS2Shared\CS2Shared\extension\ModTools.cs" />
-        <Compile Remove="..\..\CS2Shared\CS2Shared\Extension\ModTools.cs" />
-
-        <Compile Remove="..\..\CS2Shared\CS2Shared\extension\StringBuilderExtension.cs" />
-        <Compile Remove="..\..\CS2Shared\CS2Shared\Extension\StringBuilderExtension.cs" />
-
-        <Compile Remove="..\..\CS2Shared\CS2Shared\extension\DataDirectory.cs" />
-        <Compile Remove="..\..\CS2Shared\CS2Shared\Extension\DataDirectory.cs" />
-    </ItemGroup>
 
     <ItemGroup>
         <!-- Ensure game/Unity/Colossal refs are not copied to output -->
@@ -149,12 +124,6 @@
         <Folder Include="UI\src\mods\Divider\" />
         <Folder Include="UI\src\mods\ControlPanelViews\" />
         <Folder Include="Utils\" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Update="Localization\**\*">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
     <!-- AUTO UPDATE PublishConfiguration ModVersion using CSPROJ as source of truth. -->

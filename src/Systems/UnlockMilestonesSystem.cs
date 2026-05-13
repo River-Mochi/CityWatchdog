@@ -5,7 +5,6 @@ namespace CityWatchdog.Systems
 {
     using CityWatchdog.Settings;
     using Colossal.Serialization.Entities;
-    using CS2Shared.Common;
     using Game.City;
     using Game.Common;
     using Game.Prefabs;

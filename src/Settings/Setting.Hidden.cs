@@ -3,16 +3,13 @@
 
 namespace CityWatchdog.Settings
 {
-    using CS2Shared.Settings;
-    using System;
-
     public partial class Setting {
         public SettingHidden Hidden { get; set; } = new();
 
-        public class SettingHidden : SettingChildClassBase {
+        public class SettingHidden {
             public bool ControlPanelDraggable { get; set; }
 
-            public override void SetDefaults() {
+            public void SetDefaults() {
                 ControlPanelDraggable = false;
             }
         }
