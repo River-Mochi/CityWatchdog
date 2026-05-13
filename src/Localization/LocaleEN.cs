@@ -64,10 +64,15 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MilestoneLevel)), "Milestone" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MilestoneLevel)), "Pick the milestone level to unlock on the next city load. This is only editable outside a loaded city, and only after Custom Milestone is enabled." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)), "Enable Unlimited Money Save Conversion" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)),
+                    "Turn this ON only after making a backup. This unlocks the Convert Unlimited Money Save button when the loaded city was started with Unlimited Money.\n" +
+                    "City Watchdog cannot undo this conversion." },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "Convert Unlimited Money Save" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "For cities started with Unlimited Money. While that city is loaded, this converts the save to normal limited-money budgeting so the city has regular money challenge again.\n" +
-                    "Button is <disabled/ greyed-out> unless the loaded city is an Unlimited Money type." },
+                    "Button is <disabled/ greyed-out> unless the loaded city is an Unlimited Money type and Enable Unlimited Money Save Conversion is ON." },
 
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "Convert this city from Unlimited Money to normal limited money? Save a backup first; City Watchdog cannot undo this conversion." },

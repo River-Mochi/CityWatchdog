@@ -94,6 +94,9 @@ namespace CityWatchdog.Settings
         [SettingsUIDisableByCondition(typeof(Setting), nameof(GetMilestoneLevelStatus))]
         public int MilestoneLevel { get; set; }
 
+        [SettingsUISection(General, SaveConversion)]
+        public bool ConfirmUnlimitedMoneySaveConversion { get; set; }
+
         [SettingsUIButton]
         [SettingsUIConfirmation]
         [SettingsUISection(General, SaveConversion)]
@@ -223,7 +226,8 @@ namespace CityWatchdog.Settings
 
         private bool CannotConvertUnlimitedMoneySave()
         {
-            return GetMoneyControllerSystem()?.CanConvertUnlimitedMoneySave() != true;
+            return !ConfirmUnlimitedMoneySaveConversion ||
+                   GetMoneyControllerSystem()?.CanConvertUnlimitedMoneySave() != true;
         }
 
         private static MoneyControllerSystem? GetMoneyControllerSystem()
@@ -299,10 +303,10 @@ namespace CityWatchdog.Settings
             InitialMoney = 0;
             CustomMilestone = false;
             MilestoneLevel = 19;
+            ConfirmUnlimitedMoneySaveConversion = false;
             ShowUsage = false;
 
             Notification.SetDefaults();
-            Hidden.SetDefaults();
         }
 
         private bool IsAchievementEnablerIncluded()
