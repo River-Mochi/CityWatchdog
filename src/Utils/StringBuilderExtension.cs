@@ -1,5 +1,5 @@
 // File: src/Utils/StringBuilderExtension.cs
-// Purpose: Compatibility extension methods used by City Watchdog debug notification logging.
+// Purpose: Provides legacy StringBuilder extension methods used by City Watchdog debug logging.
 
 namespace CS2Shared.Extension
 {
@@ -45,6 +45,7 @@ namespace CS2Shared.Extension
         public static string ToString(this StringBuilder stringBuilder, List<Action<StringBuilder>> actions)
         {
             stringBuilder.Clear();
+
             foreach (Action<StringBuilder> action in actions)
             {
                 action(stringBuilder);

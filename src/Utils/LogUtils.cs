@@ -1,5 +1,5 @@
 // File: src/Utils/LogUtils.cs
-// Purpose: Provides popup-safe direct-file logging helpers for City Watchdog.
+// Purpose: Writes routine City Watchdog log lines directly to the dedicated mod log file.
 
 namespace CityWatchdog
 {
@@ -18,28 +18,12 @@ namespace CityWatchdog
 
         private const int MaxWarnOnceKeys = 2048;
 
-        private static string s_FallbackLogName = Mod.ModId;
-
-        public static void Configure(string fallbackLogName)
-        {
-            if (string.IsNullOrWhiteSpace(fallbackLogName))
-            {
-                return;
-            }
-
-            string cleaned = Path.GetFileNameWithoutExtension(fallbackLogName.Trim());
-            if (!string.IsNullOrWhiteSpace(cleaned))
-            {
-                s_FallbackLogName = cleaned;
-            }
-        }
-
-        public static bool WarnOnce(string key, Func<string> messageFactory, Exception? exception = null)
+        public static bool WarnOnce(string key, Func<string> messageFactory, Exception exception = null)
         {
             return WarnOnce(Mod.s_Log, key, messageFactory, exception);
         }
 
-        public static bool WarnOnce(ILog log, string key, Func<string> messageFactory, Exception? exception = null)
+        public static bool WarnOnce(ILog log, string key, Func<string> messageFactory, Exception exception = null)
         {
             if (log == null || string.IsNullOrEmpty(key) || messageFactory == null)
             {
@@ -51,8 +35,7 @@ namespace CityWatchdog
                 return false;
             }
 
-            string logName = GetLogName(log);
-            string fullKey = string.IsNullOrEmpty(logName) ? key : logName + "|" + key;
+            string fullKey = GetLogName(log) + "|" + key;
 
             lock (s_WarnOnceLock)
             {
@@ -81,12 +64,12 @@ namespace CityWatchdog
             TryLog(log, Level.Info, messageFactory);
         }
 
-        public static void Warn(Func<string> messageFactory, Exception? exception = null)
+        public static void Warn(Func<string> messageFactory, Exception exception = null)
         {
             TryLog(Mod.s_Log, Level.Warn, messageFactory, exception);
         }
 
-        public static void Warn(ILog log, Func<string> messageFactory, Exception? exception = null)
+        public static void Warn(ILog log, Func<string> messageFactory, Exception exception = null)
         {
             TryLog(log, Level.Warn, messageFactory, exception);
         }
@@ -101,17 +84,17 @@ namespace CityWatchdog
             TryLog(log, Level.Debug, messageFactory);
         }
 
-        public static void Error(Func<string> messageFactory, Exception? exception = null)
+        public static void Error(Func<string> messageFactory, Exception exception = null)
         {
             TryLog(Mod.s_Log, Level.Error, messageFactory, exception);
         }
 
-        public static void Error(ILog log, Func<string> messageFactory, Exception? exception = null)
+        public static void Error(ILog log, Func<string> messageFactory, Exception exception = null)
         {
             TryLog(log, Level.Error, messageFactory, exception);
         }
 
-        public static void TryLog(ILog log, Level level, Func<string> messageFactory, Exception? exception = null)
+        public static void TryLog(ILog log, Level level, Func<string> messageFactory, Exception exception = null)
         {
             if (log == null || messageFactory == null)
             {
@@ -157,7 +140,7 @@ namespace CityWatchdog
             }
         }
 
-        private static void AppendDirect(ILog log, Level level, string message, Exception? exception)
+        private static void AppendDirect(ILog log, Level level, string message, Exception exception)
         {
             string logPath = GetLogPath(log);
             if (string.IsNullOrEmpty(logPath))
@@ -167,30 +150,30 @@ namespace CityWatchdog
 
             lock (s_FileWriteLock)
             {
-                string? directory = Path.GetDirectoryName(logPath);
+                string directory = Path.GetDirectoryName(logPath);
                 if (!string.IsNullOrEmpty(directory))
                 {
                     Directory.CreateDirectory(directory);
                 }
 
-                using FileStream stream = new FileStream(
+                using (FileStream stream = new FileStream(
                     logPath,
                     FileMode.Append,
                     FileAccess.Write,
-                    FileShare.ReadWrite);
-
-                using StreamWriter writer = new StreamWriter(stream);
-
-                writer.Write('[');
-                writer.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
-                writer.Write("] [");
-                writer.Write(GetLevelName(level));
-                writer.Write("]  ");
-                writer.WriteLine(message ?? string.Empty);
-
-                if (exception != null)
+                    FileShare.ReadWrite))
+                using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    writer.WriteLine(exception);
+                    writer.Write('[');
+                    writer.Write(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss,fff"));
+                    writer.Write("] [");
+                    writer.Write(GetLevelName(level));
+                    writer.Write("]  ");
+                    writer.WriteLine(message ?? string.Empty);
+
+                    if (exception != null)
+                    {
+                        writer.WriteLine(exception);
+                    }
                 }
             }
         }
@@ -210,16 +193,11 @@ namespace CityWatchdog
                     return Path.Combine(LogManager.kDefaultLogPath, logName + ".log");
                 }
 
-                return string.Empty;
+                return Path.Combine(LogManager.kDefaultLogPath, Mod.ModId + ".log");
             }
             catch
             {
-                if (string.IsNullOrEmpty(s_FallbackLogName))
-                {
-                    return string.Empty;
-                }
-
-                return Path.Combine(LogManager.kDefaultLogPath, s_FallbackLogName + ".log");
+                return Path.Combine(LogManager.kDefaultLogPath, Mod.ModId + ".log");
             }
         }
 
@@ -227,16 +205,11 @@ namespace CityWatchdog
         {
             try
             {
-                if (!string.IsNullOrEmpty(log.name))
-                {
-                    return log.name;
-                }
-
-                return s_FallbackLogName;
+                return string.IsNullOrEmpty(log.name) ? Mod.ModId : log.name;
             }
             catch
             {
-                return s_FallbackLogName;
+                return Mod.ModId;
             }
         }
 

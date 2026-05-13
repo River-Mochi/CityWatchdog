@@ -39,7 +39,7 @@ namespace CityWatchdog.Systems
                     PlaceableObjectData placeableObjectData = EntityManager.GetComponentData<PlaceableObjectData>(signatureBuildings[i]);
                     placeableObjectData.m_Flags ^= PlacementFlags.Unique;
                     EntityManager.SetComponentData(signatureBuildings[i], placeableObjectData);
-                    LogUtils.Info(Mod.s_Log, () => placeableObjectData.m_Flags.ToString());
+                    LogUtils.Info(() => placeableObjectData.m_Flags.ToString());
                 }
             }
             finally

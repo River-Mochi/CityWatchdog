@@ -1,5 +1,5 @@
 // File: src/Utils/ModToolsCompat.cs
-// Purpose: Compatibility helper for legacy CS2Shared ModTools calls using the current CO mod manager API.
+// Purpose: Provides a local compatibility shim for legacy CS2Shared ModTools calls.
 
 namespace CS2Shared.Tools
 {
@@ -16,7 +16,7 @@ namespace CS2Shared.Tools
                 return false;
             }
 
-            string[]? enabledMods = ModManager.GetModsEnabled();
+            string[] enabledMods = ModManager.GetModsEnabled();
             if (enabledMods == null || enabledMods.Length == 0)
             {
                 return false;

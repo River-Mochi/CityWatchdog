@@ -100,7 +100,7 @@ namespace CityWatchdog.Systems
                 EntityManager.SetComponentData(citySystem.City, devTreePoints);
                 EntityManager.SetComponentData(citySystem.City, xp);
 
-                LogUtils.Info(Mod.s_Log, () => $"Unlock level {Setting.Instance.MilestoneLevel + 1} Milestone");
+                LogUtils.Info(() => $"Unlock level {Setting.Instance.MilestoneLevel + 1} Milestone");
             }
             finally
             {

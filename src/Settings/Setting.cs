@@ -98,16 +98,16 @@ namespace CityWatchdog.Settings
 #if DEBUG
         [SettingsUIKeyboardBinding(BindingKeyboard.T, "DebugAction", ctrl: true, shift: true)]
         [SettingsUISection(KeyBindings, Money)]
-        public ProxyBinding DebugKeyboardBinding { get; set; } = null!;
+        public ProxyBinding DebugKeyboardBinding { get; set; }
 #endif
 
         [SettingsUIKeyboardBinding(BindingKeyboard.M, AddMoneyAction, ctrl: true, shift: true)]
         [SettingsUISection(KeyBindings, Money)]
-        public ProxyBinding AddMoneyKeyboardBinding { get; set; } = null!;
+        public ProxyBinding AddMoneyKeyboardBinding { get; set; }
 
         [SettingsUIKeyboardBinding(BindingKeyboard.N, SubtractMoneyAction, ctrl: true, shift: true)]
         [SettingsUISection(KeyBindings, Money)]
-        public ProxyBinding SubtractMoneyKeyboardBinding { get; set; } = null!;
+        public ProxyBinding SubtractMoneyKeyboardBinding { get; set; }
 
         public string[] Milestones { get; } =
         {

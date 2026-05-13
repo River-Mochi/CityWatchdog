@@ -1,5 +1,5 @@
 // File: src/Utils/DataDirectory.cs
-// Purpose: Compatibility path helpers replacing stale legacy CS2Shared DataDirectory calls.
+// Purpose: Provides CS2 user-data path helpers for legacy CS2Shared callers.
 
 namespace CS2Shared.Extension
 {
@@ -26,8 +26,6 @@ namespace CS2Shared.Extension
         public static string CurrentModSettingsDirectory { get; } =
             Path.Combine(ModsSettingsDirectory, AssemblyTools.CurrentAssemblyName);
 
-        // Current game assemblies no longer expose EnvPath.kLocalModsPath.
-        // Keep a safe fallback for old shared-code callers that only need a non-empty path.
         public static string LocalModsDirectory { get; } =
             Path.Combine(UserDataDirectory, "Mods");
 
@@ -40,7 +38,7 @@ namespace CS2Shared.Extension
                 return string.Empty;
             }
 
-            string? directory = Path.GetDirectoryName(executableAsset.path);
+            string directory = Path.GetDirectoryName(executableAsset.path);
             if (string.IsNullOrEmpty(directory))
             {
                 return string.Empty;
