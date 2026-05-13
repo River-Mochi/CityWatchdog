@@ -71,14 +71,7 @@ import styles from "../NotificationPanel/NotificationPanel.module.scss";
 import { VanillaComponentResolver } from "../VanillaComponentResolver/VanillaComponentResolver";
 
 
-const modIconSrc = "coui://ui-mods/images/
-
-
-
-
-
-
-Icon_colored.svg";
+const modIconSrc = "coui://ui-mods/images/CityWatchdogIcon_colored.svg";
 const roundButtonHighlightStyle = getModule("game-ui/common/input/button/themes/round-highlight-button.module.scss", "classes");
 
 
@@ -154,7 +147,7 @@ export const NotificationPanel = () => {
                 header={
                     <div className={styles.header}>
                         <img src={modIconSrc} className={styles.headerModIcon} />
-                        <div className={styles.headerModName}>CITY CONTROLLER</div>
+                        <div className={styles.headerModName}>CITY WATCHDOG</div>
                         <Button className={roundButtonHighlightStyle.button + ' ' + styles.headerCloseButton}
                             variant="icon"
                             onClick={() => { OnControlPanelBindingToggle(!showPanel) }}
