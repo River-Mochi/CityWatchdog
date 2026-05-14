@@ -1,16 +1,18 @@
 // File: src/UI/src/mods/EntryButton/EntryButton.tsx
 // Purpose:
-//   Floating GameTopLeft launcher button for City Watchdog notification panel.
-//   Clicking toggles the in-game SIP panel.
+//   Floating GameTopLeft launcher button for the City Watchdog notification panel.
+//   Clicking toggles the in-game City Watchdog SIP panel.
 // Notes:
 //   - Uses the CS2 "floating" button variant so it matches GameTopLeft buttons.
+//   - Uses the Button `src` prop for the SVG, matching the EasyZoning GTL button pattern.
+//   - Avoids Icon tinted={true}, so the SVG can keep its own colors.
 //   - Uses onSelect because that is the CS2 UI button handler.
 //   - Uses vanilla DescriptionTooltip through VanillaComponentResolver for title + description tooltip styling.
 //   - Tooltip text is localized through CityWatchdog.UI[...] locale keys.
 
 import { useValue } from "cs2/api";
 import { useLocalization } from "cs2/l10n";
-import { Button, Icon } from "cs2/ui";
+import { Button } from "cs2/ui";
 import {
     OnControlPanelBindingToggle,
     controlPanelEnabled$,
@@ -18,9 +20,7 @@ import {
 import { VanillaComponentResolver } from "../VanillaComponentResolver/VanillaComponentResolver";
 
 // Icon emitted by webpack to coui://ui-mods/images/.
-// import ModIconPath from "../../../images/CWDNotificationIcon_Blk_Wht_Lg.svg";
 import ModIconPath from "../../../images/CWDNotificationIcon_Blk_Wht_Lg.svg";
-
 
 export const EntryButton = () => {
     const { translate } = useLocalization();
@@ -50,11 +50,10 @@ export const EntryButton = () => {
         <DescriptionTooltip title={title} description={description} direction="right">
             <Button
                 variant="floating"
+                src={ModIconPath}
                 selected={showPanel}
                 onSelect={handleSelect}
-            >
-                <Icon tinted={true} src={ModIconPath} />
-            </Button>
+            />
         </DescriptionTooltip>
     );
 };
