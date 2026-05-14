@@ -309,24 +309,28 @@ const NotificationPanelContent = () => {
     return (
         <Panel
             className={styles.panel}
+
             header={
-                <div className={styles.header}>
-                    <Tooltip tooltip={localize("NotificationIconShowOrHide")}>
+                <Tooltip tooltip={localize("NotificationIconShowOrHide")}>
+                    <div className={styles.header}>
                         <div className={styles.headerTitleArea}>
                             <img src={modIconSrc} className={styles.headerModIcon} />
                             <div className={styles.headerModName}>CITY WATCHDOG</div>
                         </div>
-                    </Tooltip>
-                    <Button
-                        className={roundButtonHighlightStyle.button + " " + styles.headerCloseButton}
-                        variant="icon"
-                        onClick={() => { OnControlPanelBindingToggle(false); }}
-                        focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
-                    >
-                        <img src="coui://uil/Standard/XClose.svg"></img>
-                    </Button>
-                </div>
+                        <Button
+                            className={roundButtonHighlightStyle.button + " " + styles.headerCloseButton}
+                            variant="icon"
+                            onClick={() => { OnControlPanelBindingToggle(false); }}
+                            focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
+                        >
+                            <img src="coui://uil/Standard/XClose.svg"></img>
+                        </Button>
+                    </div>
+                </Tooltip>
             }
+
+
+
         >
             <div className={styles.toolbar}>
                 <Button
