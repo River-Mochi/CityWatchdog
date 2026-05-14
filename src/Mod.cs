@@ -3,7 +3,6 @@
 
 namespace CityWatchdog
 {
-    using CityWatchdog.Settings;
     using CityWatchdog.Systems;
     using Colossal;
     using Colossal.IO.AssetDatabase;
@@ -174,13 +173,13 @@ namespace CityWatchdog
 
         private static void ScheduleSystems(UpdateSystem updateSystem)
         {
-            if (!ModTools.IsAnyModEnabled("AchievementFixer", "AchievementEnabler"))
+            if (!ModTools.IsAnyModEnabled("AchievementFixer"))
             {
                 updateSystem.UpdateAfter<AchievementsControllerSystem>(SystemUpdatePhase.Deserialize);
             }
             else
             {
-                LogUtils.Info(() => "Separate achievement enabler detected; City Watchdog achievement system skipped.");
+                LogUtils.Info(() => "AchievementFixer detected; City Watchdog achievement system skipped.");
             }
 
             updateSystem.UpdateAt<MoneyControllerSystem>(SystemUpdatePhase.ModificationEnd);

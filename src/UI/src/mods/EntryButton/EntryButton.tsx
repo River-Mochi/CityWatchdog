@@ -7,14 +7,13 @@ export const EntryButton = () => {
     const modIcon = "coui://ui-mods/images/Warning.svg";
 
     return (
-        <Tooltip
-            tooltip="City Watchdog">
+        <Tooltip tooltip="City Watchdog">
             <Button
                 variant="floating"
                 selected={showPanel}
-                onSelect={() => { OnControlPanelBindingToggle(!showPanel) }}>
+                onSelect={() => { OnControlPanelBindingToggle(!showPanel); }}>
                 <Icon tinted={true} src={modIcon} />
             </Button>
         </Tooltip>
-    )
-}
+    );
+};

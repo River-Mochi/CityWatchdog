@@ -94,7 +94,7 @@ const modIconSrc = "coui://ui-mods/images/Yellow_Warning.svg";
 const roundButtonHighlightStyle = getModule("game-ui/common/input/button/themes/round-highlight-button.module.scss", "classes");
 const icon = (name: string) => `Media/Game/Notifications/${name}.svg`;
 
-type Localize = (localeId: string) => string;
+type Localize = (localeId: string, fallback?: string) => string;
 
 interface NotificationItem {
     readonly localeId: string;
@@ -252,6 +252,16 @@ const setAllNotifications = (enabled: boolean) => {
     });
 };
 
+const createExpandedSections = (expanded: boolean | null = null) => {
+    const result: Record<string, boolean> = {};
+
+    sections.forEach((section) => {
+        result[section.localeId] = expanded ?? section.defaultExpanded === true;
+    });
+
+    return result;
+};
+
 export const NotificationPanel = () => {
     const showPanel = useValue(controlPanelEnabled$);
     const isPhotoMode = useValue(game.activeGamePanel$)?.__Type == game.GamePanelType.PhotoMode;
@@ -266,9 +276,13 @@ export const NotificationPanel = () => {
 const NotificationPanelContent = () => {
     const { translate } = useLocalization();
     const [sortAscending, setSortAscending] = useState(true);
+    const [expandedSections, setExpandedSections] = useState(createExpandedSections);
     const allValues = useAllNotificationValues();
+
     const allSelected = allValues.every(Boolean);
-    const localize: Localize = (localeId) => translate(`CityWatchdog.UI[${localeId}]`) ?? localeId;
+    const allSectionsExpanded = sections.every((section) => expandedSections[section.localeId] === true);
+
+    const localize: Localize = (localeId, fallback) => translate(`CityWatchdog.UI[${localeId}]`) ?? fallback ?? localeId;
     const orderedSections = [...sections].sort((a, b) => {
         const result = localize(a.localeId).localeCompare(localize(b.localeId));
         return sortAscending ? result : -result;
@@ -276,6 +290,17 @@ const NotificationPanelContent = () => {
 
     const onToggleAll = () => {
         setAllNotifications(!allSelected);
+    };
+
+    const onToggleAllSections = () => {
+        setExpandedSections(createExpandedSections(!allSectionsExpanded));
+    };
+
+    const onSectionExpandedChange = (section: NotificationSection, expanded: boolean) => {
+        setExpandedSections((current) => ({
+            ...current,
+            [section.localeId]: expanded,
+        }));
     };
 
     return (
@@ -299,28 +324,54 @@ const NotificationPanelContent = () => {
             <div className={styles.introText}>{localize("NotificationIconShowOrHide")}</div>
             <div className={styles.toolbar}>
                 <Button
-                    className={roundButtonHighlightStyle.button + " " + styles.toolbarButton}
-                    onClick={onToggleAll}
+                    className={styles.toolbarButton}
+                    onClick={onToggleAllSections}
                     focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
                 >
-                    {localize("ToggleAll")}
+                    {allSectionsExpanded ? localize("CollapseAll", "Collapse All") : localize("ExpandAll", "Expand All")}
                 </Button>
                 <Button
-                    className={roundButtonHighlightStyle.button + " " + styles.toolbarButton + " " + styles.sortButton}
+                    className={styles.toolbarButton + " " + styles.sortButton}
                     onClick={() => { setSortAscending(!sortAscending); }}
                     focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
                 >
-                    {sortAscending ? localize("SortAscending") : localize("SortDescending")}
+                    {sortAscending ? localize("SortAscending", "ASC ↑") : localize("SortDescending", "DESC ↓")}
+                </Button>
+                <Button
+                    className={styles.toolbarButton}
+                    onClick={onToggleAll}
+                    focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
+                >
+                    {localize("ToggleAll", "Toggle All")}
                 </Button>
             </div>
             {orderedSections.map((section, index) => (
-                <NotificationSectionView key={section.localeId} section={section} localize={localize} showDivider={index > 0} />
+                <NotificationSectionView
+                    key={section.localeId}
+                    section={section}
+                    expanded={expandedSections[section.localeId] === true}
+                    localize={localize}
+                    showDivider={index > 0}
+                    onExpandedChange={(expanded) => onSectionExpandedChange(section, expanded)}
+                />
             ))}
         </Panel>
     );
 };
 
-const NotificationSectionView = ({ section, localize, showDivider }: { section: NotificationSection; localize: Localize; showDivider: boolean }) => {
+const NotificationSectionView = ({
+    section,
+    expanded,
+    localize,
+    showDivider,
+    onExpandedChange,
+}: {
+    section: NotificationSection;
+    expanded: boolean;
+    localize: Localize;
+    showDivider: boolean;
+    onExpandedChange: (expanded: boolean) => void;
+}) => {
     const values = useSectionValues(section);
     const selectedCount = values.filter(Boolean).length;
 
@@ -330,7 +381,8 @@ const NotificationSectionView = ({ section, localize, showDivider }: { section: 
             <InfoPanel
                 title={localize(section.localeId)}
                 collapsible={true}
-                defaultExpanded={section.defaultExpanded === true}
+                expanded={expanded}
+                onExpandedChange={onExpandedChange}
                 summary={`${selectedCount}/${section.items.length}`}
                 renderChildren={() => section.items.map((item, itemIndex) => (
                     <NotificationRow

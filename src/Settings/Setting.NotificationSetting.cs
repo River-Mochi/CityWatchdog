@@ -1,7 +1,7 @@
 // File: src/Settings/Setting.NotificationSetting.cs
 // Purpose: Contains City Watchdog settings and Options UI logic.
 
-namespace CityWatchdog.Settings
+namespace CityWatchdog
 {
     public partial class Setting {
         public NotificationSetting Notification { get; set; } = new NotificationSetting();

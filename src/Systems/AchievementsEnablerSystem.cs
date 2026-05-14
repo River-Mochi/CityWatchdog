@@ -3,7 +3,7 @@
 
 namespace CityWatchdog.Systems
 {
-    using CityWatchdog.Settings;
+
     using Colossal.PSI.Common;
     using Colossal.Serialization.Entities;
     using Game;

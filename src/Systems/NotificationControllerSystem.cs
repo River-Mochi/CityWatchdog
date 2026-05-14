@@ -5,7 +5,6 @@ namespace CityWatchdog.Systems
 {
     using CityWatchdog.Data;
     using CityWatchdog.Extensions;
-    using CityWatchdog.Settings;
     using Colossal.Serialization.Entities;
     using Game.Common;
     using Game.Notifications;
@@ -120,7 +119,7 @@ namespace CityWatchdog.Systems
         public void Refresh() {
             EntityDictionary.Clear();
             NativeArray<ArchetypeChunk> nativeArray = iconQuery.ToArchetypeChunkArray(Allocator.TempJob);
-            var prefabRefTypeHandle = GetComponentTypeHandle<PrefabRef>();
+            ComponentTypeHandle<PrefabRef> prefabRefTypeHandle = GetComponentTypeHandle<PrefabRef>();
             for (int i = 0; i < nativeArray.Length; i++) {
                 NativeArray<PrefabRef> nativeArray2 = nativeArray[i].GetNativeArray(ref prefabRefTypeHandle);
                 for (int j = 0; j < nativeArray2.Length; j++) {
@@ -136,7 +135,7 @@ namespace CityWatchdog.Systems
 
             nativeArray.Dispose();
             if (EntityDictionary.Any()) {
-                foreach (var item in EntityDictionary) {
+                foreach (KeyValuePair<Entity, int> item in EntityDictionary) {
                     LogUtils.Info(() => $"{prefabSystem.GetPrefab<NotificationIconPrefab>(item.Key).name} | {item.Value}");
                     //EnableNotification(item.Key, Act);
                 }
@@ -145,8 +144,8 @@ namespace CityWatchdog.Systems
 
         public void DebugNotificationIconPrefab() {
             LogUtils.Info(() => $"Debug NotificationIconPrefab");
-            var entityArray = notificationIconDisplayDataQuery.ToEntityArray(Allocator.TempJob);
-            foreach (var item in entityArray) {
+            NativeArray<Entity> entityArray = notificationIconDisplayDataQuery.ToEntityArray(Allocator.TempJob);
+            foreach (Entity item in entityArray) {
                 LogUtils.Info(() => $"{prefabSystem.GetPrefab<NotificationIconPrefab>(item).name}");
             }
 
@@ -163,7 +162,7 @@ namespace CityWatchdog.Systems
 
 
         public void EnableTransportLineNotification(TransportLineNotificationIcon transportLineNotificationIcon, bool value, bool refresh = false) {
-            var singleton = transportLineNotificationParameterQuery.GetSingleton<TransportLineData>();
+            TransportLineData singleton = transportLineNotificationParameterQuery.GetSingleton<TransportLineData>();
             if (transportLineNotificationIcon == TransportLineNotificationIcon.VehicleNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_VehicleNotification, value);
             }
@@ -178,7 +177,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableRouteNotification(RouteNotificationIcon routeNotificationIcon, bool value, bool refresh = false) {
-            var singleton = routeNotificationParameterQuery.GetSingleton<RouteConfigurationData>();
+            RouteConfigurationData singleton = routeNotificationParameterQuery.GetSingleton<RouteConfigurationData>();
             if (routeNotificationIcon == RouteNotificationIcon.PathfindNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_PathfindNotification, value);
             }
@@ -193,7 +192,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableResourceConsumerNotification(ResourceConsumerNotificationIcon resourceConsumerNotificationIcon, bool value, bool refresh = false) {
-            var singleton = resourceConsumerNotificationParameterQuery.GetSingleton<ResourceConsumerData>();
+            ResourceConsumerData singleton = resourceConsumerNotificationParameterQuery.GetSingleton<ResourceConsumerData>();
             if (resourceConsumerNotificationIcon == ResourceConsumerNotificationIcon.NoResourceNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_NoResourceNotificationPrefab, value);
             }
@@ -208,7 +207,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnablePollutionNotification(PollutionNotificationIcon pollutionNotificationIcon, bool value, bool refresh = false) {
-            var singleton = pollutionNotificationParameterQuery.GetSingleton<PollutionParameterData>();
+            PollutionParameterData singleton = pollutionNotificationParameterQuery.GetSingleton<PollutionParameterData>();
             if (pollutionNotificationIcon == PollutionNotificationIcon.AirPollutionNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_AirPollutionNotification, value);
             }
@@ -231,7 +230,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnablePoliceNotification(PoliceNotificationIcon policeNotificationIcon, bool value, bool refresh = false) {
-            var singleton = policeNotificationParameterQuery.GetSingleton<PoliceConfigurationData>();
+            PoliceConfigurationData singleton = policeNotificationParameterQuery.GetSingleton<PoliceConfigurationData>();
             if (policeNotificationIcon == PoliceNotificationIcon.TrafficAccidentNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_TrafficAccidentNotificationPrefab, value);
             }
@@ -250,7 +249,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableHealthcareNotification(HealthcareNotificationIcon healthcareNotificationIcon, bool value, bool refresh = false) {
-            var singleton = healthcareNotificationParameterQuery.GetSingleton<HealthcareParameterData>();
+            HealthcareParameterData singleton = healthcareNotificationParameterQuery.GetSingleton<HealthcareParameterData>();
             if (healthcareNotificationIcon == HealthcareNotificationIcon.AmbulanceNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_AmbulanceNotificationPrefab, value);
             }
@@ -273,7 +272,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableGarbageNotification(GarbageNotificationIcon garbageNotificationIcon, bool value, bool refresh = false) {
-            var singleton = garbageNotificationParameterQuery.GetSingleton<GarbageParameterData>();
+            GarbageParameterData singleton = garbageNotificationParameterQuery.GetSingleton<GarbageParameterData>();
             if (garbageNotificationIcon == GarbageNotificationIcon.GarbageNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_GarbageNotificationPrefab, value);
             }
@@ -292,7 +291,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableFireNotification(FireNotificationIcon fireNotificationIcon, bool value, bool refresh = false) {
-            var singleton = fireNotificationParameterQuery.GetSingleton<FireConfigurationData>();
+            FireConfigurationData singleton = fireNotificationParameterQuery.GetSingleton<FireConfigurationData>();
             if (fireNotificationIcon == FireNotificationIcon.FireNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_FireNotificationPrefab, value);
             }
@@ -311,7 +310,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableDisasterNotification(DisasterNotificationIcon disasterNotificationIcon, bool value, bool refresh = false) {
-            var singleton = disasterNotificationParameterQuery.GetSingleton<DisasterConfigurationData>();
+            DisasterConfigurationData singleton = disasterNotificationParameterQuery.GetSingleton<DisasterConfigurationData>();
             if (disasterNotificationIcon == DisasterNotificationIcon.WeatherDamageNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_WeatherDamageNotificationPrefab, value);
             }
@@ -342,7 +341,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableWorkProviderNotification(WorkProviderNotificationIcon workProviderNotificationIcon, bool value, bool refresh = false) {
-            var singleton = workProviderNotificationParameterQuery.GetSingleton<WorkProviderParameterData>();
+            WorkProviderParameterData singleton = workProviderNotificationParameterQuery.GetSingleton<WorkProviderParameterData>();
             if (workProviderNotificationIcon == WorkProviderNotificationIcon.UneducatedNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_UneducatedNotificationPrefab, value);
             }
@@ -368,7 +367,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableCompanyNotification(CompanyNotificationIcon companyNotificationIcon, bool value, bool refresh = false) {
-            var singleton = companyNotificationParameterQuery.GetSingleton<CompanyNotificationParameterData>();
+            CompanyNotificationParameterData singleton = companyNotificationParameterQuery.GetSingleton<CompanyNotificationParameterData>();
             if (companyNotificationIcon == CompanyNotificationIcon.NoInputsNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_NoInputsNotificationPrefab, value);
             }
@@ -394,7 +393,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableTrafficNotification(TrafficNotificationIcon trafficNotificationIcon, bool value, bool refresh = false) {
-            var singleton = trafficConfigurationDataQuery.GetSingleton<TrafficConfigurationData>();
+            TrafficConfigurationData singleton = trafficConfigurationDataQuery.GetSingleton<TrafficConfigurationData>();
             if (trafficNotificationIcon == TrafficNotificationIcon.BottleneckNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_BottleneckNotification, value);
             }
@@ -436,7 +435,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableBuildingNotification(BuildingNotificationIcon buildingNotificationIcon, bool value, bool refresh = false) {
-            var singleton = buildingConfigurationDataQuery.GetSingleton<BuildingConfigurationData>();
+            BuildingConfigurationData singleton = buildingConfigurationDataQuery.GetSingleton<BuildingConfigurationData>();
             if (buildingNotificationIcon == BuildingNotificationIcon.AbandonedCollapsedNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_AbandonedCollapsedNotification, value);
             }
@@ -473,7 +472,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableWaterPipeNotification(WaterPipeNotificationIcon waterPipeNotificationIcon, bool value, bool refresh = false) {
-            var singleton = waterPipeParameterQuery.GetSingleton<WaterPipeParameterData>();
+            WaterPipeParameterData singleton = waterPipeParameterQuery.GetSingleton<WaterPipeParameterData>();
             if (waterPipeNotificationIcon == WaterPipeNotificationIcon.WaterNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_WaterNotification, value);
             }
@@ -523,7 +522,7 @@ namespace CityWatchdog.Systems
         }
 
         public void EnableElectricityNotification(ElectricityNotificationIcon electricityNotificationIcon, bool value, bool refresh = false) {
-            var singleton = electricityParameterQuery.GetSingleton<ElectricityParameterData>();
+            ElectricityParameterData singleton = electricityParameterQuery.GetSingleton<ElectricityParameterData>();
             if (electricityNotificationIcon == ElectricityNotificationIcon.ElectricityNotification) {
                 EntityManager.SetComponentEnabled<NotificationIconDisplayData>(singleton.m_ElectricityNotificationPrefab, value);
             }
@@ -596,7 +595,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetTransportLineNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = transportLineNotificationParameterQuery.GetSingleton<TransportLineData>();
+            TransportLineData singleton = transportLineNotificationParameterQuery.GetSingleton<TransportLineData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_VehicleNotification));
             return result;
         }
@@ -607,7 +606,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetTransportLineNotificationPrefabName() {
             List<string> result = new();
-            var singleton = transportLineNotificationParameterQuery.GetSingleton<TransportLineData>();
+            TransportLineData singleton = transportLineNotificationParameterQuery.GetSingleton<TransportLineData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_VehicleNotification).name);
             return result;
         }
@@ -616,7 +615,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetRouteNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = routeNotificationParameterQuery.GetSingleton<RouteConfigurationData>();
+            RouteConfigurationData singleton = routeNotificationParameterQuery.GetSingleton<RouteConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_PathfindNotification));
             return result;
         }
@@ -627,7 +626,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetRouteNotificationPrefabName() {
             List<string> result = new();
-            var singleton = routeNotificationParameterQuery.GetSingleton<Game.Prefabs.RouteConfigurationData>();
+            RouteConfigurationData singleton = routeNotificationParameterQuery.GetSingleton<Game.Prefabs.RouteConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_PathfindNotification).name);
             return result;
         }
@@ -636,7 +635,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetResourceConsumerNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = resourceConsumerNotificationParameterQuery.GetSingleton<ResourceConsumerData>();
+            ResourceConsumerData singleton = resourceConsumerNotificationParameterQuery.GetSingleton<ResourceConsumerData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoResourceNotificationPrefab));
             return result;
         }
@@ -647,7 +646,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetResourceConsumerNotificationPrefabName() {
             List<string> result = new();
-            var singleton = resourceConsumerNotificationParameterQuery.GetSingleton<Game.Prefabs.ResourceConsumerData>();
+            ResourceConsumerData singleton = resourceConsumerNotificationParameterQuery.GetSingleton<Game.Prefabs.ResourceConsumerData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoResourceNotificationPrefab).name);
             return result;
         }
@@ -656,7 +655,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetPollutionNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = pollutionNotificationParameterQuery.GetSingleton<PollutionParameterData>();
+            PollutionParameterData singleton = pollutionNotificationParameterQuery.GetSingleton<PollutionParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AirPollutionNotification));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoisePollutionNotification));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_GroundPollutionNotification));
@@ -669,7 +668,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetPollutionNotificationPrefabName() {
             List<string> result = new();
-            var singleton = pollutionNotificationParameterQuery.GetSingleton<Game.Prefabs.PollutionParameterData>();
+            PollutionParameterData singleton = pollutionNotificationParameterQuery.GetSingleton<Game.Prefabs.PollutionParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AirPollutionNotification).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoisePollutionNotification).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_GroundPollutionNotification).name);
@@ -680,7 +679,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetPoliceNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = policeNotificationParameterQuery.GetSingleton<PoliceConfigurationData>();
+            PoliceConfigurationData singleton = policeNotificationParameterQuery.GetSingleton<PoliceConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_TrafficAccidentNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_CrimeSceneNotificationPrefab));
             return result;
@@ -692,7 +691,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetPoliceNotificationPrefabName() {
             List<string> result = new();
-            var singleton = policeNotificationParameterQuery.GetSingleton<Game.Prefabs.PoliceConfigurationData>();
+            PoliceConfigurationData singleton = policeNotificationParameterQuery.GetSingleton<Game.Prefabs.PoliceConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_TrafficAccidentNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_CrimeSceneNotificationPrefab).name);
             return result;
@@ -702,7 +701,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetHealthcareNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = healthcareNotificationParameterQuery.GetSingleton<HealthcareParameterData>();
+            HealthcareParameterData singleton = healthcareNotificationParameterQuery.GetSingleton<HealthcareParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AmbulanceNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_HearseNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_FacilityFullNotificationPrefab));
@@ -715,7 +714,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetHealthcareNotificationPrefabName() {
             List<string> result = new();
-            var singleton = healthcareNotificationParameterQuery.GetSingleton<Game.Prefabs.HealthcareParameterData>();
+            HealthcareParameterData singleton = healthcareNotificationParameterQuery.GetSingleton<Game.Prefabs.HealthcareParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AmbulanceNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_HearseNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_FacilityFullNotificationPrefab).name);
@@ -726,7 +725,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetGarbageNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = garbageNotificationParameterQuery.GetSingleton<GarbageParameterData>();
+            GarbageParameterData singleton = garbageNotificationParameterQuery.GetSingleton<GarbageParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_GarbageNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_FacilityFullNotificationPrefab));
             return result;
@@ -738,7 +737,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetGarbageNotificationPrefabName() {
             List<string> result = new();
-            var singleton = garbageNotificationParameterQuery.GetSingleton<Game.Prefabs.GarbageParameterData>();
+            GarbageParameterData singleton = garbageNotificationParameterQuery.GetSingleton<Game.Prefabs.GarbageParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_GarbageNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_FacilityFullNotificationPrefab).name);
             return result;
@@ -748,7 +747,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetFireNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = fireNotificationParameterQuery.GetSingleton<FireConfigurationData>();
+            FireConfigurationData singleton = fireNotificationParameterQuery.GetSingleton<FireConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_FireNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BurnedDownNotificationPrefab));
             return result;
@@ -760,7 +759,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetFireNotificationPrefabName() {
             List<string> result = new();
-            var singleton = fireNotificationParameterQuery.GetSingleton<Game.Prefabs.FireConfigurationData>();
+            FireConfigurationData singleton = fireNotificationParameterQuery.GetSingleton<Game.Prefabs.FireConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_FireNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BurnedDownNotificationPrefab).name);
             return result;
@@ -771,7 +770,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetDisasterNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = disasterNotificationParameterQuery.GetSingleton<DisasterConfigurationData>();
+            DisasterConfigurationData singleton = disasterNotificationParameterQuery.GetSingleton<DisasterConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WeatherDamageNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WeatherDestroyedNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WaterDamageNotificationPrefab));
@@ -786,7 +785,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetDisasterNotificationPrefabName() {
             List<string> result = new();
-            var singleton = disasterNotificationParameterQuery.GetSingleton<Game.Prefabs.DisasterConfigurationData>();
+            DisasterConfigurationData singleton = disasterNotificationParameterQuery.GetSingleton<Game.Prefabs.DisasterConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WeatherDamageNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WeatherDestroyedNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WaterDamageNotificationPrefab).name);
@@ -801,7 +800,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetWorkProviderNotificationPrefabName() {
             List<string> result = new();
-            var singleton = workProviderNotificationParameterQuery.GetSingleton<Game.Prefabs.WorkProviderParameterData>();
+            WorkProviderParameterData singleton = workProviderNotificationParameterQuery.GetSingleton<Game.Prefabs.WorkProviderParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_UneducatedNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_EducatedNotificationPrefab).name);
             return result;
@@ -813,7 +812,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetWorkProviderNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = workProviderNotificationParameterQuery.GetSingleton<WorkProviderParameterData>();
+            WorkProviderParameterData singleton = workProviderNotificationParameterQuery.GetSingleton<WorkProviderParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_UneducatedNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_EducatedNotificationPrefab));
             return result;
@@ -824,7 +823,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetCompanyNotificationPrefabName() {
             List<string> result = new();
-            var singleton = companyNotificationParameterQuery.GetSingleton<CompanyNotificationParameterData>();
+            CompanyNotificationParameterData singleton = companyNotificationParameterQuery.GetSingleton<CompanyNotificationParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoInputsNotificationPrefab).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoCustomersNotificationPrefab).name);
             return result;
@@ -839,7 +838,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetCompanyNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = companyNotificationParameterQuery.GetSingleton<CompanyNotificationParameterData>();
+            CompanyNotificationParameterData singleton = companyNotificationParameterQuery.GetSingleton<CompanyNotificationParameterData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoInputsNotificationPrefab));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_NoCustomersNotificationPrefab));
             return result;
@@ -854,7 +853,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetTrafficNotificationPrefabName() {
             List<string> result = new();
-            var singleton = trafficConfigurationDataQuery.GetSingleton<TrafficConfigurationData>();
+            TrafficConfigurationData singleton = trafficConfigurationDataQuery.GetSingleton<TrafficConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BottleneckNotification).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_DeadEndNotification).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_RoadConnectionNotification).name);
@@ -877,7 +876,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetTrafficNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = trafficConfigurationDataQuery.GetSingleton<TrafficConfigurationData>();
+            TrafficConfigurationData singleton = trafficConfigurationDataQuery.GetSingleton<TrafficConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BottleneckNotification));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_DeadEndNotification));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_RoadConnectionNotification));
@@ -898,7 +897,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetBuildingNotificationPrefabName() {
             List<string> result = new();
-            var singleton = buildingConfigurationDataQuery.GetSingleton<BuildingConfigurationData>();
+            BuildingConfigurationData singleton = buildingConfigurationDataQuery.GetSingleton<BuildingConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AbandonedCollapsedNotification).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AbandonedNotification).name);
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_CondemnedNotification).name);
@@ -919,7 +918,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetBuildingNotificationPrefab() {
             List<NotificationIconPrefab> result = new();
-            var singleton = buildingConfigurationDataQuery.GetSingleton<BuildingConfigurationData>();
+            BuildingConfigurationData singleton = buildingConfigurationDataQuery.GetSingleton<BuildingConfigurationData>();
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AbandonedCollapsedNotification));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_AbandonedNotification));
             result.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_CondemnedNotification));
@@ -938,7 +937,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetWaterPipeNotificationPrefabName() {
             List<string> name = new();
-            var singleton = waterPipeParameterQuery.GetSingleton<WaterPipeParameterData>();
+            WaterPipeParameterData singleton = waterPipeParameterQuery.GetSingleton<WaterPipeParameterData>();
             name.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WaterNotification).name);
             name.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_DirtyWaterNotification).name);
             name.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_SewageNotification).name);
@@ -963,7 +962,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetWaterPipeNotificationPrefab() {
             List<NotificationIconPrefab> notificationIconPrefabs = new();
-            var singleton = waterPipeParameterQuery.GetSingleton<WaterPipeParameterData>();
+            WaterPipeParameterData singleton = waterPipeParameterQuery.GetSingleton<WaterPipeParameterData>();
             notificationIconPrefabs.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_WaterNotification));
             notificationIconPrefabs.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_DirtyWaterNotification));
             notificationIconPrefabs.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_SewageNotification));
@@ -986,7 +985,7 @@ namespace CityWatchdog.Systems
 
         private List<string> GetElectricityNotificationPrefabName() {
             List<string> name = new();
-            var singleton = electricityParameterQuery.GetSingleton<ElectricityParameterData>();
+            ElectricityParameterData singleton = electricityParameterQuery.GetSingleton<ElectricityParameterData>();
             name.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_ElectricityNotificationPrefab).name);
             name.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BottleneckNotificationPrefab).name);
             name.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BuildingBottleneckNotificationPrefab).name);
@@ -1010,7 +1009,7 @@ namespace CityWatchdog.Systems
 
         private List<NotificationIconPrefab> GetElectricityNotificationPrefab() {
             List<NotificationIconPrefab> notificationIconPrefabs = new();
-            var singleton = electricityParameterQuery.GetSingleton<ElectricityParameterData>();
+            ElectricityParameterData singleton = electricityParameterQuery.GetSingleton<ElectricityParameterData>();
             notificationIconPrefabs.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_ElectricityNotificationPrefab));
             notificationIconPrefabs.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BottleneckNotificationPrefab));
             notificationIconPrefabs.Add(prefabSystem.GetPrefab<NotificationIconPrefab>(singleton.m_BuildingBottleneckNotificationPrefab));

@@ -4,7 +4,6 @@
 namespace CityWatchdog.Systems
 {
     using CityWatchdog.Data;
-    using CityWatchdog.Settings;
 
     public partial class CityWatchdogUISystem : UISystemBaseExtension {
         private NotificationControllerSystem notificationControllerSystem = null!;

@@ -1,7 +1,7 @@
 // File: src/Settings/Setting.cs
 // Purpose: Defines City Watchdog settings, Options UI controls, and key bindings.
 
-namespace CityWatchdog.Settings
+namespace CityWatchdog
 {
     using CityWatchdog.Systems;
     using Colossal.IO.AssetDatabase;
@@ -93,9 +93,6 @@ namespace CityWatchdog.Settings
         [SettingsUISection(General, Milestone)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(GetMilestoneLevelStatus))]
         public int MilestoneLevel { get; set; }
-
-        [SettingsUISection(General, SaveConversion)]
-        public bool ConfirmUnlimitedMoneySaveConversion { get; set; }
 
         [SettingsUIButton]
         [SettingsUIConfirmation]
@@ -226,8 +223,7 @@ namespace CityWatchdog.Settings
 
         private bool CannotConvertUnlimitedMoneySave()
         {
-            return !ConfirmUnlimitedMoneySaveConversion ||
-                   GetMoneyControllerSystem()?.CanConvertUnlimitedMoneySave() != true;
+            return GetMoneyControllerSystem()?.CanConvertUnlimitedMoneySave() != true;
         }
 
         private static MoneyControllerSystem? GetMoneyControllerSystem()
@@ -296,22 +292,22 @@ namespace CityWatchdog.Settings
         public override void SetDefaults()
         {
             AchievementsEnabled = true;
-            ManualMoneyAmount = 1000000;
+            ManualMoneyAmount = 20000;
             AutomaticAddMoney = false;
             AutomaticAddMoneyThreshold = 1000000;
             AutomaticAddMoneyAmount = 1000000;
             InitialMoney = 0;
             CustomMilestone = false;
             MilestoneLevel = 19;
-            ConfirmUnlimitedMoneySaveConversion = false;
             ShowUsage = false;
 
             Notification.SetDefaults();
+            Hidden.SetDefaults();
         }
 
         private bool IsAchievementEnablerIncluded()
         {
-            return ModTools.IsAnyModEnabled("AchievementFixer", "AchievementEnabler");
+            return ModTools.IsAnyModEnabled("AchievementFixer");
         }
 
         private void OnAchievementsOptionChanged(bool value)
