@@ -4,7 +4,7 @@ import { OnControlPanelBindingToggle, controlPanelEnabled$ } from "../Bindings/B
 
 export const EntryButton = () => {
     const showPanel = useValue(controlPanelEnabled$);
-    const modIcon = "coui://ui-mods/images/Warning.svg";
+    const modIcon = "coui://ui-mods/images/CWDNotificationIcon_Blk_Wht01.svg";
 
     return (
         <Tooltip tooltip="City Watchdog">

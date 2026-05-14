@@ -90,7 +90,7 @@ import { InfoPanel } from "../InfoPanel/InfoPanel";
 import styles from "../NotificationPanel/NotificationPanel.module.scss";
 import { VanillaComponentResolver } from "../VanillaComponentResolver/VanillaComponentResolver";
 
-const modIconSrc = "coui://ui-mods/images/Yellow_Warning.svg";
+const modIconSrc = "coui://ui-mods/images/CWDNotificationIcon_Blk_Wht01.svg";
 const roundButtonHighlightStyle = getModule("game-ui/common/input/button/themes/round-highlight-button.module.scss", "classes");
 const icon = (name: string) => `Media/Game/Notifications/${name}.svg`;
 
