@@ -98,8 +98,26 @@
     }
 }
 
+.expandButton {
+    width: 92rem;
+    min-width: 92rem;
+    flex: 0 0 92rem;
+}
+
 .sortButton {
-    min-width: 68rem;
+    width: 62rem;
+    min-width: 62rem;
+    flex: 0 0 62rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+}
+
+.toggleButton {
+    width: 80rem;
+    min-width: 80rem;
+    flex: 0 0 80rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
 }
 
 .modIcon {
