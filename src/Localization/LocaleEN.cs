@@ -157,7 +157,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UsageText)), "" },
 
                 // --- Notification SIP panel common text ---
-                { m_Settings.GetUILocaleID("NotificationIconShowOrHide"), "Expand a section; uncheck to hide it." },
+                { m_Settings.GetUILocaleID("NotificationIconShowOrHide"), "Expand a section; uncheck to hide notification icons." },
                 { m_Settings.GetUILocaleID("ToggleAll"), "Toggle All" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "Expand All" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "Collapse All" },

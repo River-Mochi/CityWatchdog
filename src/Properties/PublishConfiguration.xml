@@ -2,52 +2,59 @@
 	<!--Id must be set in order to update existing mod. Leave blank for first publish.-->
 	<ModId Value="" />
 	<!--Name of the mod to display to players-->
-	<DisplayName Value="City Watchdog" />
+	<DisplayName Value="City Watchdog [BETA]" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="Adds options to manage money, milestones, achievements, and notification icons." />
+	<ShortDescription Value="Hide notification icons, add/remove money, pick milestones, achievements." />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
-# City Watchdog
+        # City Watchdog
 
-City Watchdog is a takeover and repair project for the abandoned **City Controller** mod.
+        City Watchdog is a redux and repair project for the old broken City Controller mod.
 
-The goal is to keep the useful city-control features working with current Cities: Skylines II patches, clean up the codebase, and make the mod easier to maintain.
+        The goal is to keep the useful city-control features working with current Cities: Skylines II patches, clean up the codebase, and make the mod easier to maintain.
 
-## Development status
+        ## Development status
 
-This mod is still being repaired and modernized.
+        This mod is still being repaired and modernized.
 
-Use it as a work-in-progress utility mod while the takeover cleanup continues.
+        Use it as a work-in-progress utility mod while the takeover cleanup continues.
 
-### Current features
+        ### Current features
 
-- Manual add/subtract money controls.
-- Automatic add money option.
-- Unlimited money to limited money conversion.
-- Custom starting milestone option.
-- Achievement-enabler option when no separate achievement-enabler mod is detected.
-- Notification icon display/hide controls.
+        - Manual add/subtract money controls.
+        - Automatic add money option.
+        - Unlimited money to limited money conversion.
+        - Custom starting milestone option.
+        - Achievement-enabler option when no separate achievement-enabler mod is detected.
+        - Notification icon display/hide controls.
 
-### Planned cleanup
+        ### Planned cleanup
 
-- Remove old/unused shared-library code where possible.
-- Replace temporary legacy shared helpers with River-Mochi shared utilities where useful.
-- Improve publish text, Options UI labels, and translations.
-- Review notification controls against current game patch data.
-- Add cleaner diagnostics and status reporting.
+        - Remove old/unused shared-library code where possible.
+        - Replace temporary legacy shared helpers with River-Mochi shared utilities where useful.
+        - Improve publish text, Options UI labels, and translations.
+        - Review notification controls against current game patch data.
+        - Add cleaner diagnostics and status reporting.
 
-### Notes
+        ### Notes
 
-- This project is based on the abandoned MIT-licensed City Controller mod.
-- City Watchdog is maintained as a new River-Mochi takeover project.
-- The old original-author CS2Shared project dependency has been removed from City Watchdog.
-- No Harmony dependency is intended for the final cleaned version.
+        - This project is based on the abandoned MIT-licensed City Controller mod.
+        - City Watchdog is maintained as a new River-Mochi takeover project.
+        - The old original-author CS2Shared project dependency has been removed from City Watchdog.
+        - No Harmony dependency is intended for the final cleaned version.
 
-### Support and feedback
+        ### Support and feedback
 
-Feedback is welcome through GitHub or Discord.
-</LongDescription>
+        Feedback is welcome through GitHub or Discord.
+
+        ### Credits
+        - River Mochi - mod author + maintainer
+        - Thanks to original City Controller mod by Mbyron26
+        - SonNathan - tester
+
+
+    </LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail.png" />
 	<!--Screenshot, can be set multiple times-->
@@ -62,14 +69,9 @@ Feedback is welcome through GitHub or Discord.
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.5.*" />
 	<!--Dependency for the mod, can be set multiple times-->
-	<Dependency Id="74417" DisplayName="Unified Icon Library" Version="1.0.14" />
+	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 	<ChangeLog>
-- Import and rebrand abandoned City Controller base as City Watchdog.
-- Rename project and assembly identity.
-- Convert C# 10 file-scoped namespaces to C# 9-compatible block namespaces.
-- Restore full PublishConfiguration.xml structure.
-- Begin cleanup of old shared-code dependency and generated files.
 </ChangeLog>
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />

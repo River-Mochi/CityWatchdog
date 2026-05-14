@@ -7,7 +7,7 @@ export const EntryButton = () => {
     const modIcon = "coui://ui-mods/images/CWDNotificationIcon_Blk_Wht_Lg.svg";
 
     return (
-        <Tooltip tooltip="City Watchdog">
+        <Tooltip tooltip="CITY WATCHDOG">
             <Button
                 variant="floating"
                 selected={showPanel}
