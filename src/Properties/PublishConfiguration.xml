@@ -4,54 +4,37 @@
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="City Watchdog [BETA]" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="Hide notification icons, add/remove money, pick milestones, achievements." />
+	<ShortDescription Value="Hide Notification icons, pick milestones,  add/remove money, achievements." />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
-# City Watchdog
+# City Watchdog (CWD)
 
-City Watchdog is a redux and repair project for the old broken City Controller mod.
+City Watchdog is a redux and expansion for the old broken City Controller mod.
 
-The goal is to keep the useful city-control features working with current Cities: Skylines II patches, clean up the codebase, and make the mod easier to maintain.
+### Features
 
-## Development status
-
-This mod is still being repaired and modernized.
-
-Use it as a work-in-progress utility mod while the takeover cleanup continues.
-
-### Current features
-
-- Manual add/subtract money controls.
-- Automatic add money option.
-- Unlimited money to limited money conversion.
-- Custom starting milestone option.
-- Achievement-enabler option when no separate achievement-enabler mod is detected.
 - Notification icon display/hide controls.
+- Change the MilesStone you start with.
+- Manual add/subtract money controls using hotkeys.
+- Automatic add money option.
+- Convert saves from Unlimited money to normal Limited money.
 
-### Planned cleanup
-
-- Remove old/unused shared-library code where possible.
-- Replace temporary legacy shared helpers with River-Mochi shared utilities where useful.
-- Improve publish text, Options UI labels, and translations.
-- Review notification controls against current game patch data.
-- Add cleaner diagnostics and status reporting.
-
-### Notes
-
-- This project is based on the abandoned MIT-licensed City Controller mod.
-- City Watchdog is maintained as a new River-Mochi takeover project.
-- The old original-author CS2Shared project dependency has been removed from City Watchdog.
-- No Harmony dependency is intended for the final cleaned version.
 
 ### Support and feedback
-
 Feedback is welcome through GitHub or Discord.
+If you like getting free mods, give a Like, easy way to show support :)
+
+### Future
+- 6 languages supported, add more translations.
+- Recommended to use Achievement Fixer (AF) mod for now until I have time to merge it into this mod.
+Current achievement system in this mod are not as robust. will auto disable if it detects AF installed so no conflicts.
+- If anyone can make better Thumbnail and screenshots, please let me know. 
 
 ### Credits
 - River Mochi - mod author + maintainer
-- Thanks to original City Controller mod by Mbyron26
-- SonNathan - tester
+- Thanks to Mbyron26 for the original City Controller mod
+- Dorkington, Flightech - testers
 
 
 </LongDescription>
@@ -59,7 +42,8 @@ Feedback is welcome through GitHub or Discord.
 	<Thumbnail Value="Properties/Thumbnail.png" />
 	<!--Screenshot, can be set multiple times-->
 	<Screenshot Value="Properties/Previews/NotificationPanel.png" />
-
+    <Screenshot Value="Properties/Previews/NotificationPanel.png" />
+    <Screenshot Value="Properties/Previews/NotificationPanel.png" />
 	<!--Tag, can be set multiple times-->
 	<Tag Value="Code Mod" />
 	<!--Link to the forum post where the mod can be discussed-->

@@ -95,15 +95,20 @@ namespace CityWatchdog
                 // --- Save conversion ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)), "Unlimited Money Converter" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)),
-                    "Turn this ON <only after making a backup>.\n" +
-                    "This unlocks the <[Convert Unlimited Money Save]> button when the loaded city was started with Unlimited Money.\n" +
-                    "City Watchdog cannot undo this conversion." },
+                    "<Make a Backup of city FIRST>.\n" +
+                    "Converts a City that started as Unlimited Money to a normal city with regular money challenges.\n" +
+                    "Enabling this unlocks the <[Convert Unlimited Money Save]> button when the **loaded city is **Unlimited Money** type.\n" +
+                    "City Watchdog cannot undo this conversion.\n" +
+                    "If you have normal cities don't worry about this, it's not needed."
+                    },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "Convert Unlimited Money Save to Normal" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "Convert Unlimited Money Save City to Normal" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
-                    "For cities started with Unlimited Money.\n" +
+                    "For cities started with **Unlimited Money**.\n" +
                     "While that city is loaded, this converts the save to normal limited-money budgeting so the city has regular money challenges again.\n" +
-                    "Button is <disabled/greyed-out> unless the loaded city is an <Unlimited Money> type and <Unlimited Money Converter> is ON [ ✓ ]." },
+                    "Button is <disabled/greyed-out> unless the loaded city is an <Unlimited Money> type and <Unlimited Money Converter> is ON [ ✓ ]\n." +
+                    "Make backup save, and use at your own risk; City Watchdog cannot undo this conversion."
+                 },
 
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "Convert this city from Unlimited Money to normal limited money?\n" +
@@ -159,7 +164,10 @@ namespace CityWatchdog
                 // --- Notification SIP panel common text ---
                 { m_Settings.GetUILocaleID("EntryButtonTitle"), "CITY WATCHDOG" },
                 { m_Settings.GetUILocaleID("EntryButtonDescription"), "Open the notification icon panel." },
-                { m_Settings.GetUILocaleID("NotificationIconShowOrHide"), "Expand any section; check ✓ to show, uncheck to hide alert icons." },
+                { m_Settings.GetUILocaleID("NotificationIconShowOrHide"),
+                    "Expand any row; [✓] check to show, uncheck to hide alerts.\n" +
+                    "This does not fix city problems, it hides icon clutter."
+                },
                 { m_Settings.GetUILocaleID("ToggleAll"), "Toggle All" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "Expand All" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "Collapse All" },
