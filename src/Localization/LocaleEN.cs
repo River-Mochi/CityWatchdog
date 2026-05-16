@@ -4,6 +4,7 @@
 namespace CityWatchdog
 {
     using Colossal;                   // IDictionarySource
+    using Colossal.IO.AssetDatabase.Internal;
     using System.Collections.Generic; // Dictionary and KeyValuePair
 
     public sealed class LocaleEN : IDictionarySource
@@ -32,11 +33,12 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Actions" },
-                { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Hotkeys" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Keybinds), "Hotkeys" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "About" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Debug" },
 
                 // --- Groups ---
+                { m_Settings.GetOptionGroupLocaleID(Setting.KeybindActions), "Action Hotkeys" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "Achievements" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Money), "Money" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "Milestone" },
@@ -116,6 +118,13 @@ namespace CityWatchdog
                     "Are you sure?" },
 
                 // --- Key bindings ---
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationsKeyboardBinding)) "Toggle Notification Panel" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationsKeyboardBinding))
+                    "Hotkey for toggling the notification Icons on/off.\n" +
+                    "This panel shows all the same icons as the in-game notification area, but organized and filterable to help you find important alerts and hide the less important ones."
+                },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Add Money" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Hotkey for adding money inside the city." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.AddMoneyAction), "Add Money" },
@@ -123,6 +132,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "Subtract Money" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "Hotkey for subtracting money inside the city." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.SubtractMoneyAction), "Subtract Money" },
+
 
 #if DEBUG
                 // --- Debug key binding ---

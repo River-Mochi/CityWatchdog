@@ -20,37 +20,42 @@ namespace CityWatchdog
     [FileLocation("ModsSettings/CityWatchdog/CityWatchdog")]
 
 #if DEBUG
-    [SettingsUITabOrder(Actions, Hotkeys, About, Debug)]
-    [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage, Serialize)]
-    [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, AboutUsage, Serialize)]
+    [SettingsUITabOrder(Actions, Keybinds, About, Debug)]
+    [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, KeybindActions, AboutInfo, AboutLinks, AboutUsage, Serialize)]
+    [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, KeybindActions, AboutUsage, Serialize)]
 #else
-    [SettingsUITabOrder(Actions, Hotkeys, About)]
-    [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage)]
-    [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, AboutUsage)]
+    [SettingsUITabOrder(Actions, Keybinds, About)]
+    [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, KeybindActions, AboutInfo, AboutLinks, AboutUsage)]
+    [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, KeybindActions, AboutUsage)]
 #endif
     public partial class Setting : ModSetting
     {
         internal static Setting Instance { get; set; } = null!;
 
+        // Tab names.
         internal const string Actions = nameof(Actions);
-        internal const string Hotkeys = nameof(Hotkeys);
+        internal const string Keybinds = nameof(Keybinds);
         internal const string About = nameof(About);
         internal const string Debug = nameof(Debug);
         internal const string Serialize = nameof(Serialize);
 
+        // Action names used by key bindings.
         public const string AddMoneyAction = nameof(AddMoneyAction);
         public const string SubtractMoneyAction = nameof(SubtractMoneyAction);
         public const string ToggleNotificationsAction = nameof(ToggleNotificationsAction);
-       
+
+        // Group names.
         internal const string Achievements = nameof(Achievements);
         internal const string Money = nameof(Money);
         internal const string Milestone = nameof(Milestone);
         internal const string SaveConversion = nameof(SaveConversion);
+        internal const string KeybindActions = nameof(KeybindActions);
         internal const string AboutInfo = nameof(AboutInfo);
         internal const string AboutLinks = nameof(AboutLinks);
         internal const string AboutUsage = nameof(AboutUsage);
 
         private const string AboutLinksRow = nameof(AboutLinksRow);
+
         private const string UrlParadox =
             "https://mods.paradoxplaza.com/authors/River-mochi/cities_skylines_2?games=cities_skylines_2&orderBy=desc&sortBy=best&time=alltime";
 
@@ -58,6 +63,10 @@ namespace CityWatchdog
         {
             SetDefaults();
         }
+
+        // --------------------------------------------------------------------
+        // Actions tab
+        // --------------------------------------------------------------------
 
         [SettingsUISection(Actions, Achievements)]
         [SettingsUIHideByCondition(typeof(Setting), nameof(IsAchievementEnablerIncluded))]
@@ -81,17 +90,18 @@ namespace CityWatchdog
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureAutomaticAddMoneyEnabled))]
         public int AutomaticAddMoneyAmount { get; set; }
 
+        // Safe: only for new city / next city before a city is loaded.
         [SettingsUIDropdown(typeof(Setting), nameof(GetInitialMoneyItems))]
         [SettingsUISection(Actions, Money)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(IsInGame))]
         public int InitialMoney { get; set; }
 
+        // Safe behavior:
+        // - Cannot be enabled while already in-game.
+        // - Can still be turned OFF while in-game if it was previously enabled.
         [SettingsUISection(Actions, Milestone)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(CannotEnableCustomMilestoneInGame))]
         public bool CustomMilestone { get; set; }
-
-
-
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetMilestoneLevelItems))]
         [SettingsUISection(Actions, Milestone)]
@@ -122,25 +132,25 @@ namespace CityWatchdog
             }
         }
 
-#if DEBUG
-        [SettingsUIKeyboardBinding(BindingKeyboard.T, "DebugAction", ctrl: true, shift: true)]
-        [SettingsUISection(KeyBindings, Money)]
-        public ProxyBinding DebugKeyboardBinding { get; set; }
-#endif
-
+        // --------------------------------------------------------------------
+        // Keybinds tab
+        // --------------------------------------------------------------------
 
         [SettingsUIKeyboardBinding(BindingKeyboard.N, ToggleNotificationsAction)]
-        [SettingsUISection(KeyBindings, Hotkeys)]
+        [SettingsUISection(Keybinds, KeybindActions)]
         public ProxyBinding ToggleNotificationsKeyboardBinding { get; set; }
 
         [SettingsUIKeyboardBinding(BindingKeyboard.Digit4, AddMoneyAction, shift: true)]
-        [SettingsUISection(KeyBindings, Hotkeys)]
+        [SettingsUISection(Keybinds, KeybindActions)]
         public ProxyBinding AddMoneyKeyboardBinding { get; set; }
 
         [SettingsUIKeyboardBinding(BindingKeyboard.Digit4, SubtractMoneyAction)]
-        [SettingsUISection(KeyBindings, Hotkeys)]
+        [SettingsUISection(Keybinds, KeybindActions)]
         public ProxyBinding SubtractMoneyKeyboardBinding { get; set; }
 
+        // --------------------------------------------------------------------
+        // About tab
+        // --------------------------------------------------------------------
 
         [SettingsUISection(About, AboutInfo)]
         public string NameText => Mod.ModName;
@@ -166,6 +176,7 @@ namespace CityWatchdog
                 }
             }
         }
+
         [SettingsUISection(About, AboutUsage)]
         public bool ShowUsage { get; set; }
 
@@ -173,6 +184,10 @@ namespace CityWatchdog
         [SettingsUIHideByCondition(typeof(Setting), nameof(HideUsageText))]
         [SettingsUISection(About, AboutUsage)]
         public string UsageText => string.Empty;
+
+        // --------------------------------------------------------------------
+        // Static milestone list
+        // --------------------------------------------------------------------
 
         public string[] Milestones { get; } =
         {
@@ -198,14 +213,13 @@ namespace CityWatchdog
             "Megalopolis",
         };
 
+        // --------------------------------------------------------------------
+        // Conditions / helpers
+        // --------------------------------------------------------------------
+
         private bool IsInGame()
         {
             return GameManager.instance != null && GameManager.instance.gameMode == GameMode.Game;
-        }
-
-        private bool CannotEnableCustomMilestoneInGame()
-        {
-            return IsInGame() && !CustomMilestone;
         }
 
         public bool NotInGame => !IsInGame();
@@ -222,6 +236,11 @@ namespace CityWatchdog
         private bool HideUsageText()
         {
             return !ShowUsage;
+        }
+
+        private bool CannotEnableCustomMilestoneInGame()
+        {
+            return IsInGame() && !CustomMilestone;
         }
 
         private bool CannotConvertUnlimitedMoneySave()
@@ -244,9 +263,16 @@ namespace CityWatchdog
             }
             catch (Exception ex)
             {
-                LogUtils.WarnOnce("open-url-" + url, () => $"Failed to open URL '{url}': {ex.GetType().Name}: {ex.Message}", ex);
+                LogUtils.WarnOnce(
+                    "open-url-" + url,
+                    () => $"Failed to open URL '{url}': {ex.GetType().Name}: {ex.Message}",
+                    ex);
             }
         }
+
+        // --------------------------------------------------------------------
+        // Dropdown data
+        // --------------------------------------------------------------------
 
         public DropdownItem<int>[] GetAutomaticAddMoneyThresholdItems()
         {
@@ -296,16 +322,25 @@ namespace CityWatchdog
         public override void SetDefaults()
         {
             AchievementsEnabled = true;
+
+            // Money defaults.
             ManualMoneyAmount = 20000;
             AutomaticAddMoney = false;
-            AutomaticAddMoneyThreshold = 1000000;
-            AutomaticAddMoneyAmount = 1000000;
+            AutomaticAddMoneyThreshold = 100000;
+            AutomaticAddMoneyAmount = 10000;
             InitialMoney = 0;
+
+            // Milestone defaults.
             CustomMilestone = false;
             MilestoneLevel = 19;
+
+            // Save conversion default.
             ConfirmUnlimitedMoneySaveConversion = false;
+
+            // About defaults.
             ShowUsage = false;
 
+            // Notification defaults live in the partial notification settings.
             Notification.SetDefaults();
         }
 
@@ -329,6 +364,7 @@ namespace CityWatchdog
         private DropdownItem<int>[] GetMilestoneLevelItems()
         {
             List<DropdownItem<int>> items = new List<DropdownItem<int>>();
+
             for (int i = 0; i < Milestones.Length; i++)
             {
                 items.Add(new DropdownItem<int>
