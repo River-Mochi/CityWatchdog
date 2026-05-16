@@ -110,10 +110,17 @@ type Localize = (localeId: string, fallback?: string) => string;
 
 interface NotificationItem {
     readonly localeId: string;
+
+    // Built-in game localization key for the notification title.
+    // Example: Notifications.TITLE[No Inputs]
+    // If this is missing or unavailable, CWD falls back to localeId.
+    readonly gameTitleKey?: string;
+
     readonly icon: string;
     readonly binding: ValueBinding<boolean>;
     readonly onToggle: (enabled: boolean) => void;
 }
+
 
 interface NotificationSection {
     readonly localeId: string;
@@ -483,6 +490,21 @@ const useSectionValues = (section: NotificationSection) => {
     }, [section]);
 
     return values;
+};
+
+const getNotificationLabel = (item: NotificationItem, localize: Localize) => {
+    if (item.gameTitleKey) {
+        const gameText = localizeRaw(item.gameTitleKey);
+        if (gameText && gameText !== item.gameTitleKey && !gameText.includes("Notifications.TITLE")) {
+            return gameText;
+        }
+    }
+
+    return localize(item.localeId);
+};
+
+const localizeRaw = (localeId: string) => {
+    return VanillaComponentResolver.instance.translate?.(localeId) ?? localeId;
 };
 
 const NotificationRow = ({ item, isChecked, localize }: { item: NotificationItem; isChecked: boolean; localize: Localize }) => {

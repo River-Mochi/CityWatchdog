@@ -50,7 +50,10 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Enable Achievements" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
                     "Keeps achievements enabled [ ✓ ] when this mod is loaded.\n" +
-                    "If AchievementFixer is installed, City Watchdog hides this option and leaves achievement handling to that mod." },
+                    "It's recommended to use <Achievement Fixer (AF)> mod as it is the most detailed and robust in this area.\n" +
+                    "If <Achievement Fixer> is installed, City Watchdog leaves all achievement handling to AF and hides this option.\n" +
+                    "FUTURE: I will merge AF mod into this mod; for now adding AF mod is the best option."
+                 },
 
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Money Hotkey Amount" },
