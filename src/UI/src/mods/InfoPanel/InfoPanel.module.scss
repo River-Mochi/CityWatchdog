@@ -24,9 +24,9 @@
     border: 0;
     background-color: transparent;
     color: rgba(254, 254, 254, 0.9);
-    // Use a broad UI font stack for localized section names.
-    // This helps CJK and accented Latin labels avoid missing-glyph boxes.
-    font-family: var(--fontFamilyRegular), var(--fontFamily), "Microsoft YaHei", "Yu Gothic UI", "Meiryo", "Malgun Gothic", "Segoe UI", sans-serif;
+    // Try normal CS2 fonts first, then Noto fonts for Chinese/Japanese/Korean/other scripts, then Windows fallback fonts
+    // helps CJK and accented Latin labels avoid missing-glyph boxes.
+    font-family: var(--fontFamilyRegular), var(--fontFamily), "Noto Sans", "Noto Sans SC", "Noto Sans TC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic", "Noto Sans Thai", "Microsoft YaHei", "Yu Gothic UI", "Meiryo", "Malgun Gothic", "Segoe UI", sans-serif;
     text-align: left;
 }
 

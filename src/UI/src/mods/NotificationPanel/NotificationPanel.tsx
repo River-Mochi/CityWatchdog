@@ -113,7 +113,7 @@ interface NotificationItem {
     readonly localeId: string;
 
     // Built-in game localization key for the notification title.
-    // Example: NOTIFICATIONS.TITLE[GATE BYPASS]
+    // Example: Notifications.TITLE[No Inputs] or NOTIFICATIONS.TITLE[GATE BYPASS]
     // If the game key is missing, CWD falls back to localeId.
     readonly gameTitleKey?: string;
 
