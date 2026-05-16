@@ -507,21 +507,6 @@ const useSectionValues = (section: NotificationSection) => {
     return values;
 };
 
-const getNotificationLabel = (item: NotificationItem, localize: Localize) => {
-    if (item.gameTitleKey) {
-        const gameText = localizeRaw(item.gameTitleKey);
-        if (gameText && gameText !== item.gameTitleKey && !gameText.includes("Notifications.TITLE")) {
-            return gameText;
-        }
-    }
-
-    return localize(item.localeId);
-};
-
-const localizeRaw = (localeId: string) => {
-    return VanillaComponentResolver.instance.translate?.(localeId) ?? localeId;
-};
-
 
 const NotificationRow = ({
     item,
