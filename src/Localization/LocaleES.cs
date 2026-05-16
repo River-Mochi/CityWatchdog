@@ -31,8 +31,8 @@ namespace CityWatchdog
                 { m_Settings.GetSettingsLocaleID(), title },
 
                 // --- Tabs ---
-                { m_Settings.GetOptionTabLocaleID(Setting.General), "General" },
-                { m_Settings.GetOptionTabLocaleID(Setting.KeyBindings), "Teclas rápidas" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Actions" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Teclas rápidas" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "Acerca de" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Depuración" },
 
@@ -125,8 +125,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.VersionText)), "Versión actual del mod." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "Abre la página del autor en Paradox Mods." },
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenDiscord)), "Discord" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenDiscord)), "Únete al Discord del mod." },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "Mostrar instrucciones" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "Muestra u oculta las instrucciones de uso abajo." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),

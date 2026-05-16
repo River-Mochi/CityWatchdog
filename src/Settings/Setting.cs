@@ -18,12 +18,13 @@ namespace CityWatchdog
     using UnityEngine;
 
     [FileLocation("ModsSettings/CityWatchdog/CityWatchdog")]
+
 #if DEBUG
-    [SettingsUITabOrder(General, KeyBindings, About, Debug)]
+    [SettingsUITabOrder(Actions, Hotkeys, About, Debug)]
     [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage, Serialize)]
     [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, AboutUsage, Serialize)]
 #else
-    [SettingsUITabOrder(General, KeyBindings, About)]
+    [SettingsUITabOrder(Actions, Hotkeys, About)]
     [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage)]
     [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, AboutUsage)]
 #endif
@@ -31,15 +32,16 @@ namespace CityWatchdog
     {
         internal static Setting Instance { get; set; } = null!;
 
-        internal const string General = nameof(General);
-        internal const string KeyBindings = nameof(KeyBindings);
+        internal const string Actions = nameof(Actions);
+        internal const string Hotkeys = nameof(Hotkeys);
         internal const string About = nameof(About);
         internal const string Debug = nameof(Debug);
         internal const string Serialize = nameof(Serialize);
 
         public const string AddMoneyAction = nameof(AddMoneyAction);
         public const string SubtractMoneyAction = nameof(SubtractMoneyAction);
-
+        public const string ToggleNotificationsAction = nameof(ToggleNotificationsAction);
+       
         internal const string Achievements = nameof(Achievements);
         internal const string Money = nameof(Money);
         internal const string Milestone = nameof(Milestone);
@@ -51,56 +53,57 @@ namespace CityWatchdog
         private const string AboutLinksRow = nameof(AboutLinksRow);
         private const string UrlParadox =
             "https://mods.paradoxplaza.com/authors/River-mochi/cities_skylines_2?games=cities_skylines_2&orderBy=desc&sortBy=best&time=alltime";
-        private const string UrlDiscord = "https://discord.gg/HTav7ARPs2";
 
         public Setting(IMod mod) : base(mod)
         {
             SetDefaults();
         }
 
-        [SettingsUISection(General, Achievements)]
+        [SettingsUISection(Actions, Achievements)]
         [SettingsUIHideByCondition(typeof(Setting), nameof(IsAchievementEnablerIncluded))]
         [SettingsUISetter(typeof(Setting), nameof(OnAchievementsOptionChanged))]
         public bool AchievementsEnabled { get; set; }
 
         [SettingsUISlider(min = 20000, max = 2000000, step = 20000, scalarMultiplier = 1, unit = Unit.kInteger)]
-        [SettingsUISection(General, Money)]
+        [SettingsUISection(Actions, Money)]
         public int ManualMoneyAmount { get; set; }
 
-        [SettingsUISection(General, Money)]
+        [SettingsUISection(Actions, Money)]
         public bool AutomaticAddMoney { get; set; }
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetAutomaticAddMoneyThresholdItems))]
-        [SettingsUISection(General, Money)]
+        [SettingsUISection(Actions, Money)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureAutomaticAddMoneyEnabled))]
         public int AutomaticAddMoneyThreshold { get; set; }
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetAutomaticAddMoneyAmountItems))]
-        [SettingsUISection(General, Money)]
+        [SettingsUISection(Actions, Money)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureAutomaticAddMoneyEnabled))]
         public int AutomaticAddMoneyAmount { get; set; }
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetInitialMoneyItems))]
-        [SettingsUISection(General, Money)]
+        [SettingsUISection(Actions, Money)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(IsInGame))]
         public int InitialMoney { get; set; }
 
-        [SettingsUISection(General, Milestone)]
+        [SettingsUISection(Actions, Milestone)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(CannotEnableCustomMilestoneInGame))]
         public bool CustomMilestone { get; set; }
 
 
+
+
         [SettingsUIDropdown(typeof(Setting), nameof(GetMilestoneLevelItems))]
-        [SettingsUISection(General, Milestone)]
+        [SettingsUISection(Actions, Milestone)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(GetMilestoneLevelStatus))]
         public int MilestoneLevel { get; set; }
 
-        [SettingsUISection(General, SaveConversion)]
+        [SettingsUISection(Actions, SaveConversion)]
         public bool ConfirmUnlimitedMoneySaveConversion { get; set; }
 
         [SettingsUIButton]
         [SettingsUIConfirmation]
-        [SettingsUISection(General, SaveConversion)]
+        [SettingsUISection(Actions, SaveConversion)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(CannotConvertUnlimitedMoneySave))]
         public bool ConvertUnlimitedMoneySave
         {
@@ -125,13 +128,19 @@ namespace CityWatchdog
         public ProxyBinding DebugKeyboardBinding { get; set; }
 #endif
 
-        [SettingsUIKeyboardBinding(BindingKeyboard.M, AddMoneyAction, ctrl: true, shift: true)]
-        [SettingsUISection(KeyBindings, Money)]
+
+        [SettingsUIKeyboardBinding(BindingKeyboard.N, ToggleNotificationsAction)]
+        [SettingsUISection(KeyBindings, Hotkeys)]
+        public ProxyBinding ToggleNotificationsKeyboardBinding { get; set; }
+
+        [SettingsUIKeyboardBinding(BindingKeyboard.Digit4, AddMoneyAction, shift: true)]
+        [SettingsUISection(KeyBindings, Hotkeys)]
         public ProxyBinding AddMoneyKeyboardBinding { get; set; }
 
-        [SettingsUIKeyboardBinding(BindingKeyboard.N, SubtractMoneyAction, ctrl: true, shift: true)]
-        [SettingsUISection(KeyBindings, Money)]
+        [SettingsUIKeyboardBinding(BindingKeyboard.Digit4, SubtractMoneyAction)]
+        [SettingsUISection(KeyBindings, Hotkeys)]
         public ProxyBinding SubtractMoneyKeyboardBinding { get; set; }
+
 
         [SettingsUISection(About, AboutInfo)]
         public string NameText => Mod.ModName;
@@ -157,21 +166,6 @@ namespace CityWatchdog
                 }
             }
         }
-
-        [SettingsUIButtonGroup(AboutLinksRow)]
-        [SettingsUIButton]
-        [SettingsUISection(About, AboutLinks)]
-        public bool OpenDiscord
-        {
-            set
-            {
-                if (value)
-                {
-                    TryOpenUrl(UrlDiscord);
-                }
-            }
-        }
-
         [SettingsUISection(About, AboutUsage)]
         public bool ShowUsage { get; set; }
 

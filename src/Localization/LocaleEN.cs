@@ -31,8 +31,8 @@ namespace CityWatchdog
                 { m_Settings.GetSettingsLocaleID(), title },
 
                 // --- Tabs ---
-                { m_Settings.GetOptionTabLocaleID(Setting.General), "General" },
-                { m_Settings.GetOptionTabLocaleID(Setting.KeyBindings), "Key Bindings" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Actions" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Hotkeys" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "About" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Debug" },
 
@@ -97,7 +97,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)),
                     "<Make a Backup of city FIRST>.\n" +
                     "Converts a City that started as Unlimited Money to a normal city with regular money challenges.\n" +
-                    "Enabling this unlocks the <[Convert Unlimited Money Save]> button when the **loaded city is **Unlimited Money** type.\n" +
+                    "Enabling this unlocks the <[Convert Unlimited Money Save]> button when the loaded city is **Unlimited Money** type.\n" +
                     "City Watchdog cannot undo this conversion.\n" +
                     "If you have normal cities don't worry about this, it's not needed."
                     },
@@ -140,9 +140,6 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "Open the author's Paradox Mods page." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenDiscord)), "Discord" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenDiscord)), "Join the mod Discord." },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "Show Instructions" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "Show or hide the usage instructions below." },

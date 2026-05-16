@@ -31,8 +31,8 @@ namespace CityWatchdog
                 { m_Settings.GetSettingsLocaleID(), title },
 
                 // --- Tabs ---
-                { m_Settings.GetOptionTabLocaleID(Setting.General), "常规" },
-                { m_Settings.GetOptionTabLocaleID(Setting.KeyBindings), "快捷键" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Actions), "常规" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "快捷键" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "关于" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "调试" },
 
@@ -125,8 +125,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.VersionText)), "当前模组版本。" },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "打开作者的 Paradox Mods 页面。" },
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenDiscord)), "Discord" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenDiscord)), "加入模组 Discord。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "显示说明" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "显示或隐藏下方使用说明。" },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),

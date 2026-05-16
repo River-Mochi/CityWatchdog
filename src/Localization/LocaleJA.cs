@@ -31,8 +31,8 @@ namespace CityWatchdog
                 { m_Settings.GetSettingsLocaleID(), title },
 
                 // --- Tabs ---
-                { m_Settings.GetOptionTabLocaleID(Setting.General), "一般" },
-                { m_Settings.GetOptionTabLocaleID(Setting.KeyBindings), "キー設定" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Actions), "一般" },
+                { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "キー設定" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "情報" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "デバッグ" },
 
@@ -125,8 +125,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.VersionText)), "現在のMODバージョンです。" },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "作者の Paradox Mods ページを開きます。" },
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenDiscord)), "Discord" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenDiscord)), "MODのDiscordに参加します。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "説明を表示" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "下の使い方説明を表示/非表示にします。" },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),

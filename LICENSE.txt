@@ -1,7 +1,7 @@
 MIT License
 
-Copyright (c) [2026] [River-Mochi]
-Copyright (c) [2024] [Mbyron26]
+Copyright (c) [2026] [River-Mochi] City Watchdog mod
+Copyright (c) [2024] [Mbyron26] original City Controller mod
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

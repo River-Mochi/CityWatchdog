@@ -264,9 +264,10 @@ const createExpandedSections = (expanded: boolean | null = null) => {
     const result: Record<string, boolean> = {};
 
     sections.forEach((section) => {
-        // First panel open defaults all sections expanded.
-        // The toolbar can collapse all sections after that.
-        result[section.localeId] = expanded ?? true;
+        // Fresh UI sessions start collapsed.
+        // In the same city/session, manual expand/collapse state is still remembered by React state.
+        result[section.localeId] = expanded ?? false;
+
     });
 
     return result;
