@@ -24,21 +24,24 @@
     border: 0;
     background-color: transparent;
     color: rgba(254, 254, 254, 0.9);
-    // Use CS2's bundled multilingual Noto font families.
-    // This raw HTML button does not reliably inherit the same font path as vanilla CS2 components.
-    font-family: "Noto Sans", "Noto Sans SC", "Noto Sans TC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic", "Noto Sans Thai", var(--fontFamilyRegular, var(--fontFamily, sans-serif)) !important;
+    // Use inherited game UI font behavior instead of native button font behavior.
+    font-family: inherit;
     text-align: left;
+    cursor: pointer;
 }
 
     .infoPanelHeader:hover {
         color: white;
     }
 
+    .infoPanelHeader:focus {
+        outline: none;
+    }
+
     .infoPanelHeader .infoPanelTitle {
         flex: 1 1 auto;
         margin-bottom: 0;
-        // Keep section names on the same multilingual game-font stack as the header button.
-        font-family: inherit !important;
+        font-family: inherit;
         text-transform: none;
     }
 
