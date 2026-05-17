@@ -1,5 +1,5 @@
 // File: src/UI/src/mods/InfoPanel/InfoPanel.module.scss
-// Purpose: Styling for reusable collapsible sections in the City Watchdog notification panel.
+// Purpose: Style for reusable collapsible sections in the City Watchdog notification panel.
 
 .infoPanel {
     // 6rem top/bottom, 12rem left/right.
@@ -25,6 +25,7 @@
     background-color: transparent;
     color: rgba(254, 254, 254, 0.9);
     // Use inherited game UI font behavior instead of native button font behavior.
+    // native raw html for section names did not use the correct font, issues with french, chinese characters, etc.
     font-family: inherit;
     text-align: left;
     cursor: pointer;
