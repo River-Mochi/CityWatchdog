@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect width="256" height="256" fill="#f9f9f9"/>
+
+  <!-- ATM slot: keep thick black border -->
+  <rect x="36" y="44" width="184" height="40" rx="12" fill="#040404"/>
+  <rect x="46" y="52" width="164" height="24" rx="6" fill="#f9f9f9"/>
+
+  <!-- Money coming out: moved slightly down, thinner black border -->
+  <rect x="76" y="56" width="104" height="150" rx="12" fill="#040404"/>
+  <rect x="82" y="62" width="92" height="138" rx="8" fill="#f8f8f8"/>
+
+  <!-- Green add-money symbol: keep slightly larger -->
+  <circle cx="128" cy="124" r="36" fill="#79bc31"/>
+  <rect x="121" y="102" width="14" height="44" rx="7" fill="#fbfcf9"/>
+  <rect x="106" y="117" width="44" height="14" rx="7" fill="#fbfcf9"/>
+</svg>
