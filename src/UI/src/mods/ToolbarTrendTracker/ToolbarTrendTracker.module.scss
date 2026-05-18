@@ -1,0 +1,23 @@
+.trendText {
+    margin-left: 4rem;
+    min-width: 44rem;
+    color: var(--accentColorLight);
+    font-size: 11rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    text-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.85);
+}
+
+.positive {
+    color: var(--highlightGreen);
+}
+
+.negative {
+    color: var(--highlightWarningLightRed);
+}
+
+.neutral {
+    color: var(--accentColorLight);
+}

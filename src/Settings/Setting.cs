@@ -56,6 +56,32 @@ namespace CityWatchdog
         private const string AboutLinksRow = nameof(AboutLinksRow);
         private const string UrlParadox =
             "https://mods.paradoxplaza.com/authors/River-mochi/cities_skylines_2?games=cities_skylines_2&orderBy=desc&sortBy=best&time=alltime";
+        private static readonly string[] Milestones =
+        {
+            "TinyVillage",
+            "SmallVillage",
+            "LargeVillage",
+            "GrandVillage",
+            "TinyTown",
+            "BoomTown",
+            "BusyTown",
+            "BigTown",
+            "GreatTown",
+            "SmallCity",
+            "BigCity",
+            "LargeCity",
+            "HugeCity",
+            "GrandCity",
+            "Metropolis",
+            "ThrivingMetropolis",
+            "FlourishingMetropolis",
+            "ExpansiveMetropolis",
+            "MassiveMetropolis",
+            "Megalopolis",
+        };
+
+        internal const int TrendDisplayModeHourly = 0;
+        internal const int TrendDisplayModeMonthly = 1;
 
         public Setting(IMod mod) : base(mod)
         {
@@ -70,6 +96,16 @@ namespace CityWatchdog
         [SettingsUIHideByCondition(typeof(Setting), nameof(IsAchievementEnablerIncluded))]
         [SettingsUISetter(typeof(Setting), nameof(OnAchievementsOptionChanged))]
         public bool AchievementsEnabled { get; set; }
+
+        [SettingsUISection(Actions, Money)]
+        [SettingsUISetter(typeof(Setting), nameof(OnTrendTrackerChanged))]
+        public bool TrendTracker { get; set; }
+
+        [SettingsUIDropdown(typeof(Setting), nameof(GetTrendDisplayModeItems))]
+        [SettingsUISection(Actions, Money)]
+        [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureTrendTrackerEnabled))]
+        [SettingsUISetter(typeof(Setting), nameof(OnTrendDisplayModeChanged))]
+        public int TrendDisplayMode { get; set; }
 
         [SettingsUISlider(min = 20000, max = 2000000, step = 20000, scalarMultiplier = 1, unit = Unit.kInteger)]
         [SettingsUISection(Actions, Money)]
@@ -182,36 +218,6 @@ namespace CityWatchdog
         [SettingsUISection(About, AboutUsage)]
         public string UsageText => string.Empty;
 
-
-
-        // --------------------------------------------------------------------
-        // Milestone fallback names
-        // --------------------------------------------------------------------
-
-        public string[] Milestones { get; } =
-        {
-            "TinyVillage",
-            "SmallVillage",
-            "LargeVillage",
-            "GrandVillage",
-            "TinyTown",
-            "BoomTown",
-            "BusyTown",
-            "BigTown",
-            "GreatTown",
-            "SmallCity",
-            "BigCity",
-            "LargeCity",
-            "HugeCity",
-            "GrandCity",
-            "Metropolis",
-            "ThrivingMetropolis",
-            "FlourishingMetropolis",
-            "ExpansiveMetropolis",
-            "MassiveMetropolis",
-            "Megalopolis",
-        };
-
         // --------------------------------------------------------------------
         // Conditions and helpers
         // --------------------------------------------------------------------
@@ -235,6 +241,11 @@ namespace CityWatchdog
         public bool EnsureAutomaticAddMoneyEnabled()
         {
             return !AutomaticAddMoney;
+        }
+
+        public bool EnsureTrendTrackerEnabled()
+        {
+            return !TrendTracker;
         }
 
         private bool HideUsageText()
@@ -313,6 +324,23 @@ namespace CityWatchdog
             };
         }
 
+        public DropdownItem<int>[] GetTrendDisplayModeItems()
+        {
+            return new[]
+            {
+                new DropdownItem<int>
+                {
+                    value = TrendDisplayModeHourly,
+                    displayName = GetOptionLocaleID("TrendDisplayModeHourly"),
+                },
+                new DropdownItem<int>
+                {
+                    value = TrendDisplayModeMonthly,
+                    displayName = GetOptionLocaleID("TrendDisplayModeMonthly"),
+                },
+            };
+        }
+
         public void ResetInitialMoney()
         {
             InitialMoney = 0;
@@ -322,6 +350,8 @@ namespace CityWatchdog
         {
             AchievementsEnabled = true;
 
+            TrendTracker = true;
+            TrendDisplayMode = TrendDisplayModeHourly;
             ManualMoneyAmount = 20000;
             AutomaticAddMoney = false;
             AutomaticAddMoneyThreshold = 100000;
@@ -349,6 +379,20 @@ namespace CityWatchdog
                 .SetAchievements(value);
         }
 
+        private void OnTrendTrackerChanged(bool value)
+        {
+            World.DefaultGameObjectInjectionWorld?
+                .GetExistingSystemManaged<CityWatchdogUISystem>()?
+                .UpdateTrendTrackerBinding(value);
+        }
+
+        private void OnTrendDisplayModeChanged(int value)
+        {
+            World.DefaultGameObjectInjectionWorld?
+                .GetExistingSystemManaged<CityWatchdogUISystem>()?
+                .UpdateTrendDisplayModeBinding(value);
+        }
+
         private bool GetMilestoneLevelStatus()
         {
             return IsInGame() || !CustomMilestone;
@@ -362,7 +406,7 @@ namespace CityWatchdog
                 items.Add(new DropdownItem<int>
                 {
                     value = i,
-                    displayName = GetOptionLocaleID(Milestones[i]),
+                    displayName = MilestoneDisplay.Get(i, Milestones[i]),
                 });
             }
 

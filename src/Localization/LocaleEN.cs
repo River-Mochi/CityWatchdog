@@ -56,6 +56,18 @@ namespace CityWatchdog
                  },
 
                 // --- Money helpers ---
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Trend Tracker" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                    "Adds numeric trend values beside the vanilla bottom-toolbar money and population arrows.\n" +
+                    "This is a lightweight toolbar display only; it does not change city money or population." },
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Trend Display Mode" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                    "Choose whether the bottom-toolbar trend text shows hourly or monthly values for money and population.\n" +
+                    "Monthly uses budget income minus expenses for money, and a 24-hour projection for population." },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "Hourly (/h)" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "Monthly (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Money Hotkey Amount" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "Use this amount with the Add Money and Subtract Money hotkeys.\n" +
@@ -153,9 +165,10 @@ namespace CityWatchdog
                     "3. Use Toggle All for quick setup, or expand a section to change individual notification icons.\n" +
                     "4. City Watchdog hides or shows icons only; it does not fix the underlying city problem.\n\n" +
                     "<Money helpers>\n" +
-                    "1. Add Money and Subtract Money use the Money Hotkey Amount value.\n" +
-                    "2. Automatic Add Money watches the city balance while a city is loaded and adds money when below the threshold.\n" +
-                    "3. Convert Unlimited Money Save is only for cities that were started with Unlimited Money and is <not reversible> by City Watchdog.\n\n" +
+                    "1. Trend Tracker adds numeric /h or /mo values beside the bottom-toolbar money and population trend arrows.\n" +
+                    "2. Add Money and Subtract Money use the Money Hotkey Amount value.\n" +
+                    "3. Automatic Add Money watches the city balance while a city is loaded and adds money when below the threshold.\n" +
+                    "4. Convert Unlimited Money Save is only for cities that were started with Unlimited Money and is <not reversible> by City Watchdog.\n\n" +
                     "<Custom milestone>\n" +
                     "Set Initial Money and select Milestones from the Options menu before loading or starting a city." },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UsageText)), "" },
@@ -273,12 +286,6 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TransportLine"), "TRANSPORT LINE" },
                 { m_Settings.GetUILocaleID("TransportLineVehicleNotification"), "No vehicles" },
             };
-
-            // --- Hand-written milestone fallback names ---
-            foreach (string milestone in m_Settings.Milestones)
-            {
-                entries[m_Settings.GetOptionLocaleID(milestone)] = milestone;
-            }
 
             return entries;
         }

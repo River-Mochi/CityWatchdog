@@ -4,6 +4,7 @@
 namespace CityWatchdog.Systems
 {
     using CityWatchdog.Data;
+    using Colossal.UI.Binding;
     using Game;
     using Game.Input;
     using Game.SceneFlow;
@@ -16,6 +17,8 @@ namespace CityWatchdog.Systems
         private NotificationControllerSystem notificationControllerSystem = null!;
         private ProxyAction? toggleNotificationsAction;
         private BoolBinding panelVisibleBinding = null!;
+        private ValueBinding<bool>? trendTrackerBinding;
+        private ValueBinding<int>? trendDisplayModeBinding;
 
         private BoolBinding electricityElectricityNotificationBinding = null!;
         private BoolBinding electricityBottleneckNotificationBinding = null!;
@@ -95,6 +98,8 @@ namespace CityWatchdog.Systems
             InitializeToggleNotificationsAction();
 
             panelVisibleBinding = AddBoolBindingAndTriggerBinding("ControlPanelEnabled", false, OnControlPanelBindingToggle);
+            trendTrackerBinding = AddValueBinding(nameof(Setting.TrendTracker), Setting.Instance.TrendTracker);
+            trendDisplayModeBinding = AddValueBinding(nameof(Setting.TrendDisplayMode), Setting.Instance.TrendDisplayMode);
 
             electricityElectricityNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.ElectricityElectricityNotification), Setting.Instance.Notification.ElectricityElectricityNotification, OnElectricityElectricityNotificationToggle);
             electricityBottleneckNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.ElectricityBottleneckNotification), Setting.Instance.Notification.ElectricityBottleneckNotification, OnElectricityBottleneckNotificationToggle);
@@ -597,6 +602,10 @@ namespace CityWatchdog.Systems
         }
 
         private void OnControlPanelBindingToggle(bool value) => panelVisibleBinding.Update(value);
+
+        public void UpdateTrendTrackerBinding(bool value) => trendTrackerBinding?.Update(value);
+
+        public void UpdateTrendDisplayModeBinding(int value) => trendDisplayModeBinding?.Update(value);
 
     }
 

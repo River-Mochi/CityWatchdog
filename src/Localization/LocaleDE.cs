@@ -49,58 +49,69 @@ namespace CityWatchdog
                 // --- Achievements ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Errungenschaften aktivieren" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Lässt Errungenschaften aktiviert [ ✓ ], wenn dieser Mod geladen ist.\\n" +
+                    "Lässt Errungenschaften aktiviert [ ✓ ], wenn dieser Mod geladen ist.\n" +
                     "Wenn AchievementFixer installiert ist, blendet City Watchdog diese Option aus und überlässt die Errungenschaften diesem Mod." },
 
                 // --- Money helpers ---
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Trend-Tracker" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                    "Ergänzt Zahlenwerte neben den Geld- und Bevölkerungs-Trendpfeilen in der unteren Spielleiste.\n" +
+                    "Dies ist nur eine leichte UI-Anzeige und ändert weder Geld noch Bevölkerung." },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Trendanzeige" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                    "Wähle, ob der Trendtext in der unteren Leiste stündliche oder monatliche Werte zeigt.\n" +
+                    "Monatlich nutzt Einnahmen minus Ausgaben für Geld und eine 24-Stunden-Projektion für Bevölkerung." },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "Stündlich (/h)" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "Monatlich (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Geldbetrag für Hotkeys" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
-                    "Diesen Betrag für die Hotkeys Geld hinzufügen und Geld abziehen verwenden.\\n" +
-                    "Standard = 20.000.\\n" +
+                    "Diesen Betrag für die Hotkeys Geld hinzufügen und Geld abziehen verwenden.\n" +
+                    "Standard = 20.000.\n" +
                     "Das ändert den aktuellen Kontostand nicht von selbst." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoney)), "Automatisch Geld hinzufügen" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoney)),
-                    "Wenn aktiviert [ ✓ ], prüft City Watchdog den Stadtkontostand, solange eine Stadt geladen ist.\\n" +
+                    "Wenn aktiviert [ ✓ ], prüft City Watchdog den Stadtkontostand, solange eine Stadt geladen ist.\n" +
                     "Wenn Kontostand < Schwellenwert, wird der gewählte automatische Betrag hinzugefügt." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)), "Automatischer Geld-Schwellenwert" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)),
-                    "Wenn Automatisch Geld hinzufügen aktiv ist und der Kontostand unter diesen Wert fällt,\\n" +
+                    "Wenn Automatisch Geld hinzufügen aktiv ist und der Kontostand unter diesen Wert fällt,\n" +
                     "fügt City Watchdog den gewählten automatischen Betrag hinzu." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyAmount)), "Automatischer Geldbetrag" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyAmount)),
-                    "Betrag, der bei jedem Auslösen hinzugefügt wird.\\n" +
+                    "Betrag, der bei jedem Auslösen hinzugefügt wird.\n" +
                     "Wähle genug, damit die Stadt sicher über dem Schwellenwert liegt." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.InitialMoney)), "Startgeld" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.InitialMoney)),
-                    "Legt den Startkontostand für eine neue Stadt mit <begrenztem Geld> oder die zuerst geladene Stadt fest und wird danach auf Spielstandard zurückgesetzt.\\n" +
-                    "Ist ausgegraut, wenn bereits eine Stadt geladen ist.\\n" +
+                    "Legt den Startkontostand für eine neue Stadt mit <begrenztem Geld> oder die zuerst geladene Stadt fest und wird danach auf Spielstandard zurückgesetzt.\n" +
+                    "Ist ausgegraut, wenn bereits eine Stadt geladen ist.\n" +
                     "Vor dem Starten/Laden setzen → wird einmal angewendet → danach <Geldbetrag für Hotkeys> oder <Automatisch Geld hinzufügen> verwenden." },
                 { m_Settings.GetOptionLocaleID("GameDefault"), "Spielstandard" },
 
                 // --- Milestone selector ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.CustomMilestone)), "Meilenstein-Auswahl" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.CustomMilestone)),
-                    "Vor dem Laden oder Starten einer Stadt aktivieren, um den gewählten Meilenstein direkt nach dem Laden freizuschalten.\\n" +
+                    "Vor dem Laden oder Starten einer Stadt aktivieren, um den gewählten Meilenstein direkt nach dem Laden freizuschalten.\n" +
                     "Ist ausgegraut, sobald eine Stadt geladen ist; starte das Spiel neu, um es sicher zu ändern." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MilestoneLevel)), "Meilenstein" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MilestoneLevel)),
-                    "Wähle den Meilenstein, der beim nächsten Laden der Stadt freigeschaltet wird.\\n" +
+                    "Wähle den Meilenstein, der beim nächsten Laden der Stadt freigeschaltet wird.\n" +
                     "Nur außerhalb einer geladenen Stadt änderbar und nur, wenn [Meilenstein-Auswahl] aktiviert ist [ ✓ ]." },
 
                 // --- Save conversion ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)), "Unbegrenzt-Geld-Konverter" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)),
-                    "Schalte dies <erst nach einem Backup> EIN.\\n" +
-                    "Dadurch wird die Schaltfläche <[Unbegrenzt-Geld-Spielstand umwandeln]> freigeschaltet, wenn die geladene Stadt mit unbegrenztem Geld gestartet wurde.\\n" +
+                    "Schalte dies <erst nach einem Backup> EIN.\n" +
+                    "Dadurch wird die Schaltfläche <[Unbegrenzt-Geld-Spielstand umwandeln]> freigeschaltet, wenn die geladene Stadt mit unbegrenztem Geld gestartet wurde.\n" +
                     "City Watchdog kann dies nicht rückgängig machen." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "Unbegrenzt-Geld-Spielstand zu normal umwandeln" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
-                    "Für Städte, die mit unbegrenztem Geld gestartet wurden.\\n" +
-                    "Während diese Stadt geladen ist, wird der Spielstand auf normales begrenztes Budget umgestellt.\\n" +
+                    "Für Städte, die mit unbegrenztem Geld gestartet wurden.\n" +
+                    "Während diese Stadt geladen ist, wird der Spielstand auf normales begrenztes Budget umgestellt.\n" +
                     "Die Schaltfläche ist <deaktiviert/ausgegraut>, außer die geladene Stadt nutzt <Unbegrenztes Geld> und <Unbegrenzt-Geld-Konverter> ist ON [ ✓ ]." },
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
-                    "Diese Stadt von unbegrenztem Geld auf normales begrenztes Geld umwandeln?\\n" +
-                    "ZUERST ein Backup speichern; City Watchdog kann das nicht rückgängig machen.\\n" +
+                    "Diese Stadt von unbegrenztem Geld auf normales begrenztes Geld umwandeln?\n" +
+                    "ZUERST ein Backup speichern; City Watchdog kann das nicht rückgängig machen.\n" +
                     "Sicher?" },
 
                 // --- Key bindings ---
@@ -126,18 +137,19 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "Anleitung anzeigen" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "Blendet die Anleitung unten ein oder aus." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),
-                    "<Benachrichtigungspanel>\\n" +
-                    "1. Im Spiel oben links auf die City-Watchdog-Schaltfläche klicken, um das Panel zu öffnen.\\n" +
-                    "2. ASC/DESC sortiert die Abschnitte.\\n" +
-                    "3. Mit Alles umschalten schnell einstellen oder einen Abschnitt öffnen und einzelne Symbole ändern.\\n" +
-                    "4. City Watchdog blendet nur Symbole ein/aus; das eigentliche Stadtproblem wird nicht behoben.\\n" +
-                    "\\n" +
-                    "<Geldhilfen>\\n" +
-                    "1. Geld hinzufügen und Geld abziehen verwenden den Geldbetrag für Hotkeys.\\n" +
-                    "2. Automatisch Geld hinzufügen überwacht den Stadtkontostand und fügt Geld hinzu, wenn er unter dem Schwellenwert liegt.\\n" +
-                    "3. Unbegrenzt-Geld-Spielstand umwandeln ist nur für Städte mit unbegrenztem Geld und ist <durch City Watchdog nicht rückgängig zu machen>.\\n" +
-                    "\\n" +
-                    "<Eigener Meilenstein>\\n" +
+                    "<Benachrichtigungspanel>\n" +
+                    "1. Im Spiel oben links auf die City-Watchdog-Schaltfläche klicken, um das Panel zu öffnen.\n" +
+                    "2. ASC/DESC sortiert die Abschnitte.\n" +
+                    "3. Mit Alles umschalten schnell einstellen oder einen Abschnitt öffnen und einzelne Symbole ändern.\n" +
+                    "4. City Watchdog blendet nur Symbole ein/aus; das eigentliche Stadtproblem wird nicht behoben.\n" +
+                    "\n" +
+                    "<Geldhilfen>\n" +
+                    "1. Die Toolbar-Trendanzeige ergänzt /h- oder /mo-Werte neben den Trendpfeilen für Geld und Bevölkerung.\n" +
+                    "2. Geld hinzufügen und Geld abziehen verwenden den Geldbetrag für Hotkeys.\n" +
+                    "3. Automatisch Geld hinzufügen überwacht den Stadtkontostand und fügt Geld hinzu, wenn er unter dem Schwellenwert liegt.\n" +
+                    "4. Unbegrenzt-Geld-Spielstand umwandeln ist nur für Städte mit unbegrenztem Geld und ist <durch City Watchdog nicht rückgängig zu machen>.\n" +
+                    "\n" +
+                    "<Eigener Meilenstein>\n" +
                     "Startgeld und Meilensteine in den Optionen festlegen, bevor eine Stadt geladen oder gestartet wird." },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UsageText)), "" },
 
@@ -252,12 +264,6 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TransportLine"), "TRANSPORTLINIE" },
                 { m_Settings.GetUILocaleID("TransportLineVehicleNotification"), "Keine Fahrzeuge" },
             };
-
-            // --- Hand-written milestone fallback names ---
-            foreach (string milestone in m_Settings.Milestones)
-            {
-                entries[m_Settings.GetOptionLocaleID(milestone)] = milestone;
-            }
 
             return entries;
         }

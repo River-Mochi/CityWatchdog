@@ -49,58 +49,69 @@ namespace CityWatchdog
                 // --- Achievements ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Activar logros" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Mantiene los logros activados [ ✓ ] cuando este mod está cargado.\\n" +
+                    "Mantiene los logros activados [ ✓ ] cuando este mod está cargado.\n" +
                     "Si AchievementFixer está instalado, City Watchdog oculta esta opción y deja los logros en manos de ese mod." },
 
                 // --- Money helpers ---
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Rastreador de tendencias" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                    "Añade valores numéricos junto a las flechas de tendencia de dinero y población de la barra inferior.\n" +
+                    "Es solo una lectura visual ligera; no cambia el dinero ni la población." },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Modo de tendencia" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                    "Elige si el texto de tendencia de la barra inferior muestra valores por hora o mensuales.\n" +
+                    "Mensual usa ingresos menos gastos para dinero y una proyección de 24 horas para población." },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "Por hora (/h)" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "Por mes (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Cantidad del atajo de dinero" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
-                    "Usa esta cantidad con los atajos de Añadir dinero y Restar dinero.\\n" +
-                    "Predeterminado = 20,000.\\n" +
+                    "Usa esta cantidad con los atajos de Añadir dinero y Restar dinero.\n" +
+                    "Predeterminado = 20,000.\n" +
                     "Esto no cambia el saldo actual por sí solo." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoney)), "Añadir dinero automático" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoney)),
-                    "Cuando está activado [ ✓ ], City Watchdog revisa el saldo de la ciudad mientras hay una ciudad cargada.\\n" +
+                    "Cuando está activado [ ✓ ], City Watchdog revisa el saldo de la ciudad mientras hay una ciudad cargada.\n" +
                     "Si el saldo < umbral, añade la cantidad automática elegida." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)), "Umbral de dinero automático" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)),
-                    "Si Añadir dinero automático está activado y el saldo baja de este valor,\\n" +
+                    "Si Añadir dinero automático está activado y el saldo baja de este valor,\n" +
                     "City Watchdog añade la cantidad automática elegida." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyAmount)), "Cantidad automática de dinero" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyAmount)),
-                    "Cantidad que se añade cada vez que se activa Añadir dinero automático.\\n" +
+                    "Cantidad que se añade cada vez que se activa Añadir dinero automático.\n" +
                     "Elige un valor suficiente para dejar la ciudad por encima del umbral." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.InitialMoney)), "Dinero inicial" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.InitialMoney)),
-                    "Define el saldo inicial para una ciudad nueva con <dinero limitado> o la primera ciudad cargada, y luego vuelve a Predeterminado del juego.\\n" +
-                    "Se desactiva si ya hay una ciudad cargada.\\n" +
+                    "Define el saldo inicial para una ciudad nueva con <dinero limitado> o la primera ciudad cargada, y luego vuelve a Predeterminado del juego.\n" +
+                    "Se desactiva si ya hay una ciudad cargada.\n" +
                     "Configúralo antes de empezar/cargar una ciudad → se aplica una vez → luego usa <Cantidad del atajo de dinero> o <Añadir dinero automático>." },
                 { m_Settings.GetOptionLocaleID("GameDefault"), "Predeterminado del juego" },
 
                 // --- Milestone selector ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.CustomMilestone)), "Selector de hito" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.CustomMilestone)),
-                    "Actívalo antes de cargar o iniciar una ciudad para desbloquear el hito elegido justo después de cargarla.\\n" +
+                    "Actívalo antes de cargar o iniciar una ciudad para desbloquear el hito elegido justo después de cargarla.\n" +
                     "Se desactiva cuando hay una ciudad cargada; reinicia el juego para cambiarlo con seguridad." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MilestoneLevel)), "Hito" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MilestoneLevel)),
-                    "Elige el nivel de hito que se desbloqueará en la próxima carga de ciudad.\\n" +
+                    "Elige el nivel de hito que se desbloqueará en la próxima carga de ciudad.\n" +
                     "Solo se puede cambiar sin una ciudad cargada y solo si [Selector de hito] está activado [ ✓ ]." },
 
                 // --- Save conversion ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)), "Convertidor de dinero ilimitado" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)),
-                    "Actívalo <solo después de hacer una copia de seguridad>.\\n" +
-                    "Esto desbloquea el botón <[Convertir partida de dinero ilimitado]> cuando la ciudad cargada se creó con Dinero ilimitado.\\n" +
+                    "Actívalo <solo después de hacer una copia de seguridad>.\n" +
+                    "Esto desbloquea el botón <[Convertir partida de dinero ilimitado]> cuando la ciudad cargada se creó con Dinero ilimitado.\n" +
                     "City Watchdog no puede deshacer esta conversión." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "Convertir partida de dinero ilimitado a normal" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
-                    "Para ciudades creadas con Dinero ilimitado.\\n" +
-                    "Con esa ciudad cargada, convierte la partida a presupuesto normal con dinero limitado, para recuperar el desafío económico.\\n" +
+                    "Para ciudades creadas con Dinero ilimitado.\n" +
+                    "Con esa ciudad cargada, convierte la partida a presupuesto normal con dinero limitado, para recuperar el desafío económico.\n" +
                     "El botón está <desactivado/en gris> salvo que la ciudad cargada sea de <Dinero ilimitado> y <Convertidor de dinero ilimitado> esté ON [ ✓ ]." },
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
-                    "¿Convertir esta ciudad de Dinero ilimitado a dinero limitado normal?\\n" +
-                    "Guarda una copia de seguridad PRIMERO; City Watchdog no puede deshacerlo.\\n" +
+                    "¿Convertir esta ciudad de Dinero ilimitado a dinero limitado normal?\n" +
+                    "Guarda una copia de seguridad PRIMERO; City Watchdog no puede deshacerlo.\n" +
                     "¿Seguro?" },
 
                 // --- Key bindings ---
@@ -127,18 +138,19 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "Mostrar instrucciones" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "Muestra u oculta las instrucciones de uso abajo." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),
-                    "<Panel de notificaciones>\\n" +
-                    "1. En la partida, haz clic en el botón superior izquierdo de City Watchdog para abrir el panel.\\n" +
-                    "2. Usa ASC/DESC para ordenar las secciones.\\n" +
-                    "3. Usa Alternar todo para una configuración rápida, o expande una sección para cambiar iconos individuales.\\n" +
-                    "4. City Watchdog solo oculta o muestra iconos; no arregla el problema de la ciudad.\\n" +
-                    "\\n" +
-                    "<Ayudas de dinero>\\n" +
-                    "1. Añadir dinero y Restar dinero usan la Cantidad del atajo de dinero.\\n" +
-                    "2. Añadir dinero automático vigila el saldo de la ciudad mientras está cargada y añade dinero si está bajo el umbral.\\n" +
-                    "3. Convertir partida de dinero ilimitado solo sirve para ciudades creadas con Dinero ilimitado y <City Watchdog no puede revertirlo>.\\n" +
-                    "\\n" +
-                    "<Hito personalizado>\\n" +
+                    "<Panel de notificaciones>\n" +
+                    "1. En la partida, haz clic en el botón superior izquierdo de City Watchdog para abrir el panel.\n" +
+                    "2. Usa ASC/DESC para ordenar las secciones.\n" +
+                    "3. Usa Alternar todo para una configuración rápida, o expande una sección para cambiar iconos individuales.\n" +
+                    "4. City Watchdog solo oculta o muestra iconos; no arregla el problema de la ciudad.\n" +
+                    "\n" +
+                    "<Ayudas de dinero>\n" +
+                    "1. Rastreador de tendencias añade valores /h o /mo junto a las flechas de dinero y población.\n" +
+                    "2. Añadir dinero y Restar dinero usan la Cantidad del atajo de dinero.\n" +
+                    "3. Añadir dinero automático vigila el saldo de la ciudad mientras está cargada y añade dinero si está bajo el umbral.\n" +
+                    "4. Convertir partida de dinero ilimitado solo sirve para ciudades creadas con Dinero ilimitado y <City Watchdog no puede revertirlo>.\n" +
+                    "\n" +
+                    "<Hito personalizado>\n" +
                     "Configura Dinero inicial y elige Hitos en Opciones antes de cargar o iniciar una ciudad." },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UsageText)), "" },
 
@@ -253,12 +265,6 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TransportLine"), "LÍNEA DE TRANSPORTE" },
                 { m_Settings.GetUILocaleID("TransportLineVehicleNotification"), "Sin vehículos" },
             };
-
-            // --- Hand-written milestone fallback names ---
-            foreach (string milestone in m_Settings.Milestones)
-            {
-                entries[m_Settings.GetOptionLocaleID(milestone)] = milestone;
-            }
 
             return entries;
         }

@@ -55,6 +55,17 @@ namespace CityWatchdog
                     "未來：會把 AF 模組整合進本模組；目前加入 AF 模組是最佳選擇。" },
 
                 // --- Money helpers ---
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "趨勢追蹤" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                    "在底部工具列的金錢與人口趨勢箭頭旁加入數字讀數。\n" +
+                    "這只是輕量 UI 讀數，不會改變城市金錢或人口。" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "趨勢顯示模式" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                    "選擇底部工具列趨勢文字顯示每小時數值或每月數值。\n" +
+                    "每月金錢使用收入減支出，人口使用 24 小時預測。" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "每小時 (/h)" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "每月 (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "金錢快捷鍵金額" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "用於增加金錢和扣除金錢快捷鍵的金額。\n" +
@@ -140,9 +151,10 @@ namespace CityWatchdog
                     "4. City Watchdog 只會隱藏或顯示圖示；不會修復圖示背後的城市問題。\n" +
                     "\n" +
                     "<金錢工具>\n" +
-                    "1. 增加金錢和扣除金錢會使用金錢快捷鍵金額。\n" +
-                    "2. 自動增加金錢會在城市載入期間監看餘額，低於門檻時增加金錢。\n" +
-                    "3. 轉換無限金錢存檔只適用於以無限金錢開始的城市，City Watchdog <無法復原>。\n" +
+                    "1. 趨勢追蹤會在金錢與人口趨勢箭頭旁加入 /h 或 /mo 數值。\n" +
+                    "2. 增加金錢和扣除金錢會使用金錢快捷鍵金額。\n" +
+                    "3. 自動增加金錢會在城市載入期間監看餘額，低於門檻時增加金錢。\n" +
+                    "4. 轉換無限金錢存檔只適用於以無限金錢開始的城市，City Watchdog <無法復原>。\n" +
                     "\n" +
                     "<自訂里程碑>\n" +
                     "請在載入或開始城市前，於選項選單設定初始金錢與里程碑。" },
@@ -262,12 +274,6 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TransportLineVehicleNotification"), "沒有車輛" },
 
             };
-
-            // --- Hand-written milestone fallback names ---
-            foreach (string milestone in m_Settings.Milestones)
-            {
-                entries[m_Settings.GetOptionLocaleID(milestone)] = milestone;
-            }
 
             return entries;
         }

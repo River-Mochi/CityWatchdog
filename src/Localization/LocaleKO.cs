@@ -55,6 +55,17 @@ namespace CityWatchdog
                     "향후: AF 모드를 이 모드에 통합할 예정입니다. 지금은 AF 모드를 추가하는 것이 가장 좋은 선택입니다." },
 
                 // --- Money helpers ---
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "추세 추적기" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                    "하단 도구막대의 돈과 인구 추세 화살표 옆에 숫자 값을 추가합니다.\n" +
+                    "가벼운 UI 표시 기능일 뿐이며 도시의 돈이나 인구를 바꾸지 않습니다." },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "추세 표시 모드" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                    "하단 도구막대 추세 텍스트를 시간당 또는 월간 값으로 표시할지 선택합니다.\n" +
+                    "월간은 돈에는 수입-지출을, 인구에는 24시간 예측을 사용합니다." },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "시간당 (/h)" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "월간 (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "돈 단축키 금액" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "돈 추가와 돈 차감 단축키에 사용할 금액입니다.\n" +
@@ -140,9 +151,10 @@ namespace CityWatchdog
                     "4. City Watchdog은 아이콘만 숨기거나 표시합니다. 도시 문제 자체를 해결하지는 않습니다.\n" +
                     "\n" +
                     "<돈 도우미>\n" +
-                    "1. 돈 추가와 돈 차감은 돈 단축키 금액 값을 사용합니다.\n" +
-                    "2. 자동 돈 추가는 도시가 로드된 동안 잔액을 확인하고 기준값보다 낮으면 돈을 추가합니다.\n" +
-                    "3. 무제한 돈 저장 변환은 무제한 돈으로 시작한 도시만 대상으로 하며, City Watchdog은 <되돌릴 수 없습니다>.\n" +
+                    "1. 추세 추적기는 돈과 인구 추세 화살표 옆에 /h 또는 /mo 값을 추가합니다.\n" +
+                    "2. 돈 추가와 돈 차감은 돈 단축키 금액 값을 사용합니다.\n" +
+                    "3. 자동 돈 추가는 도시가 로드된 동안 잔액을 확인하고 기준값보다 낮으면 돈을 추가합니다.\n" +
+                    "4. 무제한 돈 저장 변환은 무제한 돈으로 시작한 도시만 대상으로 하며, City Watchdog은 <되돌릴 수 없습니다>.\n" +
                     "\n" +
                     "<커스텀 마일스톤>\n" +
                     "도시를 로드하거나 시작하기 전에 옵션 메뉴에서 초기 자금과 마일스톤을 설정하세요." },
@@ -262,12 +274,6 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TransportLineVehicleNotification"), "차량 없음" },
 
             };
-
-            // --- Hand-written milestone fallback names ---
-            foreach (string milestone in m_Settings.Milestones)
-            {
-                entries[m_Settings.GetOptionLocaleID(milestone)] = milestone;
-            }
 
             return entries;
         }

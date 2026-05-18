@@ -55,6 +55,17 @@ namespace CityWatchdog
                     "FUTURO: pretendo mesclar o AF neste mod; por enquanto, adicionar o AF é a melhor opção." },
 
                 // --- Money helpers ---
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Rastreador de tendências" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                    "Adiciona valores numéricos ao lado das setas de tendência de dinheiro e população na barra inferior.\n" +
+                    "É apenas uma leitura visual leve; não altera dinheiro nem população." },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Modo de exibição de tendência" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                    "Escolha se o texto de tendência da barra inferior mostra valores por hora ou mensais.\n" +
+                    "Mensal usa receita menos despesa para dinheiro e uma projeção de 24 horas para população." },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "Por hora (/h)" },
+                { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "Por mês (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Valor do atalho de dinheiro" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "Use este valor com os atalhos de Adicionar dinheiro e Subtrair dinheiro.\n" +
@@ -140,9 +151,10 @@ namespace CityWatchdog
                     "4. O City Watchdog só oculta ou mostra ícones; ele não corrige o problema da cidade.\n" +
                     "\n" +
                     "<Ferramentas de dinheiro>\n" +
-                    "1. Adicionar dinheiro e Subtrair dinheiro usam o Valor do atalho de dinheiro.\n" +
-                    "2. Adicionar dinheiro automático observa o saldo da cidade enquanto ela está carregada e adiciona dinheiro abaixo do limite.\n" +
-                    "3. Converter save de Dinheiro ilimitado é apenas para cidades iniciadas com Dinheiro ilimitado e <não pode ser revertido> pelo City Watchdog.\n" +
+                    "1. Rastreador de tendências adiciona valores /h ou /mo ao lado das setas de dinheiro e população.\n" +
+                    "2. Adicionar dinheiro e Subtrair dinheiro usam o Valor do atalho de dinheiro.\n" +
+                    "3. Adicionar dinheiro automático observa o saldo da cidade enquanto ela está carregada e adiciona dinheiro abaixo do limite.\n" +
+                    "4. Converter save de Dinheiro ilimitado é apenas para cidades iniciadas com Dinheiro ilimitado e <não pode ser revertido> pelo City Watchdog.\n" +
                     "\n" +
                     "<Marco personalizado>\n" +
                     "Defina Dinheiro inicial e selecione Marcos no menu de Opções antes de carregar ou iniciar uma cidade." },
@@ -262,12 +274,6 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TransportLineVehicleNotification"), "Sem veículos" },
 
             };
-
-            // --- Hand-written milestone fallback names ---
-            foreach (string milestone in m_Settings.Milestones)
-            {
-                entries[m_Settings.GetOptionLocaleID(milestone)] = milestone;
-            }
 
             return entries;
         }
