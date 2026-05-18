@@ -47,6 +47,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "USAGE" },
 
                 // --- Achievements ---
+                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "Achievements" },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Enable Achievements" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
                     "Keeps achievements enabled [ ✓ ] when this mod is loaded.\n" +
@@ -55,7 +56,15 @@ namespace CityWatchdog
                     "FUTURE: I will merge AF mod into this mod; for now adding AF mod is the best option."
                  },
 
+
+               { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "Notifications" },
                 // --- Money helpers ---
+   
+                { m_Settings.GetOptionGroupLocaleID(Setting.Trends), "Trend Tracker" },
+
+
+
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Trend Tracker" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
                     "Adds numeric trend values beside the vanilla bottom-toolbar money and population arrows.\n" +
