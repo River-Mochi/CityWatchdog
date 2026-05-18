@@ -1,7 +1,8 @@
 // File: src/UI/src/mods/InfoPanel/InfoPanel.tsx
-// Purpose: Reusable collapsible section wrapper for the City Watchdog notification panel.
+// Purpose: Collapsible section wrapper for grouped City Watchdog notification rows.
 
-import { CSSProperties, KeyboardEvent, ReactNode, useState } from "react";
+import { CSSProperties, ReactNode, useState } from "react";
+import { Button } from "cs2/ui";
 import styles from "../InfoPanel/InfoPanel.module.scss";
 
 export interface InfoPanelProps {
@@ -45,31 +46,19 @@ export const InfoPanel = ({
         setExpanded(!isExpanded);
     };
 
-    const onHeaderKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-        if (event.key !== "Enter" && event.key !== " ") {
-            return;
-        }
-
-        event.preventDefault();
-        toggleExpanded();
-    };
-
     return (
         <div className={`${styles.infoPanel} ${className}`} style={style}>
             {title && collapsible && (
-                <div
+                <Button
                     className={styles.infoPanelHeader}
-                    role="button"
-                    tabIndex={0}
-                    aria-expanded={isExpanded}
                     onClick={toggleExpanded}
-                    onKeyDown={onHeaderKeyDown}
                 >
                     <span className={styles.infoPanelTitle}>{title}</span>
                     <span className={styles.infoPanelSummary}>{summary}</span>
                     <span className={styles.infoPanelToggle}>{isExpanded ? "-" : "+"}</span>
-                </div>
+                </Button>
             )}
+
             {title && !collapsible && <div className={styles.infoPanelTitle}>{title}</div>}
             {showBody && (renderChildren ? renderChildren() : children)}
         </div>
