@@ -19,13 +19,13 @@ namespace CityWatchdog
 
     [FileLocation("ModsSettings/CityWatchdog/CityWatchdog")]
 #if DEBUG
-    [SettingsUITabOrder(Actions, Hotkeys, About, Debug)]
-    [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, HotkeyActions, AboutInfo, AboutLinks, AboutUsage, Serialize)]
-    [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, HotkeyActions, AboutUsage, Serialize)]
+    [SettingsUITabOrder(Actions, AchievementsTab, About, Debug)]
+    [SettingsUIGroupOrder(Trends, Money, Notifications, Milestone, SaveConversion, Achievements, AboutInfo, AboutLinks, AboutUsage, Serialize)]
+    [SettingsUIShowGroupName(Trends, Money, Notifications, Milestone, SaveConversion, Achievements, AboutUsage, Serialize)]
 #else
-    [SettingsUITabOrder(Actions, Hotkeys, About)]
-    [SettingsUIGroupOrder(Achievements, Money, Milestone, SaveConversion, HotkeyActions, AboutInfo, AboutLinks, AboutUsage)]
-    [SettingsUIShowGroupName(Achievements, Money, Milestone, SaveConversion, HotkeyActions, AboutUsage)]
+    [SettingsUITabOrder(Actions, AchievementsTab, About)]
+    [SettingsUIGroupOrder(Trends, Money, Notifications, Milestone, SaveConversion, Achievements, AboutInfo, AboutLinks, AboutUsage)]
+    [SettingsUIShowGroupName(Trends, Money, Notifications, Milestone, SaveConversion, Achievements, AboutUsage)]
 #endif
     public partial class Setting : ModSetting
     {
@@ -33,6 +33,7 @@ namespace CityWatchdog
 
         // Tab IDs.
         internal const string Actions = nameof(Actions);
+        internal const string AchievementsTab = nameof(AchievementsTab);
         internal const string Hotkeys = nameof(Hotkeys);
         internal const string About = nameof(About);
         internal const string Debug = nameof(Debug);
@@ -44,10 +45,12 @@ namespace CityWatchdog
         public const string ToggleNotificationsAction = nameof(ToggleNotificationsAction);
 
         // Group IDs.
-        internal const string Achievements = nameof(Achievements);
+        internal const string Trends = nameof(Trends);
         internal const string Money = nameof(Money);
+        internal const string Notifications = nameof(Notifications);
         internal const string Milestone = nameof(Milestone);
         internal const string SaveConversion = nameof(SaveConversion);
+        internal const string Achievements = nameof(Achievements);
         internal const string HotkeyActions = nameof(HotkeyActions);
         internal const string AboutInfo = nameof(AboutInfo);
         internal const string AboutLinks = nameof(AboutLinks);
@@ -56,6 +59,7 @@ namespace CityWatchdog
         private const string AboutLinksRow = nameof(AboutLinksRow);
         private const string UrlParadox =
             "https://mods.paradoxplaza.com/authors/River-mochi/cities_skylines_2?games=cities_skylines_2&orderBy=desc&sortBy=best&time=alltime";
+
         private static readonly string[] Milestones =
         {
             "TinyVillage",
@@ -89,27 +93,34 @@ namespace CityWatchdog
         }
 
         // --------------------------------------------------------------------
-        // Actions tab
+        // Actions tab - Trend Tracker
         // --------------------------------------------------------------------
 
-        [SettingsUISection(Actions, Achievements)]
-        [SettingsUIHideByCondition(typeof(Setting), nameof(IsAchievementEnablerIncluded))]
-        [SettingsUISetter(typeof(Setting), nameof(OnAchievementsOptionChanged))]
-        public bool AchievementsEnabled { get; set; }
-
-        [SettingsUISection(Actions, Money)]
+        [SettingsUISection(Actions, Trends)]
         [SettingsUISetter(typeof(Setting), nameof(OnTrendTrackerChanged))]
         public bool TrendTracker { get; set; }
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetTrendDisplayModeItems))]
-        [SettingsUISection(Actions, Money)]
+        [SettingsUISection(Actions, Trends)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureTrendTrackerEnabled))]
         [SettingsUISetter(typeof(Setting), nameof(OnTrendDisplayModeChanged))]
         public int TrendDisplayMode { get; set; }
 
+        // --------------------------------------------------------------------
+        // Actions tab - Money
+        // --------------------------------------------------------------------
+
         [SettingsUISlider(min = 20000, max = 2000000, step = 20000, scalarMultiplier = 1, unit = Unit.kInteger)]
         [SettingsUISection(Actions, Money)]
         public int ManualMoneyAmount { get; set; }
+
+        [SettingsUIKeyboardBinding(BindingKeyboard.LeftBracket, AddMoneyAction)]
+        [SettingsUISection(Actions, Money)]
+        public ProxyBinding AddMoneyKeyboardBinding { get; set; }
+
+        [SettingsUIKeyboardBinding(BindingKeyboard.RightBracket, SubtractMoneyAction)]
+        [SettingsUISection(Actions, Money)]
+        public ProxyBinding SubtractMoneyKeyboardBinding { get; set; }
 
         [SettingsUISection(Actions, Money)]
         public bool AutomaticAddMoney { get; set; }
@@ -129,6 +140,18 @@ namespace CityWatchdog
         [SettingsUIDisableByCondition(typeof(Setting), nameof(IsInGame))]
         public int InitialMoney { get; set; }
 
+        // --------------------------------------------------------------------
+        // Actions tab - Notifications
+        // --------------------------------------------------------------------
+
+        [SettingsUIKeyboardBinding(BindingKeyboard.N, ToggleNotificationsAction)]
+        [SettingsUISection(Actions, Notifications)]
+        public ProxyBinding ToggleNotificationsKeyboardBinding { get; set; }
+
+        // --------------------------------------------------------------------
+        // Actions tab - Milestone
+        // --------------------------------------------------------------------
+
         // Safety rule:
         // - OFF while a city is loaded stays disabled, so milestone injection cannot be enabled mid-city.
         // - ON while a city is loaded stays enabled, so it can be turned OFF without rebooting.
@@ -140,6 +163,10 @@ namespace CityWatchdog
         [SettingsUISection(Actions, Milestone)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(GetMilestoneLevelStatus))]
         public int MilestoneLevel { get; set; }
+
+        // --------------------------------------------------------------------
+        // Actions tab - Save conversion
+        // --------------------------------------------------------------------
 
         [SettingsUISection(Actions, SaveConversion)]
         public bool ConfirmUnlimitedMoneySaveConversion { get; set; }
@@ -166,20 +193,13 @@ namespace CityWatchdog
         }
 
         // --------------------------------------------------------------------
-        // Hotkeys tab
+        // Achievements tab
         // --------------------------------------------------------------------
 
-        [SettingsUIKeyboardBinding(BindingKeyboard.N, ToggleNotificationsAction)]
-        [SettingsUISection(Hotkeys, HotkeyActions)]
-        public ProxyBinding ToggleNotificationsKeyboardBinding { get; set; }
-
-        [SettingsUIKeyboardBinding(BindingKeyboard.LeftBracket, AddMoneyAction)]
-        [SettingsUISection(Hotkeys, HotkeyActions)]
-        public ProxyBinding AddMoneyKeyboardBinding { get; set; }
-
-        [SettingsUIKeyboardBinding(BindingKeyboard.RightBracket, SubtractMoneyAction)]
-        [SettingsUISection(Hotkeys, HotkeyActions)]
-        public ProxyBinding SubtractMoneyKeyboardBinding { get; set; }
+        [SettingsUISection(AchievementsTab, Achievements)]
+        [SettingsUIHideByCondition(typeof(Setting), nameof(IsAchievementEnablerIncluded))]
+        [SettingsUISetter(typeof(Setting), nameof(OnAchievementsOptionChanged))]
+        public bool AchievementsEnabled { get; set; }
 
         // --------------------------------------------------------------------
         // About tab
@@ -352,6 +372,7 @@ namespace CityWatchdog
 
             TrendTracker = true;
             TrendDisplayMode = TrendDisplayModeHourly;
+
             ManualMoneyAmount = 20000;
             AutomaticAddMoney = false;
             AutomaticAddMoneyThreshold = 100000;
