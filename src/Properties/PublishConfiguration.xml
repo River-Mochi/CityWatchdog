@@ -8,45 +8,45 @@
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
-        # City Watchdog (CWD)
+# City Watchdog (CWD)
 
-        - Helps you control city alert icon clutter and gives a few convenient city setup tools.
-        - This is redux and expansion of the original City Controller mod (broken, retired).
+- Helps you control city alert icon clutter and gives a few convenient city setup tools.
+- This is redux and expansion of the original City Controller mod (broken, retired).
 
-        ### Features
+### Features
 
-        - Notification icon display/hide controls.
-        - Change the MilesStone you start with.
-        - Manual add/subtract money controls using hotkeys.
-        - Automatic add money option.
-        - Convert saves from Unlimited money type to normal Limited money.
+- Notification icon display/hide controls.
+- Change the MilesStone you start with.
+- Manual add/subtract money controls using hotkeys.
+- Automatic add money option.
+- Convert saves from Unlimited money type to normal Limited money.
 
-        Hotkeys
-        - N to toggle all notification icons on/off.
-        - [  = Add Money
-        - ]  = Subtract Money
+Hotkeys
+- N to toggle all notification icons on/off.
+- [  = Add Money
+- ]  = Subtract Money
 
-        ### Important Notes
-        - City Watchdog hides/shows alert icons; it does not fix the city problem behind the icons. Good for making videos and reducing stress.
-        - Make a backup before converting an Unlimited Money city save. Mod cannot undo that conversion.
-        - If Achievement Fixer (AF) is installed, City Watchdog automatically disables its own achievement feature so no conflicts.
+### Important Notes
+- City Watchdog hides/shows alert icons; it does not fix the city problem behind the icons. Good for making videos and reducing stress.
+- Make a backup before converting an Unlimited Money city save. Mod cannot undo that conversion.
+- If Achievement Fixer (AF) is installed, City Watchdog automatically disables its own achievement feature so no conflicts.
 
-        ### Support and feedback
-        Feedback is welcome through GitHub or Discord links on the right.
-        If you like free mods, give a Like, easy way to show support :)
+### Support and feedback
+Feedback is welcome through GitHub or Discord links on the right.
+If you like free mods, give a Like, easy way to show support :)
 
-        ### Future
-        - New 9 languages supported, more needed.
-        - Recommend: use Achievement Fixer (AF) mod for now until I have time to merge it fully into this mod. AF is more robust/ better.
-        - If anyone can make better Thumbnail and screenshots, please let me know.
+### Future
+- New 9 languages supported, more needed.
+- Recommend: use Achievement Fixer (AF) mod for now until I have time to merge it fully into this mod. AF is more robust/ better.
+- If anyone can make better Thumbnail and screenshots, please let me know.
 
-        ### Credits
-        - River Mochi - mod author and maintainer
-        - Thanks to Mbyron26 for the original City Controller mod
-        - Dorkington, Flightech, SonNathan - testers
-        - Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
+### Credits
+- River Mochi - mod author and maintainer
+- Thanks to Mbyron26 for the original City Controller mod
+- Dorkington, Flightech, SonNathan - testers
+- Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
 
-    </LongDescription>
+</LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail-dog-city01.jpg" />
 	<!--Screenshot, can be set multiple times-->
