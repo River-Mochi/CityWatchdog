@@ -145,13 +145,13 @@ namespace CityWatchdog
                 // --- Achievements ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Enable Achievements" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Keeps achievements enabled [ ✓ ] while City Watchdog is loaded.\n" +
-                    "After a city loads, City Watchdog re-checks achievements for a short window in case the game turns them off because mods are active." },
+                    "- Keeps <achievements enabled [ ✓ ]> while mod is loaded.\n" +
+                    "- After a city loads, CWD re-checks achievements for a short window in case the game turns them off because mods are active." },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "City Watchdog includes the Achievement Fixer behavior.\n" +
-                    "It keeps platform achievements enabled, refreshes the game's achievements warning text, and adds optional tools below for testing or repairing individual achievements.\n" +
-                    "Normal players usually only need [Enable Achievements] checked." },
+                    "- Keeps achievements enabled, refreshes the game's achievements warning text." +
+                    "- Optional tools below for testing or repairing individual achievements.\n" +
+                    "Normal players usually only need to [Enable Achievements]." },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "Selected Achievement" },
