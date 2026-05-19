@@ -533,7 +533,7 @@ namespace CityWatchdog
             TrendTracker = true;
             TrendDisplayMode = TrendDisplayModeHourly;
 
-            ManualMoneyAmount = 20000;
+            ManualMoneyAmount = 40000;
             AutomaticAddMoney = false;
             AutomaticAddMoneyThreshold = 100000;
             AutomaticAddMoneyAmount = 10000;

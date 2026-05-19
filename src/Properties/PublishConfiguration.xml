@@ -8,14 +8,13 @@
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
-        # City Watchdog (CWD)
 
-        - Helps you control city alert icon clutter and gives a few convenient city setup tools.
-        - This is redux and expansion of the original City Controller mod (broken, retired).
+        - City Watchdog helps reduce city alert icon clutter and adds convenient city setup tools.
+        - It is modeled on the original City Controller mod (retired) and has many expanded features.
 
         ### Features
 
-        - Notification icon display/hide controls.
+        - Show or hide notification alert icons.
         - Built-in Achievement Fixer and achievement repair tools.
         - Change the MilesStone you start with (if you want Trains now, you can have it!).
 
@@ -23,18 +22,18 @@
 
         - Manual add/subtract money controls using hotkeys.
         - Automatic add money option.
-        - Trend Tracker for money/population toolbar values and detailed money tooltip.
+        - Trend Tracker for money/population toolbar values.
         - Convert saves from Unlimited money type to normal Limited money.
 
 
         Hotkeys
-        - N to toggle all notification icons on/off.
+        - N  = toggle all notification icons on/off.
         - [  = Add Money
         - ]  = Subtract Money
 
         ### Important Notes
         - City Watchdog hides/shows alert icons; it does not fix the city problem behind the icons. Good for making videos and reducing stress.
-        - Make a backup before converting an Unlimited Money city save. Mod cannot undo that conversion.
+        - Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
         - You can remove any separate Achievement Fixer mod if you use this mod.
 
         ### Support and feedback

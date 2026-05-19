@@ -68,8 +68,10 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Money Hotkey Amount" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "Use this amount with the Add Money and Subtract Money hotkeys.\n" +
-                    "Default = 20,000.\n" +
-                    "This does not set the current balance by itself." },
+                    "Default = 40,000.\n" +
+                    "This does nothing unless you use the hotkey in the city to add/subtract money.\n"+
+                    "For automated money, enable the Automatic Add Money option."
+                },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Add Money" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Hotkey for adding money inside the city." },
@@ -151,8 +153,8 @@ namespace CityWatchdog
                 },
              
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• Achievements are <enabled> by default without using the Advanced buttons below.\n\n" +
-                    "• Do the required tasks to naturally complete achievements :)\n"
+                    "• <Enabled by default> without using the Advanced buttons below.\n" +
+                    "• Just keep it enabled to naturally complete achievements :)\n"
                 },
 
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
