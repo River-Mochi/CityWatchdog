@@ -1,14 +1,13 @@
 .trendText {
-    margin-left: 4rem;
-    width: 86rem;
+    margin-left: 6rem;
+    width: 112rem;
     flex: 0 0 auto;
     color: var(--accentColorLight);
-    font-size: 11rem;
-    font-weight: 600;
-    line-height: 1;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.05;
     text-align: right;
     white-space: nowrap;
-    coh-font-fit-mode: shrink;
     pointer-events: none;
     text-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.85);
 }
@@ -35,7 +34,6 @@
     flex: 0 0 auto;
     text-align: right;
     white-space: nowrap;
-    coh-font-fit-mode: shrink;
 }
 
 .positive {

@@ -4,7 +4,7 @@
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="City Watchdog [BETA]" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="Hide Notification icons, set Milestones,  add/remove money, achievements." />
+	<ShortDescription Value="Hide notification icons, track money trends, set milestones, add/remove money, achievements." />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
@@ -16,10 +16,12 @@
 ### Features
 
 - Notification icon display/hide controls.
+- Trend Tracker for money/population toolbar values and detailed money tooltip.
 - Change the MilesStone you start with.
 - Manual add/subtract money controls using hotkeys.
 - Automatic add money option.
 - Convert saves from Unlimited money type to normal Limited money.
+- Built-in Achievement Fixer behavior and achievement repair tools.
 
 Hotkeys
 - N to toggle all notification icons on/off.
@@ -29,7 +31,7 @@ Hotkeys
 ### Important Notes
 - City Watchdog hides/shows alert icons; it does not fix the city problem behind the icons. Good for making videos and reducing stress.
 - Make a backup before converting an Unlimited Money city save. Mod cannot undo that conversion.
-- If Achievement Fixer (AF) is installed, City Watchdog automatically disables its own achievement feature so no conflicts.
+- City Watchdog now includes Achievement Fixer behavior. Running the separate Achievement Fixer mod at the same time is not needed.
 
 ### Support and feedback
 Feedback is welcome through GitHub or Discord links on the right.
@@ -37,7 +39,6 @@ If you like free mods, give a Like, easy way to show support :)
 
 ### Future
 - New 9 languages supported, more needed.
-- Recommend: use Achievement Fixer (AF) mod for now until I have time to merge it fully into this mod. AF is more robust/ better.
 - If anyone can make better Thumbnail and screenshots, please let me know.
 
 ### Credits

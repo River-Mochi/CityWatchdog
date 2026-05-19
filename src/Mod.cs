@@ -9,10 +9,12 @@ namespace CityWatchdog
     using Colossal.Localization;
     using Colossal.Logging;
     using Game;
+    using Game.Achievements;
     using Game.Input;
     using Game.Modding;
     using Game.SceneFlow;
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
 
     public sealed class Mod : IMod
@@ -31,6 +33,7 @@ namespace CityWatchdog
 
         private static bool s_BannerLogged;
         private static bool s_ReapplyingLocale;
+        private static readonly HashSet<string> s_AchievementBannerLocales = new HashSet<string>();
 
 #if DEBUG
         private static string? s_LastLocaleId;
@@ -114,6 +117,8 @@ namespace CityWatchdog
                 localizationManager.onActiveDictionaryChanged -= OnLocaleChanged;
                 localizationManager.onActiveDictionaryChanged += OnLocaleChanged;
             }
+
+            EnsureAchievementBannerForActiveLocale();
         }
 
         public void OnDispose()
@@ -164,6 +169,7 @@ namespace CityWatchdog
                 }
 #endif
                 Settings?.RegisterInOptionsUI();
+                EnsureAchievementBannerForActiveLocale();
             }
             finally
             {
@@ -173,15 +179,7 @@ namespace CityWatchdog
 
         private static void ScheduleSystems(UpdateSystem updateSystem)
         {
-            if (!ModTools.IsAnyModEnabled("AchievementFixer"))
-            {
-                updateSystem.UpdateAfter<AchievementsControllerSystem>(SystemUpdatePhase.Deserialize);
-            }
-            else
-            {
-                LogUtils.Info(() => "AchievementFixer detected; City Watchdog achievement system skipped.");
-            }
-
+            updateSystem.UpdateAfter<AchievementsControllerSystem, AchievementTriggerSystem>(SystemUpdatePhase.MainLoop);
             updateSystem.UpdateAt<MoneyControllerSystem>(SystemUpdatePhase.ModificationEnd);
             updateSystem.UpdateAt<UnlockMilestonesSystem>(SystemUpdatePhase.ModificationEnd);
             updateSystem.UpdateAt<CityWatchdogUISystem>(SystemUpdatePhase.UIUpdate);
@@ -247,9 +245,24 @@ namespace CityWatchdog
             LogUtils.Info(() => $"{ModName} v{ModVersion} {ModTag} loaded");
         }
 
-        private static void AddLocaleSource(string localeId, IDictionarySource source)
+        internal static void ReapplyAchievementBannerForActiveLocale()
         {
-            if (string.IsNullOrEmpty(localeId))
+            AddAchievementBannerForActiveLocale(force: true, finalApply: false);
+        }
+
+        internal static void ReapplyAchievementBannerForActiveLocaleFinal()
+        {
+            AddAchievementBannerForActiveLocale(force: true, finalApply: true);
+        }
+
+        private static void EnsureAchievementBannerForActiveLocale()
+        {
+            AddAchievementBannerForActiveLocale(force: false, finalApply: false);
+        }
+
+        private static void AddAchievementBannerForActiveLocale(bool force, bool finalApply)
+        {
+            if (Settings?.AchievementsEnabled != true)
             {
                 return;
             }
@@ -257,17 +270,59 @@ namespace CityWatchdog
             LocalizationManager? localizationManager = GameManager.instance?.localizationManager;
             if (localizationManager == null)
             {
-                LogUtils.Warn(() => $"AddLocaleSource: No LocalizationManager; cannot add source for '{localeId}'.");
                 return;
+            }
+
+            string activeLocaleId = localizationManager.activeLocaleId ?? string.Empty;
+            if (string.IsNullOrEmpty(activeLocaleId))
+            {
+                return;
+            }
+
+            if (!force && s_AchievementBannerLocales.Contains(activeLocaleId))
+            {
+                return;
+            }
+
+            const string warningKey = "Menu.ACHIEVEMENTS_WARNING_MODS";
+            Dictionary<string, string> entries = new Dictionary<string, string>
+            {
+                [warningKey] = AchievementBannerText.For(activeLocaleId)
+            };
+
+            if (AddLocaleSource(activeLocaleId, new LocaleOverrideSource(entries)))
+            {
+                s_AchievementBannerLocales.Add(activeLocaleId);
+                if (finalApply)
+                {
+                    LogUtils.Info(() => $"Achievement banner re-applied for locale '{activeLocaleId}'.");
+                }
+            }
+        }
+
+        private static bool AddLocaleSource(string localeId, IDictionarySource source)
+        {
+            if (string.IsNullOrEmpty(localeId))
+            {
+                return false;
+            }
+
+            LocalizationManager? localizationManager = GameManager.instance?.localizationManager;
+            if (localizationManager == null)
+            {
+                LogUtils.Warn(() => $"AddLocaleSource: No LocalizationManager; cannot add source for '{localeId}'.");
+                return false;
             }
 
             try
             {
                 localizationManager.AddSource(localeId, source);
+                return true;
             }
             catch (Exception ex)
             {
                 LogUtils.Warn(() => $"AddLocaleSource: AddSource for '{localeId}' failed: {ex.GetType().Name}: {ex.Message}", ex);
+                return false;
             }
         }
     }

@@ -117,9 +117,12 @@ const TrendText = ({ value, displayMode }: { readonly value: number; readonly di
 
 const MoneyTrendTooltipContent = ({ baseContent }: { readonly baseContent: ReactNode }) => {
     const trendTracker = useValue(trendTracker$);
-    const totalIncome = getNumericValue(useValue(economyBudget.totalIncome$));
-    const totalExpenses = getNumericValue(useValue(economyBudget.totalExpenses$));
-    const monthlyMoney = totalIncome - Math.abs(totalExpenses);
+    const trendDisplayMode = useValue(trendDisplayMode$);
+    const monthlyIncome = getNumericValue(useValue(economyBudget.totalIncome$));
+    const monthlyExpenses = -Math.abs(getNumericValue(useValue(economyBudget.totalExpenses$)));
+    const monthlyBalance = monthlyIncome + monthlyExpenses;
+    const hourlyIncome = monthlyIncome / HOURS_PER_GAME_MONTH;
+    const hourlyExpenses = monthlyExpenses / HOURS_PER_GAME_MONTH;
 
     if (!trendTracker) {
         return <>{baseContent}</>;
@@ -129,9 +132,15 @@ const MoneyTrendTooltipContent = ({ baseContent }: { readonly baseContent: React
         <>
             {baseContent}
             <div className={styles.tooltipRows}>
-                <TrendTooltipRow label="Monthly trend:" value={monthlyMoney} />
-                <TrendTooltipRow label="Monthly income:" value={totalIncome} />
-                <TrendTooltipRow label="Monthly expenses:" value={-Math.abs(totalExpenses)} />
+                <TrendTooltipRow label="Monthly balance:" value={monthlyBalance} suffix="/mo" />
+                <TrendTooltipRow label="Monthly income:" value={monthlyIncome} suffix="/mo" />
+                <TrendTooltipRow label="Monthly expenses:" value={monthlyExpenses} suffix="/mo" />
+                {trendDisplayMode === TREND_DISPLAY_MODE_MONTHLY && (
+                    <>
+                        <TrendTooltipRow label="Hourly income:" value={hourlyIncome} suffix="/h" />
+                        <TrendTooltipRow label="Hourly expenses:" value={hourlyExpenses} suffix="/h" />
+                    </>
+                )}
             </div>
         </>
     );
@@ -154,9 +163,9 @@ const containsIcon = (node: ReactNode, icon: string): boolean => {
     return Children.toArray(props?.children).some((child) => containsIcon(child, icon));
 };
 
-const TrendTooltipRow = ({ label, value }: { readonly label: string; readonly value: number }) => {
+const TrendTooltipRow = ({ label, value, suffix }: { readonly label: string; readonly value: number; readonly suffix: string }) => {
     const tone = getTrendTone(value);
-    const text = `${formatTrendValue(value)}\u00A0/mo`;
+    const text = `${formatTrendValue(value)}\u00A0${suffix}`;
 
     return (
         <div className={styles.tooltipRow}>
