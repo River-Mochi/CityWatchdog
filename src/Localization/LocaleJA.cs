@@ -56,16 +56,20 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
                     "下部ツールバーの資金と人口のバニラ矢印の横に、数値の傾向を追加します。\n" +
                     "これは軽量な表示だけで、都市の資金や人口は変更しません。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "トレンド頻度" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
                     "下部ツールバーの傾向テキストを、資金と人口について時間あたりまたは月あたりで表示するか選びます。\n" +
                     "月あたりの資金は予算収入から支出を引いた値、人口は24時間予測を使います。" },
+
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "毎時 (/h)" },
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "月間 (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.CompactMoneyTooltip)), "コンパクト資金ツールチップ" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.CompactMoneyTooltip)),
                     "21.24M/mo のような短い資金表示を使い、合計行を非表示にします。\n" +
                     "大きい詳細な資金ツールチップを使う場合はOFFにしてください。" },
+
 
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "資金ホットキー額" },
@@ -74,30 +78,38 @@ namespace CityWatchdog
                     "既定値 = 40,000。\n" +
                     "都市内でホットキーを使って資金を追加/減少しない限り、これは何もしません。\n" +
                     "自動資金には、資金自動追加を有効にしてください。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "資金を追加" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "都市内で資金を追加するホットキーです。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.AddMoneyAction), "資金を追加" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "資金を減らす" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "都市内で資金を減らすホットキーです。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.SubtractMoneyAction), "資金を減らす" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoney)), "資金自動追加" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoney)),
                     "有効 [ ✓ ] の場合、都市が読み込まれている間に City Watchdog が都市の残高を確認します。\n" +
                     "残高がしきい値より低い場合、選択した自動金額を追加します。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)), "自動資金しきい値" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)),
                     "資金自動追加が有効で、都市の残高がこの値を下回ると、\n" +
                     "City Watchdog が選択した自動金額を追加します。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyAmount)), "自動金額" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyAmount)),
                     "資金自動追加が発動するたびに追加される金額です。\n" +
                     "都市をしきい値より十分上に戻せる値を選んでください。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.InitialMoney)), "初期資金" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.InitialMoney)),
                     "新しい<資金制限あり>都市、または最初に読み込む都市の開始残高を設定し、適用後にゲーム既定値へ戻します。\n" +
                     "都市がすでに読み込まれている場合はグレーアウトします。\n" +
                     "都市の開始/読み込み前に設定 → 一度だけ適用 → その後は<資金ホットキー額>または<資金自動追加>を使ってください。" },
+
                 { m_Settings.GetOptionLocaleID("GameDefault"), "ゲーム既定値" },
+
 
                 // --- Notifications ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationsKeyboardBinding)), "通知アイコン切替" },
@@ -106,16 +118,19 @@ namespace CityWatchdog
                     "一覧にある都市通知アイコンをすぐに表示/非表示にします。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationsAction), "すべての通知アイコンを即時表示/非表示" },
 
+
                 // --- Milestone selector ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.CustomMilestone)), "マイルストーン選択" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.CustomMilestone)),
                     "都市を読み込む前、または開始する前に有効にすると、都市読み込み直後に選択したマイルストーンを解除します。\n" +
                     "都市が読み込まれている間はONにできませんが、誤って有効のままならOFFにできます。\n" +
                     "City Watchdog は都市に保存済みのマイルストーン変更を元に戻せません。必要なら以前のセーブを使ってください。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MilestoneLevel)), "マイルストーン" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MilestoneLevel)),
                     "次回の都市読み込み時に解除するマイルストーンレベルを選びます。\n" +
                     "都市が読み込まれておらず、[マイルストーン選択] が有効 [ ✓ ] の場合だけ調整できます。" },
+
 
                 // --- Save conversion ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)), "無制限資金コンバーター" },
@@ -125,16 +140,19 @@ namespace CityWatchdog
                     "読み込まれた都市が<無制限資金>タイプの場合、この設定を有効にすると <[無制限資金セーブを変換]> ボタンが解除されます。\n" +
                     "City Watchdog はこの変換を元に戻せません。\n" +
                     "通常の都市では不要です。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "無制限資金都市を通常都市へ変換" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "<無制限資金>で開始した都市用です。\n" +
                     "その都市が読み込まれている間に、セーブを通常の資金制限予算へ変換し、資金チャレンジを復活させます。\n" +
                     "読み込まれた都市が<無制限資金>タイプで、<無制限資金コンバーター>がON [ ✓ ] でない限り、ボタンは<無効/グレーアウト>されます。\n" +
                     "バックアップを作成し、自己責任で使用してください。City Watchdog はこの変換を元に戻せません。" },
+
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "この都市を無制限資金から通常の資金制限へ変換しますか？\n" +
                     "先にバックアップを保存してください。City Watchdog は元に戻せません。\n" +
                     "よろしいですか？" },
+
 
                 // --- Achievements ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "実績を有効化" },
@@ -142,63 +160,74 @@ namespace CityWatchdog
                     "Mod使用中に実績を許可するには、これを **ON [ ✓ ]** のままにしてください。\n" +
                     "ゲームは過去に完了した作業を後から数えません。\n" +
                     "有効のまま、普通に条件を達成してください。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
                     "• 下の高度なボタンを使わなくても<既定で有効>です。\n" +
                     "• 有効のままにして、自然に実績を達成してください :)\n" +
                     "" },
+
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "高度なツールを表示" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**任意:** 実績のテスト、クリア、または有効化用です。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "選択した実績" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
                     "変更する実績を1つ選びます。\n" +
                     "<通常の実績進行には不要です。>\n" +
                     "実績をリセット/クリアしたい場合、または条件を行わず解除したい場合だけ使います。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "選択項目を解除" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "選択した実績を**解除して完了**します。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "選択項目をクリア" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "選択した実績を**未完了**としてマークします。" },
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "この実績をクリア/リセットします。\n" +
-                    "\n" +
+                    "この実績をクリア/リセットします。\n\n" +
                     "続行しますか？" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
                     "<高度なツールは任意です>\n" +
                     "• テスト、修復、または全実績のリセットに使います。\n" +
                     "• 詳細は各ボタンにマウスを重ねると右側パネルに表示されます。" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "テスト" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "すべてリセット" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
                     "完了済みの実績をすべて消去し、最初からやり直せるようにします。\n" +
                     "**[すべてリセット]** の使用には**注意**してください。\n" +
                     "誤って使った場合、[選択項目を解除] ボタンで完了済み実績を復元できます。" },
+
                 // Confirmation modal Yes/No
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
                     "警告: すべての実績を未完了状態にリセット/クリアします。\n" +
                     "続行しますか？" },
 
+
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Mod名" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.NameText)), "このModの表示名です。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.VersionText)), "バージョン" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.VersionText)), "現在のModバージョンです。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "作者の Paradox Mods ページを開きます。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "使い方を表示" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "下の使用説明を表示/非表示にします。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),
                     "<通知パネル>\n" +
                     "1. City Watchdog ボタン（左上）をクリックしてパネルを開きます。\n" +
                     "2. ASC/DESC で並べ替えます。\n" +
                     "3. Toggle All で素早く設定するか、セクションを展開して個別の通知アイコンを変更します。\n" +
-                    "4. City Watchdog はアイコンの表示/非表示だけを行います。都市の問題そのものは修正しません。\n" +
-                    "\n" +
+                    "4. City Watchdog はアイコンの表示/非表示だけを行います。都市の問題そのものは修正しません。\n\n" +
                     "<資金ヘルパー>\n" +
                     "1. Trend Tracker は下部ツールバーの資金/人口トレンド矢印の横に /h または /mo の数値を追加します。\n" +
                     "2. 資金追加と資金減少: <資金ホットキー額>を使います。\n" +
                     "3. 資金自動追加は都市が読み込まれている間に残高を監視し、しきい値未満なら資金を追加します。\n" +
-                    "4. 無制限資金セーブ変換は無制限資金で開始した都市専用で、City Watchdog では<元に戻せません>。\n" +
-                    "\n" +
+                    "4. 無制限資金セーブ変換は無制限資金で開始した都市専用で、City Watchdog では<元に戻せません>。\n\n" +
                     "<カスタムマイルストーン>\n" +
                     "都市を読み込む前、または開始する前に、オプションメニューで初期資金とマイルストーンを設定してください。" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UsageText)), "" },

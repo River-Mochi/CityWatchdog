@@ -38,7 +38,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "调试" },
 
                 // --- Groups ---
-                { m_Settings.GetOptionGroupLocaleID(Setting.Trends), "Trend Tracker" },
+                { m_Settings.GetOptionGroupLocaleID(Setting.Trends), "趋势追踪" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Money), "金钱" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "通知" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "里程碑" },
@@ -52,20 +52,24 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "使用说明" },
 
                 // --- Trend Tracker ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Trend Tracker" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "趋势追踪" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
                     "在底部工具栏的原版金钱和人口箭头旁显示数字趋势值。\n" +
                     "这只是轻量显示，不会改变城市金钱或人口。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "趋势频率" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
                     "选择底部工具栏的趋势文字显示金钱和人口的每小时值或每月值。\n" +
                     "每月金钱使用预算收入减去支出，人口使用 24 小时预测。" },
+
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "每小时 (/h)" },
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "每月 (/mo)" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.CompactMoneyTooltip)), "紧凑金钱提示" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.CompactMoneyTooltip)),
                     "使用 21.24M/mo 这样的较短金钱数值，并隐藏总额行。\n" +
                     "关闭此项可使用较大的详细金钱提示。" },
+
 
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "金钱快捷键金额" },
@@ -74,30 +78,38 @@ namespace CityWatchdog
                     "默认值 = 40,000。\n" +
                     "除非在城市中使用快捷键增加/减少金钱，否则此设置不会做任何事。\n" +
                     "如需自动金钱，请启用自动增加金钱选项。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "增加金钱" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "在城市中增加金钱的快捷键。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.AddMoneyAction), "增加金钱" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "减少金钱" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "在城市中减少金钱的快捷键。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.SubtractMoneyAction), "减少金钱" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoney)), "自动增加金钱" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoney)),
                     "启用 [ ✓ ] 后，City Watchdog 会在城市载入期间检查城市余额。\n" +
                     "如果余额低于阈值，就会加入所选的自动金额。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)), "自动金钱阈值" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)),
                     "如果自动增加金钱已启用，且城市余额低于此数值，\n" +
                     "City Watchdog 会加入所选的自动金额。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyAmount)), "自动金额" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyAmount)),
                     "每次自动增加金钱触发时加入的金额。\n" +
                     "请选择足以让城市安全高于阈值的数值。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.InitialMoney)), "初始金钱" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.InitialMoney)),
                     "设置新的 <有限金钱> 城市或第一个载入城市的起始余额，应用后会重置为游戏默认值。\n" +
                     "如果城市已经载入，此项会变成灰色不可用。\n" +
                     "在开始/载入城市前设置 → 应用一次 → 之后使用 <金钱快捷键金额> 或 <自动增加金钱>。" },
+
                 { m_Settings.GetOptionLocaleID("GameDefault"), "游戏默认" },
+
 
                 // --- Notifications ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationsKeyboardBinding)), "切换通知图标" },
@@ -106,16 +118,19 @@ namespace CityWatchdog
                     "可立即显示或隐藏所有列出的城市通知图标。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationsAction), "立即显示/隐藏所有通知图标" },
 
+
                 // --- Milestone selector ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.CustomMilestone)), "里程碑选择器" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.CustomMilestone)),
                     "在载入或开始城市前启用，可在城市载入后立刻解锁所选里程碑。\n" +
                     "城市已载入时不能打开，但如果不小心已启用，仍可关闭。\n" +
                     "City Watchdog 无法复原已经存入城市的里程碑变更；需要时请使用较早的存档。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MilestoneLevel)), "里程碑" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MilestoneLevel)),
                     "选择下次载入城市时要解锁的里程碑等级。\n" +
                     "只能在没有载入城市，且 [里程碑选择器] 已启用 [ ✓ ] 时调整。" },
+
 
                 // --- Save conversion ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConfirmUnlimitedMoneySaveConversion)), "无限金钱转换器" },
@@ -125,16 +140,19 @@ namespace CityWatchdog
                     "当载入的城市是 <无限金钱> 类型时，启用此项会解锁 <[转换无限金钱存档]> 按钮。\n" +
                     "City Watchdog 无法复原此转换。\n" +
                     "如果是普通城市，不用担心；不需要使用此功能。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)), "将无限金钱城市转为普通城市" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "用于以 <无限金钱> 开始的城市。\n" +
                     "在该城市载入时，将存档转换为普通有限金钱预算，让城市重新有正常金钱挑战。\n" +
                     "除非载入的城市是 <无限金钱> 类型，且 <无限金钱转换器> 为 ON [ ✓ ]，否则按钮会 <停用/变灰>。\n" +
                     "请先备份存档并自行承担风险；City Watchdog 无法复原此转换。" },
+
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ConvertUnlimitedMoneySave)),
                     "要将此城市从无限金钱转换为普通有限金钱吗？\n" +
                     "请先备份；City Watchdog 无法复原此操作。\n" +
                     "确定吗？" },
+
 
                 // --- Achievements ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "启用成就" },
@@ -142,63 +160,74 @@ namespace CityWatchdog
                     "使用模组时请保持此项 **ON [ ✓ ]** 以允许成就。\n" +
                     "游戏不会追溯计算过去已经完成的任务，\n" +
                     "所以保持启用并自然完成任务即可获得成就。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
                     "• <默认启用>，不需要使用下方高级按钮。\n" +
                     "• 保持启用，自然完成成就即可 :)\n" +
                     "" },
+
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "显示高级工具" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**可选：** 用于测试、清除或激活成就。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "已选择成就" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
                     "选择一个要更改的成就。\n" +
                     "<普通成就进度不需要使用。>\n" +
                     "仅在想要重置/清除成就，或不完成任务直接解锁时使用。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "解锁所选" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**解锁并完成**所选成就。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "清除所选" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "将所选成就标记为 **未完成**。" },
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "清除/重置此成就。\n" +
-                    "\n" +
+                    "清除/重置此成就。\n\n" +
                     "继续？" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
                     "<高级工具是可选的>\n" +
                     "• 用于测试、修复或重置所有成就。\n" +
                     "• 将鼠标悬停在任意按钮上可在右侧面板查看详情。" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "测试" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "全部重置" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
                     "这会清除所有已完成成就，让你重新开始。\n" +
                     "使用 **[全部重置]** 时请**小心**。\n" +
                     "如果误用了，可用 [解锁所选] 按钮恢复已完成成就。" },
+
                 // Confirmation modal Yes/No
                 { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
                     "警告：将所有成就重置/清除为未完成状态。\n" +
                     "继续？" },
 
+
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "模组名称" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.NameText)), "此模组的显示名称。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.VersionText)), "版本" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.VersionText)), "当前模组版本。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "打开作者的 Paradox Mods 页面。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "显示说明" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "显示或隐藏下方使用说明。" },
+
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UsageText)),
                     "<通知面板>\n" +
                     "1. 点击 City Watchdog 按钮（左上角）打开面板。\n" +
                     "2. 用 ASC/DESC 排序。\n" +
                     "3. 使用 Toggle All 快速设置，或展开分类逐一调整通知图标。\n" +
-                    "4. City Watchdog 只会隐藏或显示图标；不会修复图标背后的城市问题。\n" +
-                    "\n" +
+                    "4. City Watchdog 只会隐藏或显示图标；不会修复图标背后的城市问题。\n\n" +
                     "<金钱工具>\n" +
-                    "1. Trend Tracker 会在底部工具栏的金钱和人口趋势箭头旁显示 /h 或 /mo 数值。\n" +
+                    "1. 趋势追踪 会在底部工具栏的金钱和人口趋势箭头旁显示 /h 或 /mo 数值。\n" +
                     "2. 增加和减少金钱：使用 <金钱快捷键金额>。\n" +
                     "3. 自动增加金钱会在城市载入期间监看余额，低于阈值时增加金钱。\n" +
-                    "4. 转换无限金钱存档只适用于以无限金钱开始的城市，City Watchdog <无法复原>。\n" +
-                    "\n" +
+                    "4. 转换无限金钱存档只适用于以无限金钱开始的城市，City Watchdog <无法复原>。\n\n" +
                     "<自定义里程碑>\n" +
                     "请在载入或开始城市前，在选项菜单设置初始金钱与里程碑。" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.UsageText)), "" },
