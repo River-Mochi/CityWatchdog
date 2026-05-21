@@ -1,63 +1,64 @@
 <Publish>
 	<!--Id must be set in order to update existing mod. Leave blank for first publish.-->
-	<ModId Value="" />
+	<ModId Value="144908" />
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="City Watchdog [BETA]" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="Hide Alert icons, add/remove Money, enable Achievements, track Money, set Milestones." />
+	<ShortDescription Value="Show/Hide Notification alert icons, add/remove Money, enable Achievements, track Money, set Milestones." />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
 
-        - City Watchdog helps reduce city alert icon clutter and adds convenient city setup tools.
-        - It's modeled on the original City Controller mod (retired) and has many expanded features.
+- City Watchdog helps reduce city alert icon clutter and adds convenient city setup tools.
+- It's modeled on the original City Controller mod (retired)
+- Many expanded features and future plans.
 
-        ### Features
+### Features
 
-        - Show or hide notification alert icons.
-        - Built-in Achievement Fixer and achievement repair tools.
-        - Change the Milestone you start with (Trains now! Yes you can!).
+- Show or hide notification alert icons.
+- Built-in Achievement Fixer and achievement repair tools.
+- Change the Milestone you start with (Trains now! Yes you can!).
 
-        #### Money
+#### Money
 
-        - Manual add/subtract money controls using hotkeys.
-        - Automatic add money option.
-        - Trend Tracker for money/population toolbar values.
-        - Convert saves from Unlimited money type to normal Limited money.
+- Manual add/subtract money controls using hotkeys.
+- Automatic add money option.
+- Trend Tracker for money/population toolbar values.
+- Convert saves from Unlimited money type to normal Limited money.
 
 
-        Hotkeys
-        - Shift+N = open/close panel (same as clicking on Top Left icon).
-        - N    = toggle all notification icons on/off (same as clicking on Toggle All * star button)
-        - [    = Add Money
-        - ]    = Subtract Money
+Hotkeys
+- Shift+N = open/close panel (same as clicking on Top Left icon).
+- N    = toggle all notification icons on/off (same as clicking on Toggle All * star button)
+- [    = Add Money
+- ]    = Subtract Money
 
-        ### Important Notes
-        - City Watchdog hides/shows alert icons; it does not fix the problem behind the icons. Good for reducing stress or screenshots.
-        - Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
-        - Achievement Fixer (AF) mod is included in City Watchdog; you can remove the standalone AF mod.
-        - City Watchdog itself is a heavily rewritten, modernized redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
-        I hope you enjoy the new features, better performance, and safety guards!
-        - CWD's Trend Tracker is a ground-up code write of similar money trend info to "Show Text Trends" (retired). Trends uses new methods to implement vanilla
-        CS2 component extensions, custom CWD settings options, customizable new money tooltip layouts, and translations.
+### Important Notes
+- City Watchdog hides/shows alert icons; it does not fix the problem behind the icons. Good for reducing stress or screenshots.
+- Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
+- Achievement Fixer (AF) mod is included in City Watchdog; you can remove the standalone AF mod.
+- City Watchdog itself is a heavily rewritten, modernized redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
+I hope you enjoy the new features, better performance, and safety guards!
+- CWD's Trend Tracker is a ground-up code write of similar money trend info to "Show Text Trends" (retired). Trends uses new methods to implement vanilla
+CS2 component extensions, custom CWD settings options, customizable new money tooltip layouts, and translations.
 
-        ### Support and feedback
-        Feedback is welcome through GitHub or Discord links on the right.
-        If you like free mods, give a Like, easy way to show support :)
+### Support and feedback
+Feedback is welcome through GitHub or Discord links on the right.
+If you like free mods, give a Like, easy way to show support :)
 
-        ### Future
-        - 9 languages supported now, more needed!
-        - If anyone can make better Thumbnail and screenshots, please let me know.
+### Future
+- 9 languages supported now, more needed!
+- If anyone can make better Thumbnail and screenshots, please let me know.
 
-        ### Credits
-        - River Mochi - mod author and maintainer
-        - Thanks to Mbyron26 for the original City Controller mod
-        - Thanks to DanielVNZ for Show Text Trends inspiration.
-        - Dorkington - tester/feature suggestion
-        - Flightech, SonNathan - testers
-        - Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
+### Credits
+- River Mochi - mod author and maintainer
+- Thanks to Mbyron26 for the original City Controller mod
+- Thanks to DanielVNZ for Show Text Trends inspiration.
+- Dorkington - tester/feature suggestion
+- Flightech, SonNathan - testers
+- Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
 
-    </LongDescription>
+</LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail-dog-city01.jpg" />
 	<!--Screenshot, can be set multiple times-->
