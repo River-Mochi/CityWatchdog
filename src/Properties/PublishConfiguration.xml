@@ -10,7 +10,7 @@
 	<LongDescription>
 
 - City Watchdog helps reduce city alert icon clutter and adds convenient city setup tools.
-- It is modeled on the original City Controller mod (retired) and has many expanded features.
+- It's modeled on the original City Controller mod (retired) and has many expanded features.
 
 ### Features
 
@@ -69,7 +69,7 @@ If you like free mods, give a Like, easy way to show support :)
 	<!--Tag, can be set multiple times-->
 	<Tag Value="Code Mod" />
 	<!--Link to the forum post where the mod can be discussed-->
-	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1702575/" />
+	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1924169/" />
 	<!--Version of the mod-->
 	<ModVersion Value="0.8.8" />
 	<!--Recommended version of the base game to use the mod-->

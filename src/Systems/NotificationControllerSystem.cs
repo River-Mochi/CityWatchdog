@@ -514,6 +514,8 @@ namespace CityWatchdog.Systems
             EnableElectricityNotification(ElectricityNotificationIcon.TransformerNotification, Setting.Instance.Notification.ElectricityTransformerNotification);
             EnableElectricityNotification(ElectricityNotificationIcon.NotEnoughConnectedNotification, Setting.Instance.Notification.ElectricityNotEnoughConnectedNotification);
             EnableElectricityNotification(ElectricityNotificationIcon.BatteryEmptyNotification, Setting.Instance.Notification.ElectricityBatteryEmptyNotification);
+            EnableElectricityNotification(ElectricityNotificationIcon.LowVoltageNotConnected, Setting.Instance.Notification.ElectricityLowVoltageNotConnected);
+            EnableElectricityNotification(ElectricityNotificationIcon.HighVoltageNotConnected, Setting.Instance.Notification.ElectricityHighVoltageNotConnected);
             if (refresh)
                 RefreshIcon();
         }

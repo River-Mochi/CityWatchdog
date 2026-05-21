@@ -51,6 +51,7 @@ import {
     OnTrafficTrackConnectionNotificationBindingToggle,
     OnTrafficTrainConnectionNotificationBindingToggle,
     OnTransportLineVehicleNotificationBindingToggle,
+    OnToggleAllNotifications,
     OnWaterPipeDirtyWaterNotificationBindingToggle,
     OnWaterPipeDirtyWaterPumpNotificationBindingToggle,
     OnWaterPipeNotEnoughGroundwaterNotificationBindingToggle,
@@ -352,9 +353,7 @@ const sections: NotificationSection[] = [
 const allItems = sections.flatMap((section) => section.items);
 
 const setAllNotifications = (enabled: boolean) => {
-    allItems.forEach((item) => {
-        item.onToggle(enabled);
-    });
+    OnToggleAllNotifications(enabled);
 };
 
 const createExpandedSections = (expanded: boolean | null = null) => {

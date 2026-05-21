@@ -33,4 +33,9 @@ CS2 component extensions, custom CWD settings options, localization, and a custo
 - Mbyron26 - original City Controller mod
 - Dorkington, Flightech, SonNathan - testers
 - Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
-- Trend display inspired by earlier trend-display mods by DanielNZ "Show Text",
+- Trend money display inspired by earlier trend mods by DanielNZ "Show Text"
+
+## Links
+
+- [Paradox Mods](https://mods.paradoxplaza.com/mods/144908/Windows)
+- [Paradox Forums](https://forum.paradoxplaza.com/forum/threads/city-watchdog.1924169/)

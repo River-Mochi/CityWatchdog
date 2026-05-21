@@ -98,6 +98,7 @@ namespace CityWatchdog.Systems
             InitializeKeybindActions();
 
             panelVisibleBinding = AddBoolBindingAndTriggerBinding("ControlPanelEnabled", false, OnControlPanelBindingToggle);
+            AddBoolTriggerBinding("ToggleAllNotifications", ApplyAllNotificationToggles);
             trendTrackerBinding = AddValueBinding(nameof(Setting.TrendTracker), Setting.Instance.TrendTracker);
             trendDisplayModeBinding = AddValueBinding(nameof(Setting.TrendDisplayMode), Setting.Instance.TrendDisplayMode);
             moneyTooltipModeBinding = AddValueBinding(nameof(Setting.MoneyTooltipMode), Setting.Instance.MoneyTooltipMode);
@@ -546,81 +547,81 @@ namespace CityWatchdog.Systems
         {
             bool enabled = !AreAllNotificationSettingsEnabled();
 
-            notificationControllerSystem.SetAllNotifications(enabled);
-            UpdateAllNotificationBindings(enabled);
+            ApplyAllNotificationToggles(enabled);
         }
 
-        private void UpdateAllNotificationBindings(bool enabled)
+        private void ApplyAllNotificationToggles(bool enabled)
         {
-            // Keep this list aligned with Setting.NotificationSetting and the BoolBinding fields above.
-            electricityElectricityNotificationBinding.Update(enabled);
-            electricityBottleneckNotificationBinding.Update(enabled);
-            electricityBuildingBottleneckNotificationBinding.Update(enabled);
-            electricityNotEnoughProductionNotificationBinding.Update(enabled);
-            electricityTransformerNotificationBinding.Update(enabled);
-            electricityNotEnoughConnectedNotificationBinding.Update(enabled);
-            electricityBatteryEmptyNotificationBinding.Update(enabled);
-            electricityLowVoltageNotConnectedBinding.Update(enabled);
-            electricityHighVoltageNotConnectedBinding.Update(enabled);
+            // Keep the hotkey on the same path as the panel Toggle All button:
+            // each row uses its normal binding + settings + icon handler.
+            OnElectricityElectricityNotificationToggle(enabled);
+            OnElectricityBottleneckNotificationToggle(enabled);
+            OnElectricityBuildingBottleneckNotificationToggle(enabled);
+            OnElectricityNotEnoughProductionNotificationToggle(enabled);
+            OnElectricityTransformerNotificationToggle(enabled);
+            OnElectricityNotEnoughConnectedNotificationToggle(enabled);
+            OnElectricityBatteryEmptyNotificationToggle(enabled);
+            OnElectricityLowVoltageNotConnectedToggle(enabled);
+            OnElectricityHighVoltageNotConnectedToggle(enabled);
 
-            waterPipeWaterNotificationBinding.Update(enabled);
-            waterPipeDirtyWaterNotificationBinding.Update(enabled);
-            waterPipeSewageNotificationBinding.Update(enabled);
-            waterPipeWaterPipeNotConnectedNotificationBinding.Update(enabled);
-            waterPipeSewagePipeNotConnectedNotificationBinding.Update(enabled);
-            waterPipeNotEnoughWaterCapacityNotificationBinding.Update(enabled);
-            waterPipeNotEnoughSewageCapacityNotificationBinding.Update(enabled);
-            waterPipeNotEnoughGroundwaterNotificationBinding.Update(enabled);
-            waterPipeNotEnoughSurfaceWaterNotificationBinding.Update(enabled);
-            waterPipeDirtyWaterPumpNotificationBinding.Update(enabled);
+            OnWaterPipeWaterNotificationToggle(enabled);
+            OnWaterPipeDirtyWaterNotificationToggle(enabled);
+            OnWaterPipeSewageNotificationToggle(enabled);
+            OnWaterPipeWaterPipeNotConnectedNotificationToggle(enabled);
+            OnWaterPipeSewagePipeNotConnectedNotificationToggle(enabled);
+            OnWaterPipeNotEnoughWaterCapacityNotificationToggle(enabled);
+            OnWaterPipeNotEnoughSewageCapacityNotificationToggle(enabled);
+            OnWaterPipeNotEnoughGroundwaterNotificationToggle(enabled);
+            OnWaterPipeNotEnoughSurfaceWaterNotificationToggle(enabled);
+            OnWaterPipeDirtyWaterPumpNotificationToggle(enabled);
 
-            buildingAbandonedCollapsedNotificationBinding.Update(enabled);
-            buildingAbandonedNotificationBinding.Update(enabled);
-            buildingCondemnedNotificationBinding.Update(enabled);
-            buildingTurnedOffNotificationBinding.Update(enabled);
-            buildingHighRentNotificationBinding.Update(enabled);
+            OnBuildingAbandonedCollapsedNotificationToggle(enabled);
+            OnBuildingAbandonedNotificationToggle(enabled);
+            OnBuildingCondemnedNotificationToggle(enabled);
+            OnBuildingTurnedOffNotificationToggle(enabled);
+            OnBuildingHighRentNotificationToggle(enabled);
 
-            trafficBottleneckNotificationBinding.Update(enabled);
-            trafficDeadEndNotificationBinding.Update(enabled);
-            trafficRoadConnectionNotificationBinding.Update(enabled);
-            trafficTrackConnectionNotificationBinding.Update(enabled);
-            trafficCarConnectionNotificationBinding.Update(enabled);
-            trafficShipConnectionNotificationBinding.Update(enabled);
-            trafficTrainConnectionNotificationBinding.Update(enabled);
-            trafficPedestrianConnectionNotificationBinding.Update(enabled);
+            OnTrafficBottleneckNotificationToggle(enabled);
+            OnTrafficDeadEndNotificationToggle(enabled);
+            OnTrafficRoadConnectionNotificationToggle(enabled);
+            OnTrafficTrackConnectionNotificationToggle(enabled);
+            OnTrafficCarConnectionNotificationToggle(enabled);
+            OnTrafficShipConnectionNotificationToggle(enabled);
+            OnTrafficTrainConnectionNotificationToggle(enabled);
+            OnTrafficPedestrianConnectionNotificationToggle(enabled);
 
-            companyNoInputsNotificationBinding.Update(enabled);
-            companyNoCustomersNotificationBinding.Update(enabled);
+            OnCompanyNoInputsNotificationToggle(enabled);
+            OnCompanyNoCustomersNotificationToggle(enabled);
 
-            workProviderUneducatedNotificationBinding.Update(enabled);
-            workProviderEducatedNotificationBinding.Update(enabled);
+            OnWorkProviderUneducatedNotificationToggle(enabled);
+            OnWorkProviderEducatedNotificationToggle(enabled);
 
-            disasterWeatherDamageNotificationBinding.Update(enabled);
-            disasterWeatherDestroyedNotificationBinding.Update(enabled);
-            disasterWaterDamageNotificationBinding.Update(enabled);
-            disasterWaterDestroyedNotificationBinding.Update(enabled);
-            disasterDestroyedNotificationBinding.Update(enabled);
+            OnDisasterWeatherDamageNotificationToggle(enabled);
+            OnDisasterWeatherDestroyedNotificationToggle(enabled);
+            OnDisasterWaterDamageNotificationToggle(enabled);
+            OnDisasterWaterDestroyedNotificationToggle(enabled);
+            OnDisasterDestroyedNotificationToggle(enabled);
 
-            fireFireNotificationBinding.Update(enabled);
-            fireBurnedDownNotificationBinding.Update(enabled);
+            OnFireFireNotificationToggle(enabled);
+            OnFireBurnedDownNotificationToggle(enabled);
 
-            garbageGarbageNotificationBinding.Update(enabled);
-            garbageFacilityFullNotificationBinding.Update(enabled);
+            OnGarbageGarbageNotificationToggle(enabled);
+            OnGarbageFacilityFullNotificationToggle(enabled);
 
-            healthcareAmbulanceNotificationBinding.Update(enabled);
-            healthcareHearseNotificationBinding.Update(enabled);
-            healthcareFacilityFullNotificationBinding.Update(enabled);
+            OnHealthcareAmbulanceNotificationToggle(enabled);
+            OnHealthcareHearseNotificationToggle(enabled);
+            OnHealthcareFacilityFullNotificationToggle(enabled);
 
-            policeTrafficAccidentNotificationBinding.Update(enabled);
-            policeCrimeSceneNotificationBinding.Update(enabled);
+            OnPoliceTrafficAccidentNotificationToggle(enabled);
+            OnPoliceCrimeSceneNotificationToggle(enabled);
 
-            pollutionAirPollutionNotificationBinding.Update(enabled);
-            pollutionNoisePollutionNotificationBinding.Update(enabled);
-            pollutionGroundPollutionNotificationBinding.Update(enabled);
+            OnPollutionAirPollutionNotificationToggle(enabled);
+            OnPollutionNoisePollutionNotificationToggle(enabled);
+            OnPollutionGroundPollutionNotificationToggle(enabled);
 
-            resourceConsumerNoResourceNotificationBinding.Update(enabled);
-            routePathfindNotificationBinding.Update(enabled);
-            transportLineVehicleNotificationBinding.Update(enabled);
+            OnResourceConsumerNoResourceNotificationToggle(enabled);
+            OnRoutePathfindNotificationToggle(enabled);
+            OnTransportLineVehicleNotificationToggle(enabled);
         }
 
         private static bool AreAllNotificationSettingsEnabled()

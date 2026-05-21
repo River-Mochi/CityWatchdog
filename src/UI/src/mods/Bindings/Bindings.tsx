@@ -64,6 +64,7 @@ export const RoutePathfindNotificationBinding$ = bindValue<boolean>(mod.id, "Rou
 export const TransportLineVehicleNotificationBinding$ = bindValue<boolean>(mod.id, "TransportLineVehicleNotification");
 
 export const OnControlPanelBindingToggle = (enable: boolean) => trigger(mod.id, "ControlPanelEnabled", enable);
+export const OnToggleAllNotifications = (enable: boolean) => trigger(mod.id, "ToggleAllNotifications", enable);
 
 export const OnElectricityElectricityNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "ElectricityElectricityNotification", enable);
 export const OnElectricityBottleneckNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "ElectricityBottleneckNotification", enable);

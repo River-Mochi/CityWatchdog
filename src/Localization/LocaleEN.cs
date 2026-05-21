@@ -67,6 +67,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Money Tooltip Style" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
                     "Choose how much detail appears in the money hover tooltip.\n" +
+                    "Compact = default on first install.\n"+
                     "<Mini> shows only 2 Net values for /mo and /h.\n" +
                     "<Compact> shortens large values (15.21M instead of 15,212,318).\n" +
                     "<Full size> shows long values and Total fields." },
