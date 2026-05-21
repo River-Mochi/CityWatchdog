@@ -34,7 +34,7 @@ Hotkeys
 ### Important Notes
 - City Watchdog hides/shows alert icons; it does not fix the city problem behind the icons. Good for making videos and reducing stress.
 - Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
-- You can remove my Achievement Fixer mod as it's already included in City Watchdog. AF is more robust than the simpler one originally in CC.
+- Achievement Fixer (AF) mod is included in City Watchdog; you can remove the standalone AF mod if you like. 
 - City Watchdog itself is a heavily rewritten, modernized redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
 I hope you enjoy the new features, better performance, and safety guards!
 - CWD's Trend Tracker is a ground-up code write of similar money trend info to "Show Text Trends" (retired). All new code for how Trends implements vanilla
