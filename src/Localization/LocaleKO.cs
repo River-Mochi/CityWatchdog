@@ -65,13 +65,15 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "시간당 (/h)" },
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "월간 (/mo)" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "간단 돈 툴팁" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "돈 툴팁 스타일" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
-                    "Choose how much detail appears in the money hover tooltip.\n" +
-                    "Default shows full values and Total, Compact shortens large values, and Mini shows only Net /h and /mo." },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "Default" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Compact" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "Mini" },
+                    "돈 툴팁에 표시할 상세 정보를 선택합니다.\n" +
+                    "<Mini>는 /mo 및 /h 순액 값 2개만 표시합니다.\n" +
+                    "<Compact>는 큰 값을 짧게 표시합니다(15,212,318 대신 15.21M).\n" +
+                    "<Full size>는 긴 값과 총액 항목을 표시합니다." },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "미니" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "간단" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "전체 크기" },
 
 
                 // --- Money helpers ---
@@ -121,11 +123,11 @@ namespace CityWatchdog
                     "목록에 있는 모든 도시 알림 아이콘을 즉시 표시하거나 숨깁니다." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationsAction), "모든 알림 아이콘 즉시 표시/숨기기" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "Open/Close Notification Panel" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "알림 패널 열기/닫기" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)),
-                    "<Hotkey> for opening or closing the in-game notification panel.\n" +
-                    "This is independent from the Top Left City Watchdog button." },
-                { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "Open/Close notification panel" },
+                    "<단축키>로 게임 내 알림 패널을 열거나 닫습니다.\n" +
+                    "왼쪽 상단 아이콘을 클릭해 전체 패널을 여는 것과 같습니다." },
+                { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "알림 패널 열기/닫기" },
 
 
                 // --- Milestone selector ---

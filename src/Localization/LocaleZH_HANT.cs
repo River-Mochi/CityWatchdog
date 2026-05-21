@@ -65,13 +65,15 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "每小時 (/h)" },
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "每月 (/mo)" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "精簡金錢提示" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "金錢提示樣式" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
-                    "Choose how much detail appears in the money hover tooltip.\n" +
-                    "Default shows full values and Total, Compact shortens large values, and Mini shows only Net /h and /mo." },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "Default" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Compact" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "Mini" },
+                    "選擇滑鼠停在金錢列時提示中顯示的詳細程度。\n" +
+                    "<Mini> 只顯示 /mo 和 /h 的兩個淨值。\n" +
+                    "<Compact> 縮短大型數字（例如用 15.21M 代替 15,212,318）。\n" +
+                    "<Full size> 顯示完整數值和總計欄位。" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "迷你" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "精簡" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "完整大小" },
 
 
                 // --- Money helpers ---
@@ -121,11 +123,11 @@ namespace CityWatchdog
                     "可立即顯示或隱藏所有列出的城市通知圖示。" },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationsAction), "立即顯示/隱藏所有通知圖示" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "Open/Close Notification Panel" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "開啟/關閉通知面板" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)),
-                    "<Hotkey> for opening or closing the in-game notification panel.\n" +
-                    "This is independent from the Top Left City Watchdog button." },
-                { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "Open/Close notification panel" },
+                    "<快捷鍵>用於開啟或關閉遊戲內通知面板。\n" +
+                    "效果與點擊左上角圖示開啟完整面板相同。" },
+                { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "開啟/關閉通知面板" },
 
 
                 // --- Milestone selector ---

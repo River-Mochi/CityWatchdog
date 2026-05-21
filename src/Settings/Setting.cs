@@ -22,12 +22,12 @@ namespace CityWatchdog
     [FileLocation("ModsSettings/CityWatchdog/CityWatchdog")]
 #if DEBUG
     [SettingsUITabOrder(Actions, AchievementsTab, About, Debug)]
-    [SettingsUIGroupOrder(Money, Trends, Notifications, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutInfo, AboutLinks, AboutUsage, Serialize)]
-    [SettingsUIShowGroupName(Money, Trends, Notifications, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutUsage, Serialize)]
+    [SettingsUIGroupOrder(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutInfo, AboutLinks, AboutUsage, Serialize)]
+    [SettingsUIShowGroupName(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutUsage, Serialize)]
 #else
     [SettingsUITabOrder(Actions, AchievementsTab, About)]
-    [SettingsUIGroupOrder(Money, Trends, Notifications, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutInfo, AboutLinks, AboutUsage)]
-    [SettingsUIShowGroupName(Money, Trends, Notifications, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutUsage)]
+    [SettingsUIGroupOrder(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutInfo, AboutLinks, AboutUsage)]
+    [SettingsUIShowGroupName(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutUsage)]
 #endif
     public partial class Setting : ModSetting
     {
@@ -545,8 +545,8 @@ namespace CityWatchdog
             {
                 new DropdownItem<int>
                 {
-                    value = MoneyTooltipModeDefault,
-                    displayName = GetOptionLocaleID("MoneyTooltipModeDefault"),
+                    value = MoneyTooltipModeMini,
+                    displayName = GetOptionLocaleID("MoneyTooltipModeMini"),
                 },
                 new DropdownItem<int>
                 {
@@ -555,8 +555,8 @@ namespace CityWatchdog
                 },
                 new DropdownItem<int>
                 {
-                    value = MoneyTooltipModeMini,
-                    displayName = GetOptionLocaleID("MoneyTooltipModeMini"),
+                    value = MoneyTooltipModeDefault,
+                    displayName = GetOptionLocaleID("MoneyTooltipModeDefault"),
                 },
             };
         }

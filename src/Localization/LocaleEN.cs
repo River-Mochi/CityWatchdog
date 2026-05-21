@@ -67,12 +67,12 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Money Tooltip Style" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
                     "Choose how much detail appears in the money hover tooltip.\n" +
-                    "<Full size> shows long values and Total fields.\n" +
-                    "<Compact> shortens large values (15.21M instead of 15,212,318)\n" +
-                    "<Mini> shows only 2 Net values for /mo and /h." },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "Full size" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Compact" },
+                    "<Mini> shows only 2 Net values for /mo and /h.\n" +
+                    "<Compact> shortens large values (15.21M instead of 15,212,318).\n" +
+                    "<Full size> shows long values and Total fields." },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "Mini" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Compact" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "Full size" },
 
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Money Hotkey Amount" },

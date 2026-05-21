@@ -65,13 +65,15 @@ namespace CityWatchdog
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeHourly"), "Stündlich (/h)" },
                 { m_Settings.GetOptionLocaleID("TrendDisplayModeMonthly"), "Monatlich (/mo)" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Kompakter Geld-Tooltip" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Geld-Tooltip-Stil" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
-                    "Choose how much detail appears in the money hover tooltip.\n" +
-                    "Default shows full values and Total, Compact shortens large values, and Mini shows only Net /h and /mo." },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "Default" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Compact" },
+                    "Wähle, wie viele Details im Geld-Tooltip beim Überfahren angezeigt werden.\n" +
+                    "<Mini> zeigt nur die zwei Netto-Werte für /mo und /h.\n" +
+                    "<Compact> kürzt große Werte (15.21M statt 15,212,318).\n" +
+                    "<Full size> zeigt lange Werte und Gesamtfelder." },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "Mini" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Kompakt" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeDefault"), "Volle Größe" },
 
 
                 // --- Money helpers ---
@@ -121,11 +123,11 @@ namespace CityWatchdog
                     "Zeigt oder versteckt sofort alle aufgeführten Stadt-Benachrichtigungssymbole." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationsAction), "Alle Benachrichtigungssymbole sofort anzeigen/verstecken" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "Open/Close Notification Panel" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "Benachrichtigungsfenster öffnen/schließen" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)),
-                    "<Hotkey> for opening or closing the in-game notification panel.\n" +
-                    "This is independent from the Top Left City Watchdog button." },
-                { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "Open/Close notification panel" },
+                    "<Hotkey> zum Öffnen oder Schließen des Benachrichtigungsfensters im Spiel.\n" +
+                    "Funktioniert wie ein Klick auf das Symbol oben links, um das vollständige Fenster zu öffnen." },
+                { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "Benachrichtigungsfenster öffnen/schließen" },
 
 
                 // --- Milestone selector ---
