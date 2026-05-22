@@ -48,18 +48,18 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "사용법" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "머니 뷰" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "머니 뷰" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "하단 툴바의 바닐라 돈/인구 화살표 옆에 숫자 추세 값을 추가합니다.\n" +
                     "가벼운 툴바 표시 기능일 뿐이며 도시 자금이나 인구를 변경하지 않습니다." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "머니 뷰 주기" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "머니 뷰 주기" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "하단 툴바의 추세 텍스트를 돈과 인구에 대해 시간당 또는 월간 값으로 표시할지 선택합니다.\n" +
                     "월간 돈은 예산 수입에서 지출을 뺀 값이며, 인구는 24시간 예측을 사용합니다." },
 
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "시간당 (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "월간 (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "시간당 (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "월간 (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "돈 툴팁 스타일" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

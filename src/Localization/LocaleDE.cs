@@ -48,18 +48,18 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "NUTZUNG" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Geldansicht" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "Geldansicht" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "Fügt numerische Trendwerte neben den Vanilla-Pfeilen für Geld und Bevölkerung in der unteren Leiste hinzu.\n" +
                     "Dies ist nur eine leichte Anzeige in der Werkzeugleiste; sie ändert weder Stadtgeld noch Bevölkerung." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Geldansicht-Häufigkeit" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "Geldansicht-Häufigkeit" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "Wählt, ob der Trendtext in der unteren Leiste stündliche oder monatliche Werte für Geld und Bevölkerung zeigt.\n" +
                     "Monatlich nutzt Budgeteinnahmen minus Ausgaben für Geld und eine 24-Stunden-Projektion für Bevölkerung." },
 
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "Stündlich (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "Monatlich (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "Stündlich (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "Monatlich (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Geld-Tooltip-Stil" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

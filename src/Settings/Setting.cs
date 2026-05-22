@@ -84,8 +84,8 @@ namespace CityWatchdog
             "Megalopolis",
         };
 
-        internal const int TrendDisplayModeHourly = 0;
-        internal const int TrendDisplayModeMonthly = 1;
+        internal const int MoneyViewModeHourly = 0;
+        internal const int MoneyViewModeMonthly = 1;
         internal const int MoneyTooltipModeFullSize = 0;
         internal const int MoneyTooltipModeCompact = 1;
         internal const int MoneyTooltipModeMini = 2;
@@ -101,13 +101,13 @@ namespace CityWatchdog
 
         [SettingsUISection(Actions, MoneyViewGroup)]
         [SettingsUISetter(typeof(Setting), nameof(OnMoneyViewChanged))]
-        public bool TrendTracker { get; set; }
+        public bool MoneyView { get; set; }
 
-        [SettingsUIDropdown(typeof(Setting), nameof(GetMoneyViewDisplayModeItems))]
+        [SettingsUIDropdown(typeof(Setting), nameof(GetMoneyViewModeItems))]
         [SettingsUISection(Actions, MoneyViewGroup)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
-        [SettingsUISetter(typeof(Setting), nameof(OnMoneyViewDisplayModeChanged))]
-        public int TrendDisplayMode { get; set; }
+        [SettingsUISetter(typeof(Setting), nameof(OnMoneyViewModeChanged))]
+        public int MoneyViewMode { get; set; }
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetMoneyTooltipModeItems))]
         [SettingsUISection(Actions, MoneyViewGroup)]
@@ -269,7 +269,7 @@ namespace CityWatchdog
 
         public bool EnsureMoneyViewEnabled()
         {
-            return !TrendTracker;
+            return !MoneyView;
         }
 
         private bool HideUsageText()
@@ -348,19 +348,19 @@ namespace CityWatchdog
             };
         }
 
-        public DropdownItem<int>[] GetMoneyViewDisplayModeItems()
+        public DropdownItem<int>[] GetMoneyViewModeItems()
         {
             return new[]
             {
                 new DropdownItem<int>
                 {
-                    value = TrendDisplayModeHourly,
-                    displayName = GetOptionLocaleID("MoneyViewDisplayModeHourly"),
+                    value = MoneyViewModeHourly,
+                    displayName = GetOptionLocaleID("MoneyViewModeHourly"),
                 },
                 new DropdownItem<int>
                 {
-                    value = TrendDisplayModeMonthly,
-                    displayName = GetOptionLocaleID("MoneyViewDisplayModeMonthly"),
+                    value = MoneyViewModeMonthly,
+                    displayName = GetOptionLocaleID("MoneyViewModeMonthly"),
                 },
             };
         }
@@ -394,8 +394,8 @@ namespace CityWatchdog
 
         public override void SetDefaults()
         {
-            TrendTracker = true;
-            TrendDisplayMode = TrendDisplayModeHourly;
+            MoneyView = true;
+            MoneyViewMode = MoneyViewModeHourly;
             MoneyTooltipMode = MoneyTooltipModeCompact;
 
             ManualMoneyAmount = 40000;
@@ -420,11 +420,11 @@ namespace CityWatchdog
                 .UpdateMoneyViewBinding(value);
         }
 
-        private void OnMoneyViewDisplayModeChanged(int value)
+        private void OnMoneyViewModeChanged(int value)
         {
             World.DefaultGameObjectInjectionWorld?
                 .GetExistingSystemManaged<CityWatchdogUISystem>()?
-                .UpdateMoneyViewDisplayModeBinding(value);
+                .UpdateMoneyViewModeBinding(value);
         }
 
         private void OnMoneyTooltipModeChanged(int value)

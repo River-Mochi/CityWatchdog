@@ -48,18 +48,18 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "USO" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Vista de dinero" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "Vista de dinero" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "Añade valores numéricos de tendencia junto a las flechas vanilla de dinero y población de la barra inferior.\n" +
                     "Es solo una visualización ligera de la barra; no cambia el dinero ni la población de la ciudad." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Frecuencia de vista de dinero" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "Frecuencia de vista de dinero" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "Elige si el texto de tendencia de la barra inferior muestra valores por hora o mensuales para dinero y población.\n" +
                     "Mensual usa ingresos menos gastos del presupuesto para dinero y una proyección de 24 horas para población." },
 
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "Por hora (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "Mensual (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "Por hora (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "Mensual (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Estilo del tooltip de dinero" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

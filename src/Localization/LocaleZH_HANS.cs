@@ -48,18 +48,18 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "使用说明" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "金钱视图" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "金钱视图" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "在底部工具栏的原版金钱和人口箭头旁显示数字趋势值。\n" +
                     "这只是轻量显示，不会改变城市金钱或人口。" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "金钱视图频率" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "金钱视图频率" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "选择底部工具栏的趋势文字显示金钱和人口的每小时值或每月值。\n" +
                     "每月金钱使用预算收入减去支出，人口使用 24 小时预测。" },
 
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "每小时 (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "每月 (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "每小时 (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "每月 (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "金钱提示样式" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

@@ -48,18 +48,18 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "UTILISATION" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Vue argent" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "Vue argent" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "Ajoute des valeurs de tendance numériques à côté des flèches vanilla d'argent et de population dans la barre du bas.\n" +
                     "C'est seulement un affichage léger de la barre d'outils ; cela ne change ni l'argent ni la population." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Fréquence de la vue argent" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "Fréquence de la vue argent" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "Choisis si le texte de tendance de la barre du bas affiche les valeurs horaires ou mensuelles pour l'argent et la population.\n" +
                     "Le mensuel utilise les revenus moins les dépenses du budget pour l'argent, et une projection sur 24 heures pour la population." },
 
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "Horaire (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "Mensuel (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "Horaire (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "Mensuel (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Style d'info-bulle d'argent" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

@@ -48,18 +48,18 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "使い方" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "マネービュー" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "マネービュー" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "下部ツールバーの資金と人口のバニラ矢印の横に、数値の傾向を追加します。\n" +
                     "これは軽量な表示だけで、都市の資金や人口は変更しません。" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "マネービュー頻度" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "マネービュー頻度" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "下部ツールバーの傾向テキストを、資金と人口について時間あたりまたは月あたりで表示するか選びます。\n" +
                     "月あたりの資金は予算収入から支出を引いた値、人口は24時間予測を使います。" },
 
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "毎時 (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "月間 (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "毎時 (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "月間 (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "資金ツールチップのスタイル" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

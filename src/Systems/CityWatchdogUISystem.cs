@@ -17,7 +17,7 @@ namespace CityWatchdog.Systems
         private ProxyAction? toggleNotificationPanelAction;
         private BoolBinding panelVisibleBinding = null!;
         private ValueBinding<bool>? moneyViewBinding;
-        private ValueBinding<int>? moneyViewDisplayModeBinding;
+        private ValueBinding<int>? moneyViewModeBinding;
         private ValueBinding<int>? moneyTooltipModeBinding;
 
         private BoolBinding electricityElectricityNotificationBinding = null!;
@@ -99,8 +99,8 @@ namespace CityWatchdog.Systems
 
             panelVisibleBinding = AddBoolBindingAndTriggerBinding("ControlPanelEnabled", false, OnControlPanelBindingToggle);
             AddBoolTriggerBinding("ToggleAllNotifications", ApplyAllNotificationToggles);
-            moneyViewBinding = AddValueBinding(nameof(Setting.TrendTracker), Setting.Instance.TrendTracker);
-            moneyViewDisplayModeBinding = AddValueBinding(nameof(Setting.TrendDisplayMode), Setting.Instance.TrendDisplayMode);
+            moneyViewBinding = AddValueBinding(nameof(Setting.MoneyView), Setting.Instance.MoneyView);
+            moneyViewModeBinding = AddValueBinding(nameof(Setting.MoneyViewMode), Setting.Instance.MoneyViewMode);
             moneyTooltipModeBinding = AddValueBinding(nameof(Setting.MoneyTooltipMode), Setting.Instance.MoneyTooltipMode);
 
             electricityElectricityNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.ElectricityElectricityNotification), Setting.Instance.Notification.ElectricityElectricityNotification, OnElectricityElectricityNotificationToggle);
@@ -728,7 +728,7 @@ namespace CityWatchdog.Systems
 
         public void UpdateMoneyViewBinding(bool value) => moneyViewBinding?.Update(value);
 
-        public void UpdateMoneyViewDisplayModeBinding(int value) => moneyViewDisplayModeBinding?.Update(value);
+        public void UpdateMoneyViewModeBinding(int value) => moneyViewModeBinding?.Update(value);
 
         public void UpdateMoneyTooltipModeBinding(int value) => moneyTooltipModeBinding?.Update(value);
 

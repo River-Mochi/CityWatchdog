@@ -48,17 +48,17 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "USAGE" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Money View" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "Money View" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "Adds numeric trend values beside the vanilla bottom-toolbar money and population arrows.\n" +
                     "This is a lightweight toolbar display only; it does not change city money or population." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Money View Frequency" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "Money View Frequency" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "Choose whether the bottom-toolbar trend text shows hourly or monthly values for money and population.\n" +
                     "Monthly uses budget income minus expenses for money, and a 24-hour projection for population." },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "Hourly (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "Monthly (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "Hourly (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "Monthly (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Money Tooltip Style" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),

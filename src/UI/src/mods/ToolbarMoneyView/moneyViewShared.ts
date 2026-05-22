@@ -1,6 +1,6 @@
 export const MONEY_ICON = "Media/Game/Icons/Money.svg";
 export const POPULATION_ICON = "Media/Game/Icons/Citizen.svg";
-export const MONEY_VIEW_DISPLAY_MODE_MONTHLY = 1;
+export const MONEY_VIEW_MODE_MONTHLY = 1;
 export const MONEY_TOOLTIP_MODE_DEFAULT = 0;
 export const MONEY_TOOLTIP_MODE_COMPACT = 1;
 export const MONEY_TOOLTIP_MODE_MINI = 2;
@@ -10,8 +10,30 @@ export const HOURS_PER_GAME_MONTH = 24;
 
 export type SignedAmountTone = "positive" | "negative" | "neutral";
 
-const wholeNumberFormatter = new Intl.NumberFormat("en-US", {
+type NumberFormatter = {
+    format(value: number): string;
+};
+
+const createNumberFormatter = (options: Intl.NumberFormatOptions): NumberFormatter | null => {
+    try {
+        // Coherent may run without Intl support; use player/runtime locale only when it is safe.
+        if (typeof Intl === "undefined" || typeof Intl.NumberFormat !== "function") {
+            return null;
+        }
+
+        return new Intl.NumberFormat(undefined, options);
+    } catch {
+        return null;
+    }
+};
+
+const wholeNumberFormatter = createNumberFormatter({
     maximumFractionDigits: 0,
+});
+
+const compactDecimalFormatter = createNumberFormatter({
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
 });
 
 export const getSignedAmountTone = (value: number): SignedAmountTone => {
@@ -35,7 +57,7 @@ const formatSignedWholeNumber = (
     includePositiveSign: boolean,
     useThinSpace: boolean
 ): string => {
-    const magnitude = wholeNumberFormatter.format(Math.round(Math.abs(value)));
+    const magnitude = formatWholeNumberMagnitude(value);
     const spacer = useThinSpace ? "\u200A" : "";
 
     if (value > 0 && includePositiveSign) {
@@ -47,6 +69,33 @@ const formatSignedWholeNumber = (
     }
 
     return magnitude;
+};
+
+const formatWholeNumberMagnitude = (value: number): string => {
+    const roundedValue = Math.round(Math.abs(value));
+
+    if (wholeNumberFormatter) {
+        return wholeNumberFormatter.format(roundedValue);
+    }
+
+    return formatFallbackGroupedWholeNumber(roundedValue);
+};
+
+const formatFallbackGroupedWholeNumber = (value: number): string => {
+    const digits = value.toString();
+    let formatted = "";
+    let digitCount = 0;
+
+    for (let i = digits.length - 1; i >= 0; i--) {
+        if (digitCount > 0 && digitCount % 3 === 0) {
+            formatted = "," + formatted;
+        }
+
+        formatted = digits[i] + formatted;
+        digitCount++;
+    }
+
+    return formatted;
 };
 
 export const formatTooltipMoneyViewValue = (value: number, compact: boolean): string => {
@@ -90,16 +139,16 @@ const formatCompactTooltipValue = (value: number): string => {
 
 const formatCompactNumber = (value: number): string => {
     if (value >= 100) {
-        return Math.round(value).toString();
+        return formatWholeNumberMagnitude(value);
     }
 
-    return value.toFixed(2);
+    return compactDecimalFormatter?.format(value) ?? value.toFixed(2);
 };
 
 const formatFixedCompactNumber = (value: number): string => {
     if (value >= 100) {
-        return Math.round(value).toString();
+        return formatWholeNumberMagnitude(value);
     }
 
-    return value.toFixed(2);
+    return compactDecimalFormatter?.format(value) ?? value.toFixed(2);
 };
