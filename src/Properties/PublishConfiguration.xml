@@ -75,8 +75,8 @@ If you like free mods, give a Like, easy way to show support :)
 	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 <ChangeLog>
-- removed built-in Achievement Fixer tools
-- just install Achievement Fixer mod if you want achievements, it's easier.
+- update images, instructions
+- internal organization
 </ChangeLog>
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />
