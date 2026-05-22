@@ -26,5 +26,6 @@
 # Binaries
 *.png binary
 *.jpg binary
+*.pdn binary
 *.svg binary
 *.ico binary

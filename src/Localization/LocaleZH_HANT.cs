@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "操作" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "成就" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "快捷鍵" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "關於" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "除錯" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "通知" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "里程碑" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "存檔轉換" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "成就" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "進階工具" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "重設成就" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "快捷鍵" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "要將此城市從無限金錢轉換為普通有限金錢嗎？\n" +
                     "請先備份；City Watchdog 無法復原此操作。\n" +
                     "確定嗎？" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "啟用成就" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "使用模組時請保持此項 **ON [ ✓ ]** 以允許成就。\n" +
-                    "遊戲不會追溯計算過去已完成的任務，\n" +
-                    "所以保持啟用並自然完成任務即可獲得成就。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• <預設啟用>，不需要使用下方進階按鈕。\n" +
-                    "• 保持啟用，自然完成成就即可 :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "顯示進階工具" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**選用：** 用於測試、清除或啟用成就。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "已選擇成就" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "選擇一個要變更的成就。\n" +
-                    "<一般成就進度不需要使用。>\n" +
-                    "僅在想要重設/清除成就，或不完成任務直接解鎖時使用。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "解鎖所選" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**解鎖並完成**所選成就。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "清除所選" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "將所選成就標記為 **未完成**。" },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "清除/重設此成就。\n\n" +
-                    "繼續？" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<進階工具是選用的>\n" +
-                    "• 用於測試、修復或重設所有成就。\n" +
-                    "• 將滑鼠停在任一按鈕上可在右側面板查看詳情。" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "測試" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "全部重設" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "這會清除所有已完成成就，讓你重新開始。\n" +
-                    "使用 **[全部重設]** 時請**小心**。\n" +
-                    "如果誤用了，可用 [解鎖所選] 按鈕恢復已完成成就。" },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "警告：將所有成就重設/清除為未完成狀態。\n" +
-                    "繼續？" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "模組名稱" },

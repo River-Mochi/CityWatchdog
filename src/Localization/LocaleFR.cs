@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Actions" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "Succès" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Raccourcis" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "À propos" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Débogage" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "Notifications" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "Jalon" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "Conversion de sauvegarde" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "Succès" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "Outils avancés" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "Réinitialiser les succès" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Raccourcis" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "Convertir cette ville de l'Argent illimité vers l'argent limité normal ?\n" +
                     "Sauvegarde d'abord une copie ; City Watchdog ne peut pas annuler cela.\n" +
                     "Confirmer ?" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Activer les succès" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Garde ceci **ON [ ✓ ]** pour autoriser les succès avec des mods.\n" +
-                    "Le jeu ne compte pas les tâches déjà faites dans le passé,\n" +
-                    "donc garde-le activé et fais les tâches pour obtenir les succès naturellement." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• <Activé par défaut> sans utiliser les boutons avancés ci-dessous.\n" +
-                    "• Garde-le simplement activé pour obtenir les succès naturellement :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "Afficher les outils avancés" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**Optionnel :** pour tester, effacer ou activer un succès." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "Succès sélectionné" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "Sélectionne un succès à modifier.\n" +
-                    "<Pas nécessaire pour la progression normale des succès.>\n" +
-                    "C'est seulement si tu veux réinitialiser/effacer des succès ou les déverrouiller sans faire les tâches." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "Déverrouiller la sélection" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**Déverrouille et complète** le succès sélectionné." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "Effacer la sélection" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "Marque le succès sélectionné comme **non terminé**." },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "EFFACER / RÉINITIALISER ce succès.\n\n" +
-                    "Continuer ?" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<Les outils avancés sont optionnels>\n" +
-                    "• À utiliser pour tester, réparer ou réinitialiser tous les succès.\n" +
-                    "• Survole un bouton pour voir les détails dans le panneau de droite." },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "Test" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "TOUT RÉINITIALISER" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "Cela efface tous tes succès terminés et permet de repartir de zéro.\n" +
-                    "**SOIS PRUDENT** avec **[TOUT RÉINITIALISER]**.\n" +
-                    "Si tu l'utilises par erreur, tu peux récupérer les succès terminés avec le bouton [Déverrouiller la sélection]." },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "AVERTISSEMENT : RÉINITIALISER/EFFACER tous les succès en état NON terminé.\n" +
-                    "Continuer ?" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Nom du mod" },

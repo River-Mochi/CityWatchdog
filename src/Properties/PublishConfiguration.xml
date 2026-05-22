@@ -4,7 +4,7 @@
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="City Watchdog [BETA]" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="Show/Hide Notification alert icons, add/remove Money, enable Achievements, track Money, set Milestones." />
+	<ShortDescription Value="Show/Hide notification alert icons, add/remove Money, track Money, set Milestones." />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
@@ -16,7 +16,6 @@
 ### Features
 
 - Show or hide notification alert icons.
-- Built-in Achievement Fixer and achievement repair tools.
 - Change the Milestone you start with (Trains now! Yes you can!).
 
 #### Money
@@ -36,7 +35,6 @@ Hotkeys
 ### Important Notes
 - City Watchdog hides/shows alert icons; it does not fix the problem behind the icons. Good for reducing stress or screenshots.
 - Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
-- Achievement Fixer (AF) mod is included in City Watchdog; you can remove the standalone AF mod.
 - City Watchdog itself is a heavily rewritten, modernized redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
 I hope you enjoy the new features, better performance, and safety guards!
 - CWD's Trend Tracker is a ground-up code write of similar money trend info to "Show Text Trends" (retired). Trends uses new methods to implement vanilla
@@ -62,25 +60,25 @@ If you like free mods, give a Like, easy way to show support :)
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail-dog-city01.jpg" />
 	<!--Screenshot, can be set multiple times-->
-	<Screenshot Value="Properties/image10-Notifications.jpg" />
+    <Screenshot Value="Properties/image10-Notifications.jpg" />
     <Screenshot Value="Properties/image15-GTL-Hotkeys.jpg" />
     <Screenshot Value="Properties/image20-Options.jpg" />
-    <Screenshot Value="Properties/image30-Achievements.jpg" />
+    <Screenshot Value="Properties/image20-Options.jpg" />
     <Screenshot Value="Properties/image40-Instructions.jpg" />
-    <Screenshot Value="Properties/image50-Languages.jpg" />
 	<!--Tag, can be set multiple times-->
 	<Tag Value="Code Mod" />
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1924169/" />
 	<!--Version of the mod-->
-	<ModVersion Value="0.8.9" />
+	<ModVersion Value="0.9.0" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.5.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
-	<ChangeLog>
-- Fix hotkey N  (N = same effect as toggle ALL button in the panel)
+<ChangeLog>
+- Removed built-in Achievement Fixer tools from City Watchdog.
+- Use standalone Achievement Fixer mod if you want achievement tools.
 </ChangeLog>
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />
