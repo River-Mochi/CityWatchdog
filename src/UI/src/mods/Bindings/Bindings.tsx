@@ -2,6 +2,8 @@ import { bindValue, trigger } from "cs2/api";
 import mod from "../../../mod.json";
 
 export const controlPanelEnabled$ = bindValue<boolean>(mod.id, "ControlPanelEnabled", false);
+// Vanilla app binding. Use this so Money View number separators follow the selected game language.
+export const activeLocale$ = bindValue<string>("app", "activeLocale", "en-US");
 export const moneyView$ = bindValue<boolean>(mod.id, "MoneyView", true);
 export const moneyViewMode$ = bindValue<number>(mod.id, "MoneyViewMode", 0);
 export const moneyTooltipMode$ = bindValue<number>(mod.id, "MoneyTooltipMode", 1);

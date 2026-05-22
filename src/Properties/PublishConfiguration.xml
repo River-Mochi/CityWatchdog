@@ -68,14 +68,14 @@ If you like free mods, give a Like, easy way to show support :)
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1924169/" />
 	<!--Version of the mod-->
-	<ModVersion Value="0.9.0" />
+	<ModVersion Value="0.9.1" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.5.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 <ChangeLog>
-- international format money view
+- fix international format money view
 - update images, instructions
 - internal cleanup: simplify, organize.
 </ChangeLog>
