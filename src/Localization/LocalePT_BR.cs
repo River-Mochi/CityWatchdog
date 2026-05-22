@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Ações" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "Conquistas" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Atalhos" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "Sobre" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Depuração" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "Notificações" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "Marco" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "Converter save" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "Conquistas" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "Ferramentas avançadas" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "Redefinir conquistas" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Atalhos" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "Converter esta cidade de Dinheiro ilimitado para dinheiro limitado normal?\n" +
                     "Salve um backup PRIMEIRO; City Watchdog não pode desfazer isto.\n" +
                     "Tem certeza?" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Ativar conquistas" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Mantenha isto **ON [ ✓ ]** para permitir conquistas usando mods.\n" +
-                    "O jogo não conta tarefas feitas no passado,\n" +
-                    "então mantenha ativado e faça as tarefas normalmente para completar conquistas." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• <Ativado por padrão> sem usar os botões avançados abaixo.\n" +
-                    "• Apenas mantenha ativado para completar conquistas naturalmente :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "Mostrar ferramentas avançadas" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**Opcional:** para testar, limpar ou ativar uma conquista." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "Conquista selecionada" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "Selecione uma conquista para alterar.\n" +
-                    "<Não é necessário para o progresso normal de conquistas.>\n" +
-                    "Use apenas se quiser redefinir/limpar conquistas ou desbloqueá-las sem fazer as tarefas." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "Desbloquear selecionada" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**Desbloqueia e conclui** a conquista selecionada." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "Limpar selecionada" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "Marca a conquista selecionada como **não concluída**." },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "LIMPAR / REDEFINIR esta conquista.\n\n" +
-                    "Continuar?" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<Ferramentas avançadas são opcionais>\n" +
-                    "• Use para testes, reparos ou redefinir todas as conquistas.\n" +
-                    "• Passe o mouse sobre qualquer botão para ver detalhes no painel direito." },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "Teste" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "REDEFINIR TUDO" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "Isto limpa todas as conquistas concluídas e permite começar de novo.\n" +
-                    "**TENHA CUIDADO** ao usar **[REDEFINIR TUDO]**.\n" +
-                    "Se usar por acidente, você pode recuperar conquistas concluídas com o botão [Desbloquear selecionada]." },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "AVISO: REDEFINIR/LIMPAR todas as conquistas para status NÃO concluído.\n" +
-                    "Continuar?" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Nome do mod" },

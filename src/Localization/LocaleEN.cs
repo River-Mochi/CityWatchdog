@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Actions" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "Achievements" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Hotkeys" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "About" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Debug" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "Notifications" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "Milestone" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "Save Conversion" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "Achievements" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "Advanced Tools" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "Reset Achievements" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Hotkeys" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -165,60 +161,6 @@ namespace CityWatchdog
                     "Convert this city from Unlimited Money to normal limited money?\n" +
                     "Save a backup FIRST; City Watchdog cannot undo this.\n" +
                     "Are you sure?" },
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Enable Achievements" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Keep this **ON [ ✓ ]** to allow achievements while using mods.\n" +
-                    "Game doesn't count tasks done in the past,\n " +
-                    "so just keep it enabled and do the tasks to naturally complete achievements."
-                },
-             
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• <Enabled by default> without using the Advanced buttons below.\n" +
-                    "• Just keep it enabled to naturally complete achievements :)\n"
-                },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "Show Advanced Tools" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)),
-                    "**Optional:** for testing, clearing, or activating an achievement."
-                },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "Selected Achievement" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "Select one achievement to change.\n"+
-                    "<Not needed for normal achievement progress.>\n" +
-                    "This is only if you want to reset/clear your achievements or unlock them without doing the tasks."
-                },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "Unlock Selected" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**Unlocks & Completes** the selected achievement." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "Clear Selected" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "Marks the selected achievement as **not completed**." },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)), "CLEAR / RESET this achievement.\n\nContinue?" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<Advanced tools are optional>\n" +
-                    "• Use for testing, repairs, or resetting all achievements.\n" +
-                    "• Hover over any button for details in the right side panel."
-                },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "Test" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "RESET ALL" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "This clears out all your completed achievements and lets you start fresh.\n" +
-                    "**BE CAREFUL** using **[RESET ALL]**.\n" +
-                    "If you accidentally use it, you can recover completed achievements with the [Unlock Selected] button."
-                },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                      "WARNING: RESET/CLEAR all achievements to a NOT complete status.\n" +
-                      "Continue?"
-                },
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Mod name" },

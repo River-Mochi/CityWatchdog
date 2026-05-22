@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Aktionen" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "Errungenschaften" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Hotkeys" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "Info" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Debug" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "Benachrichtigungen" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "Meilenstein" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "Speicherstand-Konvertierung" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "Errungenschaften" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "Erweiterte Werkzeuge" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "Errungenschaften zurücksetzen" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Hotkeys" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "Diese Stadt von unbegrenztem Geld zu normalem begrenztem Geld konvertieren?\n" +
                     "ZUERST ein Backup speichern; City Watchdog kann dies nicht rückgängig machen.\n" +
                     "Sicher?" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Errungenschaften aktivieren" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Dies **ON [ ✓ ]** lassen, um Errungenschaften mit Mods zu erlauben.\n" +
-                    "Das Spiel zählt Aufgaben aus der Vergangenheit nicht nach,\n" +
-                    "also aktiviert lassen und die Aufgaben normal abschließen." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• <Standardmäßig aktiviert>, ohne die erweiterten Schaltflächen unten zu benutzen.\n" +
-                    "• Einfach aktiviert lassen, um Errungenschaften normal freizuschalten :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "Erweiterte Werkzeuge anzeigen" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**Optional:** zum Testen, Löschen oder Aktivieren einer Errungenschaft." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "Ausgewählte Errungenschaft" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "Eine Errungenschaft zum Ändern auswählen.\n" +
-                    "<Nicht für normalen Errungenschaften-Fortschritt nötig.>\n" +
-                    "Nur verwenden, wenn Errungenschaften zurückgesetzt/gelöscht oder ohne Aufgaben freigeschaltet werden sollen." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "Ausgewählte freischalten" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**Schaltet die ausgewählte Errungenschaft frei und schließt sie ab**." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "Ausgewählte löschen" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "Markiert die ausgewählte Errungenschaft als **nicht abgeschlossen**." },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "Diese Errungenschaft LÖSCHEN / ZURÜCKSETZEN.\n\n" +
-                    "Fortfahren?" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<Erweiterte Werkzeuge sind optional>\n" +
-                    "• Für Tests, Reparaturen oder das Zurücksetzen aller Errungenschaften verwenden.\n" +
-                    "• Mit der Maus über eine Schaltfläche fahren, um Details rechts zu sehen." },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "Test" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "ALLE ZURÜCKSETZEN" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "Dies löscht alle abgeschlossenen Errungenschaften und lässt dich neu anfangen.\n" +
-                    "**VORSICHT** bei **[ALLE ZURÜCKSETZEN]**.\n" +
-                    "Wenn es versehentlich genutzt wird, können abgeschlossene Errungenschaften mit [Ausgewählte freischalten] wiederhergestellt werden." },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "WARNUNG: Alle Errungenschaften auf NICHT abgeschlossen ZURÜCKSETZEN/LÖSCHEN.\n" +
-                    "Fortfahren?" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Modname" },

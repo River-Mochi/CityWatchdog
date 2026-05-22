@@ -9,12 +9,10 @@ namespace CityWatchdog
     using Colossal.Localization;
     using Colossal.Logging;
     using Game;
-    using Game.Achievements;
     using Game.Input;
     using Game.Modding;
     using Game.SceneFlow;
     using System;
-    using System.Collections.Generic;
     using System.Reflection;
 
     public sealed class Mod : IMod
@@ -32,8 +30,6 @@ namespace CityWatchdog
         internal static Setting? Settings { get; private set; }
 
         private static bool s_BannerLogged;
-        private static bool s_AchievementFixerBannerSkipLogged;
-        private static readonly HashSet<string> s_AchievementBannerLocales = new HashSet<string>();
 
         [System.Diagnostics.Conditional("DEBUG")]
         internal static void DebugLog(string message)
@@ -109,8 +105,6 @@ namespace CityWatchdog
             {
                 LogUtils.Error(() => $"System scheduling failed: {ex.GetType().Name}: {ex.Message}", ex);
             }
-
-            EnsureAchievementBannerSources();
         }
 
         public void OnDispose()
@@ -135,7 +129,6 @@ namespace CityWatchdog
 
         private static void ScheduleSystems(UpdateSystem updateSystem)
         {
-            updateSystem.UpdateAfter<AchievementsControllerSystem, AchievementTriggerSystem>(SystemUpdatePhase.MainLoop);
             updateSystem.UpdateAt<MoneyControllerSystem>(SystemUpdatePhase.ModificationEnd);
             updateSystem.UpdateAt<UnlockMilestonesSystem>(SystemUpdatePhase.ModificationEnd);
             updateSystem.UpdateAt<CityWatchdogUISystem>(SystemUpdatePhase.UIUpdate);
@@ -177,59 +170,6 @@ namespace CityWatchdog
 
             s_BannerLogged = true;
             LogUtils.Info(() => $"{ModName} v{ModVersion} {ModTag} loaded");
-        }
-
-        internal static void ReapplyAchievementBannerForActiveLocale()
-        {
-            EnsureAchievementBannerSources();
-        }
-
-        internal static void ReapplyAchievementBannerForActiveLocaleFinal()
-        {
-            EnsureAchievementBannerSources();
-        }
-
-        private static void EnsureAchievementBannerSources()
-        {
-            if (Settings?.AchievementsEnabled != true)
-            {
-                return;
-            }
-
-            if (ModTools.IsAchievementFixerEnabled())
-            {
-                if (!s_AchievementFixerBannerSkipLogged)
-                {
-                    s_AchievementFixerBannerSkipLogged = true;
-                    LogUtils.Info(() => "Achievement Fixer is enabled; City Watchdog achievement banner override is disabled for this session.");
-                }
-
-                return;
-            }
-
-            foreach (string localeId in AchievementBannerText.LocaleIds)
-            {
-                AddAchievementBannerSource(localeId);
-            }
-        }
-
-        private static void AddAchievementBannerSource(string localeId)
-        {
-            if (string.IsNullOrEmpty(localeId) || s_AchievementBannerLocales.Contains(localeId))
-            {
-                return;
-            }
-
-            const string warningKey = "Menu.ACHIEVEMENTS_WARNING_MODS";
-            Dictionary<string, string> entries = new Dictionary<string, string>
-            {
-                [warningKey] = AchievementBannerText.For(localeId)
-            };
-
-            if (AddLocaleSource(localeId, new LocaleOverrideSource(entries)))
-            {
-                s_AchievementBannerLocales.Add(localeId);
-            }
         }
 
         private static bool AddLocaleSource(string localeId, IDictionarySource source)

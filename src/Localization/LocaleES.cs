@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "Acciones" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "Logros" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "Atajos" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "Acerca de" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "Depuración" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "Notificaciones" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "Hito" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "Conversión de guardado" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "Logros" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "Herramientas avanzadas" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "Reiniciar logros" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Atajos" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "¿Convertir esta ciudad de Dinero ilimitado a dinero limitado normal?\n" +
                     "Guarda una copia de seguridad PRIMERO; City Watchdog no puede deshacer esto.\n" +
                     "¿Seguro?" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "Activar logros" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Mantén esto **ON [ ✓ ]** para permitir logros mientras usas mods.\n" +
-                    "El juego no cuenta tareas hechas en el pasado,\n" +
-                    "así que déjalo activado y completa las tareas de forma natural." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• <Activado por defecto> sin usar los botones avanzados de abajo.\n" +
-                    "• Solo mantenlo activado para completar logros de forma natural :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "Mostrar herramientas avanzadas" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**Opcional:** para probar, borrar o activar un logro." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "Logro seleccionado" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "Selecciona un logro para cambiar.\n" +
-                    "<No hace falta para el progreso normal de logros.>\n" +
-                    "Solo sirve si quieres resetear/borrar logros o desbloquearlos sin hacer las tareas." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "Desbloquear seleccionado" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "**Desbloquea y completa** el logro seleccionado." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "Borrar seleccionado" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "Marca el logro seleccionado como **no completado**." },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "BORRAR / RESETEAR este logro.\n\n" +
-                    "¿Continuar?" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<Las herramientas avanzadas son opcionales>\n" +
-                    "• Úsalas para pruebas, reparaciones o resetear todos los logros.\n" +
-                    "• Pasa el cursor sobre cualquier botón para ver detalles en el panel derecho." },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "Prueba" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "REINICIAR TODO" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "Esto borra todos tus logros completados y te permite empezar de nuevo.\n" +
-                    "**TEN CUIDADO** al usar **[REINICIAR TODO]**.\n" +
-                    "Si lo usas por accidente, puedes recuperar logros completados con el botón [Desbloquear seleccionado]." },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "ADVERTENCIA: RESETEAR/BORRAR todos los logros a estado NO completado.\n" +
-                    "¿Continuar?" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Nombre del mod" },

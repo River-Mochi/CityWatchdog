@@ -5,7 +5,6 @@ namespace CityWatchdog
 {
     using CityWatchdog.Systems;
     using Colossal.IO.AssetDatabase;
-    using Colossal.PSI.Common;
     using Game;
     using Game.Input;
     using Game.Modding;
@@ -15,19 +14,18 @@ namespace CityWatchdog
     using Game.UI.Widgets;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Unity.Entities;
     using UnityEngine;
 
     [FileLocation("ModsSettings/CityWatchdog/CityWatchdog")]
 #if DEBUG
-    [SettingsUITabOrder(Actions, AchievementsTab, About, Debug)]
-    [SettingsUIGroupOrder(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutInfo, AboutLinks, AboutUsage, Serialize)]
-    [SettingsUIShowGroupName(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutUsage, Serialize)]
+    [SettingsUITabOrder(Actions, About, Debug)]
+    [SettingsUIGroupOrder(Notifications, Money, Trends, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage, Serialize)]
+    [SettingsUIShowGroupName(Notifications, Money, Trends, Milestone, SaveConversion, AboutUsage, Serialize)]
 #else
-    [SettingsUITabOrder(Actions, AchievementsTab, About)]
-    [SettingsUIGroupOrder(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutInfo, AboutLinks, AboutUsage)]
-    [SettingsUIShowGroupName(Notifications, Money, Trends, Milestone, SaveConversion, Achievements, AchievementTools, AchievementDanger, AboutUsage)]
+    [SettingsUITabOrder(Actions, About)]
+    [SettingsUIGroupOrder(Notifications, Money, Trends, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage)]
+    [SettingsUIShowGroupName(Notifications, Money, Trends, Milestone, SaveConversion, AboutUsage)]
 #endif
     public partial class Setting : ModSetting
     {
@@ -35,7 +33,6 @@ namespace CityWatchdog
 
         // Tab IDs.
         internal const string Actions = nameof(Actions);
-        internal const string AchievementsTab = nameof(AchievementsTab);
         internal const string Hotkeys = nameof(Hotkeys);
         internal const string About = nameof(About);
         internal const string Debug = nameof(Debug);
@@ -53,9 +50,6 @@ namespace CityWatchdog
         internal const string Notifications = nameof(Notifications);
         internal const string Milestone = nameof(Milestone);
         internal const string SaveConversion = nameof(SaveConversion);
-        internal const string Achievements = nameof(Achievements);
-        internal const string AchievementTools = nameof(AchievementTools);
-        internal const string AchievementDanger = nameof(AchievementDanger);
         internal const string HotkeyActions = nameof(HotkeyActions);
         internal const string AboutInfo = nameof(AboutInfo);
         internal const string AboutLinks = nameof(AboutLinks);
@@ -212,177 +206,6 @@ namespace CityWatchdog
         }
 
         // --------------------------------------------------------------------
-        // Achievements tab
-        // --------------------------------------------------------------------
-
-        [SettingsUISection(AchievementsTab, Achievements)]
-        [SettingsUISetter(typeof(Setting), nameof(OnAchievementsOptionChanged))]
-        public bool AchievementsEnabled { get; set; }
-
-        [SettingsUIMultilineText]
-        [SettingsUISection(AchievementsTab, Achievements)]
-        public string AchievementNotes => string.Empty;
-
-        [SettingsUISection(AchievementsTab, Achievements)]
-        public bool ShowAdvancedAchievementTools { get; set; }
-
-        [SettingsUIHideByCondition(typeof(Setting), nameof(HideAdvancedAchievementTools))]
-        [SettingsUISection(AchievementsTab, AchievementTools)]
-        [SettingsUIDropdown(typeof(Setting), nameof(GetAchievementChoices))]
-        public string SelectedAchievement { get; set; } = string.Empty;
-
-        [SettingsUIHideByCondition(typeof(Setting), nameof(HideAdvancedAchievementTools))]
-        [SettingsUIButton]
-        [SettingsUIButtonGroup(AchievementTools)]
-        [SettingsUISection(AchievementsTab, AchievementTools)]
-        public bool UnlockSelectedAchievement
-        {
-            set
-            {
-                if (!value)
-                {
-                    return;
-                }
-
-                if (ShouldDeferAchievementAction(nameof(UnlockSelectedAchievement)))
-                {
-                    return;
-                }
-
-                if (!TryGetAchievementId(SelectedAchievement, out AchievementId id))
-                {
-                    LogUtils.Warn(() => $"Unlock: could not resolve achievement '{SelectedAchievement}'.");
-                    return;
-                }
-
-                PlatformManager? platformManager = PlatformManager.instance;
-                if (platformManager == null)
-                {
-                    LogUtils.Warn(() => "Unlock: PlatformManager.instance is null.");
-                    return;
-                }
-
-                try
-                {
-                    platformManager.UnlockAchievement(id);
-                    bool ok = platformManager.GetAchievement(id, out IAchievement? achievement) && achievement.achieved;
-                    LogUtils.Info(() => $"UnlockSelected: \"{AchievementDisplay.Get(SelectedAchievement)}\" -> {(ok ? "Enabled" : "No change")}");
-                }
-                catch (Exception ex)
-                {
-                    LogUtils.Warn(() => $"UnlockSelected failed: {ex.GetType().Name}: {ex.Message}", ex);
-                }
-            }
-        }
-
-        [SettingsUIHideByCondition(typeof(Setting), nameof(HideAdvancedAchievementTools))]
-        [SettingsUIButton]
-        [SettingsUIButtonGroup(AchievementTools)]
-        [SettingsUIConfirmation]
-        [SettingsUISection(AchievementsTab, AchievementTools)]
-        public bool ClearSelectedAchievement
-        {
-            set
-            {
-                if (!value)
-                {
-                    return;
-                }
-
-                if (ShouldDeferAchievementAction(nameof(ClearSelectedAchievement)))
-                {
-                    return;
-                }
-
-                if (!TryGetAchievementId(SelectedAchievement, out AchievementId id))
-                {
-                    LogUtils.Warn(() => $"Clear: could not resolve achievement '{SelectedAchievement}'.");
-                    return;
-                }
-
-                PlatformManager? platformManager = PlatformManager.instance;
-                if (platformManager == null)
-                {
-                    LogUtils.Warn(() => "Clear: PlatformManager.instance is null.");
-                    return;
-                }
-
-                try
-                {
-                    platformManager.ClearAchievement(id);
-                    bool cleared = platformManager.GetAchievement(id, out IAchievement? achievement) && !achievement.achieved;
-                    LogUtils.Info(() => $"ClearSelected: \"{AchievementDisplay.Get(SelectedAchievement)}\" -> {(cleared ? "Disabled" : "No change")}");
-                }
-                catch (Exception ex)
-                {
-                    LogUtils.Warn(() => $"ClearSelected failed: {ex.GetType().Name}: {ex.Message}", ex);
-                }
-            }
-        }
-
-        [SettingsUIHideByCondition(typeof(Setting), nameof(HideAdvancedAchievementTools))]
-        [SettingsUIMultilineText]
-        [SettingsUISection(AchievementsTab, AchievementTools)]
-        public string AchievementToolsAdvisory => string.Empty;
-
-        [SettingsUIHideByCondition(typeof(Setting), nameof(HideAdvancedAchievementTools))]
-        [SettingsUIButton]
-        [SettingsUIConfirmation]
-        [SettingsUIButtonGroup(AchievementDanger)]
-        [SettingsUISection(AchievementsTab, AchievementDanger)]
-        public bool ResetAllAchievements
-        {
-            set
-            {
-                if (!value)
-                {
-                    return;
-                }
-
-                if (ShouldDeferAchievementAction(nameof(ResetAllAchievements)))
-                {
-                    return;
-                }
-
-                PlatformManager? platformManager = PlatformManager.instance;
-                if (platformManager == null)
-                {
-                    LogUtils.Warn(() => "ResetAllAchievements: PlatformManager.instance is null.");
-                    return;
-                }
-
-                try
-                {
-                    platformManager.ResetAchievements();
-                    LogUtils.Info(() => "Requested reset of ALL platform achievements.");
-                }
-                catch (Exception ex)
-                {
-                    LogUtils.Warn(() => $"ResetAllAchievements failed: {ex.GetType().Name}: {ex.Message}", ex);
-                }
-            }
-        }
-
-        private static bool ShouldDeferAchievementAction(string actionName)
-        {
-            if (!ModTools.IsAchievementFixerEnabled())
-            {
-                return false;
-            }
-
-            string displayName = actionName switch
-            {
-                nameof(UnlockSelectedAchievement) => "UNLOCK",
-                nameof(ClearSelectedAchievement) => "CLEAR",
-                nameof(ResetAllAchievements) => "ResetAll",
-                _ => actionName
-            };
-
-            LogUtils.Info(() => $"City Watchdog achievement action '{displayName}' was cancelled; Achievement Fixer mod detected and enabled.");
-            return true;
-        }
-
-        // --------------------------------------------------------------------
         // About tab
         // --------------------------------------------------------------------
 
@@ -452,11 +275,6 @@ namespace CityWatchdog
         private bool HideUsageText()
         {
             return !ShowUsage;
-        }
-
-        private bool HideAdvancedAchievementTools()
-        {
-            return !ShowAdvancedAchievementTools;
         }
 
         private bool CannotConvertUnlimitedMoneySave()
@@ -574,33 +392,8 @@ namespace CityWatchdog
             InitialMoney = 0;
         }
 
-        public static DropdownItem<string>[] GetAchievementChoices()
-        {
-            PlatformManager? platformManager = PlatformManager.instance;
-            if (platformManager == null)
-            {
-                return Array.Empty<DropdownItem<string>>();
-            }
-
-            IEnumerable<string> ids = platformManager.EnumerateAchievements()
-                .Select(achievement => achievement.internalName ?? achievement.id.ToString());
-
-            return ids
-                .OrderBy(AchievementDisplay.Get, StringComparer.CurrentCultureIgnoreCase)
-                .Select(id => new DropdownItem<string>
-                {
-                    value = id,
-                    displayName = AchievementDisplay.Get(id)
-                })
-                .ToArray();
-        }
-
         public override void SetDefaults()
         {
-            AchievementsEnabled = true;
-            ShowAdvancedAchievementTools = false;
-            SelectedAchievement = string.Empty;
-
             TrendTracker = true;
             TrendDisplayMode = TrendDisplayModeHourly;
             MoneyTooltipMode = MoneyTooltipModeCompact;
@@ -618,13 +411,6 @@ namespace CityWatchdog
             ShowUsage = false;
 
             Notification.SetDefaults();
-        }
-
-        private void OnAchievementsOptionChanged(bool value)
-        {
-            World.DefaultGameObjectInjectionWorld?
-                .GetOrCreateSystemManaged<AchievementsControllerSystem>()?
-                .SetAchievements(value);
         }
 
         private void OnTrendTrackerChanged(bool value)
@@ -651,34 +437,6 @@ namespace CityWatchdog
         private bool GetMilestoneLevelStatus()
         {
             return IsInGame() || !CustomMilestone;
-        }
-
-        private static bool TryGetAchievementId(string selectedValue, out AchievementId id)
-        {
-            id = default;
-            PlatformManager? platformManager = PlatformManager.instance;
-            if (platformManager == null)
-            {
-                return false;
-            }
-
-            foreach (IAchievement achievement in platformManager.EnumerateAchievements())
-            {
-                if (!string.IsNullOrEmpty(achievement.internalName) &&
-                    string.Equals(achievement.internalName, selectedValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    id = achievement.id;
-                    return true;
-                }
-
-                if (string.Equals(achievement.id.ToString(), selectedValue, StringComparison.OrdinalIgnoreCase))
-                {
-                    id = achievement.id;
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private DropdownItem<int>[] GetMilestoneLevelItems()

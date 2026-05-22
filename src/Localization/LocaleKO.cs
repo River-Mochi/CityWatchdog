@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "작업" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "도전 과제" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "단축키" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "정보" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "디버그" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "알림" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "마일스톤" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "저장 변환" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "도전 과제" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "고급 도구" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "도전 과제 초기화" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "단축키" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "이 도시를 무제한 돈에서 일반 제한 돈으로 변환할까요?\n" +
                     "먼저 백업을 저장하세요. City Watchdog은 이 작업을 되돌릴 수 없습니다.\n" +
                     "확실한가요?" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "도전 과제 켜기" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "모드를 사용하는 동안 도전 과제를 허용하려면 **ON [ ✓ ]** 상태로 두세요.\n" +
-                    "게임은 과거에 이미 한 작업을 나중에 계산하지 않습니다.\n" +
-                    "그냥 켜 둔 상태로 조건을 자연스럽게 완료하세요." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• 아래 고급 버튼을 사용하지 않아도 <기본으로 켜져 있음>.\n" +
-                    "• 그냥 켜 둔 상태로 자연스럽게 도전 과제를 완료하세요 :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "고급 도구 표시" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**선택 사항:** 도전 과제 테스트, 초기화, 활성화용입니다." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "선택한 도전 과제" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "변경할 도전 과제를 하나 선택합니다.\n" +
-                    "<일반적인 도전 과제 진행에는 필요하지 않습니다.>\n" +
-                    "도전 과제를 초기화/삭제하거나 조건을 하지 않고 잠금 해제할 때만 사용하세요." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "선택 항목 잠금 해제" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "선택한 도전 과제를 **잠금 해제하고 완료**합니다." },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "선택 항목 초기화" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "선택한 도전 과제를 **미완료**로 표시합니다." },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "이 도전 과제를 삭제/초기화합니다.\n\n" +
-                    "계속할까요?" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<고급 도구는 선택 사항입니다>\n" +
-                    "• 테스트, 복구, 모든 도전 과제 초기화에 사용합니다.\n" +
-                    "• 버튼에 마우스를 올리면 오른쪽 패널에 자세한 설명이 표시됩니다." },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "테스트" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "모두 초기화" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "완료한 모든 도전 과제를 지우고 처음부터 다시 시작할 수 있게 합니다.\n" +
-                    "**[모두 초기화]** 사용 시 **주의**하세요.\n" +
-                    "실수로 사용했다면 [선택 항목 잠금 해제] 버튼으로 완료한 도전 과제를 복구할 수 있습니다." },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "경고: 모든 도전 과제를 미완료 상태로 초기화/삭제합니다.\n" +
-                    "계속할까요?" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "모드 이름" },

@@ -32,7 +32,6 @@ namespace CityWatchdog
 
                 // --- Tabs ---
                 { m_Settings.GetOptionTabLocaleID(Setting.Actions), "アクション" },
-                { m_Settings.GetOptionTabLocaleID(Setting.AchievementsTab), "実績" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Hotkeys), "ホットキー" },
                 { m_Settings.GetOptionTabLocaleID(Setting.About), "情報" },
                 { m_Settings.GetOptionTabLocaleID(Setting.Debug), "デバッグ" },
@@ -43,9 +42,6 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.Notifications), "通知" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.Milestone), "マイルストーン" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.SaveConversion), "セーブ変換" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.Achievements), "実績" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementTools), "高度なツール" },
-                { m_Settings.GetOptionGroupLocaleID(Setting.AchievementDanger), "実績リセット" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "ホットキー" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
@@ -164,57 +160,6 @@ namespace CityWatchdog
                     "この都市を無制限資金から通常の資金制限へ変換しますか？\n" +
                     "先にバックアップを保存してください。City Watchdog は元に戻せません。\n" +
                     "よろしいですか？" },
-
-
-                // --- Achievements ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementsEnabled)), "実績を有効化" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementsEnabled)),
-                    "Mod使用中に実績を許可するには、これを **ON [ ✓ ]** のままにしてください。\n" +
-                    "ゲームは過去に完了した作業を後から数えません。\n" +
-                    "有効のまま、普通に条件を達成してください。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementNotes)),
-                    "• 下の高度なボタンを使わなくても<既定で有効>です。\n" +
-                    "• 有効のままにして、自然に実績を達成してください :)\n" +
-                    "" },
-
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementNotes)), "" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "高度なツールを表示" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowAdvancedAchievementTools)), "**任意:** 実績のテスト、クリア、または有効化用です。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SelectedAchievement)), "選択した実績" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SelectedAchievement)),
-                    "変更する実績を1つ選びます。\n" +
-                    "<通常の実績進行には不要です。>\n" +
-                    "実績をリセット/クリアしたい場合、または条件を行わず解除したい場合だけ使います。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.UnlockSelectedAchievement)), "選択項目を解除" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.UnlockSelectedAchievement)), "選択した実績を**解除して完了**します。" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ClearSelectedAchievement)), "選択項目をクリア" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ClearSelectedAchievement)), "選択した実績を**未完了**としてマークします。" },
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ClearSelectedAchievement)),
-                    "この実績をクリア/リセットします。\n\n" +
-                    "続行しますか？" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AchievementToolsAdvisory)),
-                    "<高度なツールは任意です>\n" +
-                    "• テスト、修復、または全実績のリセットに使います。\n" +
-                    "• 詳細は各ボタンにマウスを重ねると右側パネルに表示されます。" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AchievementToolsAdvisory)), "テスト" },
-
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ResetAllAchievements)), "すべてリセット" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "完了済みの実績をすべて消去し、最初からやり直せるようにします。\n" +
-                    "**[すべてリセット]** の使用には**注意**してください。\n" +
-                    "誤って使った場合、[選択項目を解除] ボタンで完了済み実績を復元できます。" },
-
-                // Confirmation modal Yes/No
-                { m_Settings.GetOptionWarningLocaleID(nameof(Setting.ResetAllAchievements)),
-                    "警告: すべての実績を未完了状態にリセット/クリアします。\n" +
-                    "続行しますか？" },
-
 
                 // --- About tab ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.NameText)), "Mod名" },

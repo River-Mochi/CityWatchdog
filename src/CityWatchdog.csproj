@@ -23,7 +23,7 @@
         <Nullable>enable</Nullable>
 
         <!-- Versioning: single source of truth -->
-        <Version>0.8.9</Version>
+        <Version>0.9.0</Version>
         <AssemblyVersion>$(Version).0</AssemblyVersion>
         <FileVersion>$(Version).0</FileVersion>
 
@@ -77,10 +77,6 @@
         <Reference Include="Colossal.AssetPipeline">
             <Private>false</Private>
         </Reference>
-        <Reference Include="Colossal.PSI.Common">
-            <Private>false</Private>
-        </Reference>
-
         <Reference Include="UnityEngine.CoreModule">
             <Private>false</Private>
         </Reference>
