@@ -16,7 +16,7 @@
 ### Features
 
 - Show or hide notification alert icons.
-- Change the Milestone you start with (Trains now! Yes you can!).
+- Change the milestone you start with (Trains now! Yes you can!).
 
 #### Money
 
@@ -35,7 +35,7 @@ Hotkeys
 ### Important Notes
 - City Watchdog hides/shows alert icons; it does not fix the problem behind the icons. Good for reducing stress or screenshots.
 - Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
-- City Watchdog itself is a heavily rewritten, modernized redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
+- City Watchdog is a heavily rewritten redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
 I hope you enjoy the new features, better performance, and safety guards!
 - CWD's Trend Tracker is a ground-up code write of similar money trend info to "Show Text Trends" (retired). Trends uses new methods to implement vanilla
 CS2 component extensions, custom CWD settings options, customizable new money tooltip layouts, and translations.
@@ -50,8 +50,8 @@ If you like free mods, give a Like, easy way to show support :)
 
 ### Credits
 - River Mochi - mod author and maintainer
-- Thanks to Mbyron26 for the original City Controller mod
-- Thanks to DanielVNZ for Show Text Trends inspiration.
+- Thanks to Mbyron26 for orig. City Controller mod.
+- Thanks to DanielVNZ for inspiration from Show Text Trends.
 - Dorkington - tester/feature suggestion
 - Flightech, SonNathan - testers
 - Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
@@ -77,8 +77,8 @@ If you like free mods, give a Like, easy way to show support :)
 	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 <ChangeLog>
-- Removed built-in Achievement Fixer tools from City Watchdog.
-- Use standalone Achievement Fixer mod if you want achievement tools.
+- removed built-in Achievement Fixer tools
+- just install Achievement Fixer mod if you want achievements, it's easier.
 </ChangeLog>
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />
