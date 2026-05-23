@@ -17,17 +17,19 @@ export const StatFieldMoneyViewExtension: ModuleRegistryExtend = (Component: any
             return result;
         }
 
+        // Keep the vanilla stat field intact, then append the CWD trend value beside it.
         return appendMoneyViewText(result, moneyViewText);
     };
 };
 
 // MoneyField is already captured by the vanilla toolbar before this mod can reliably wrap it.
-// Hook the shared DescriptionTooltip instead, then filter to the money toolbar child only.
+// Hook the shared DescriptionTooltip instead, then filter to the money/population toolbar children.
 export const DescriptionTooltipMoneyViewExtension: ModuleRegistryExtend = (Component: any) => {
     return (props: any) => {
         if (isMoneyTooltip(props)) {
             return Component({
                 ...props,
+                // Replace the vanilla money tooltip body with CWD's localized money summary.
                 title: null,
                 description: null,
                 content: <MoneyViewTooltipContent baseContent={props.content} />,
@@ -37,6 +39,7 @@ export const DescriptionTooltipMoneyViewExtension: ModuleRegistryExtend = (Compo
         if (isPopulationTooltip(props)) {
             return Component({
                 ...props,
+                // Replace the vanilla population tooltip body with CWD's population flow summary.
                 title: null,
                 description: null,
                 content: <PopulationViewTooltipContent baseContent={props.content} />,
@@ -52,6 +55,7 @@ const getMoneyViewText = (props: any): ReactNode | null => {
         return null;
     }
 
+    // Vanilla icon props identify which stat field is being extended.
     if (props?.icon === MONEY_ICON) {
         return <ToolbarMoneyDelta />;
     }
