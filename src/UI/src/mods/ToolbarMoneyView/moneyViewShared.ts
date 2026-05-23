@@ -12,6 +12,7 @@ export const HOURS_PER_GAME_MONTH = 24;
 
 export type SignedAmountTone = "positive" | "negative" | "neutral";
 
+// Match color/tone to the rounded number the player actually sees.
 export const getDisplayWholeValue = (value: number): number => {
     return Math.round(getNumericValue(value));
 };

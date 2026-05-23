@@ -26,6 +26,7 @@ namespace CityWatchdog.Systems
 
             citySystem = World.GetOrCreateSystemManaged<CitySystem>();
 
+            // Use vanilla Unlock events so milestone rewards and side effects stay game-native.
             unlockEventArchetype = EntityManager.CreateArchetype(new ComponentType[]
             {
                 ComponentType.ReadWrite<Event>(),
@@ -79,6 +80,7 @@ namespace CityWatchdog.Systems
                 DevTreePoints devTreePoints = EntityManager.GetComponentData<DevTreePoints>(citySystem.City);
                 XP xp = EntityManager.GetComponentData<XP>(citySystem.City);
 
+                // Apply every skipped milestone so jumping several levels keeps rewards consistent.
                 for (int i = milestoneLevel.m_AchievedMilestone; i < targetMilestone; i++)
                 {
                     QueueMilestoneUnlock(milestoneEntities[i]);

@@ -15,9 +15,12 @@ namespace CityWatchdog.Systems
 
     public partial class CityFinanceSystem : GameSystemBaseExtension
     {
+        // Counts this system's OnUpdate passes, not seconds. Higher = automatic money checks less often.
         private const int AutomaticMoneyCheckIntervalUpdates = 128;
+        // Hold-to-repeat delay for [ and ]. Higher = easier single-taps before repeat begins.
         private const int ManualMoneyRepeatInitialDelayUpdates = 20;
-        private const int ManualMoneyRepeatIntervalUpdates = 10;
+        // Hold-to-repeat speed for [ and ] after the delay. Lower = faster repeated money changes.
+        private const int ManualMoneyRepeatIntervalUpdates = 9;
 
         private CitySystem citySystem = null!;
         private CityConfigurationSystem cityConfigurationSystem = null!;
@@ -44,7 +47,12 @@ namespace CityWatchdog.Systems
                 return;
             }
 
-            LogUtils.Info(() => $"Starting set unlimited money to limited money, PlayerMoney.m_Unlimited: {beforeMoney.m_Unlimited}, PlayerMoney.money: {beforeMoney.money}, CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}, CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
+            LogUtils.Info(() =>
+                "Starting set unlimited money to limited money.\n" +
+                $"PlayerMoney.m_Unlimited: {beforeMoney.m_Unlimited}\n" +
+                $"PlayerMoney.money: {beforeMoney.money}\n" +
+                $"CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}\n" +
+                $"CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
 
             ApplyLimitedMoneyMode();
             ClearLoadedUnlimitedMoneyFlag();
@@ -54,7 +62,12 @@ namespace CityWatchdog.Systems
                 return;
             }
 
-            LogUtils.Info(() => $"Set unlimited money to limited money completed, PlayerMoney.m_Unlimited: {afterMoney.m_Unlimited}, PlayerMoney.money: {afterMoney.money}, CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}, CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
+            LogUtils.Info(() =>
+                "Set unlimited money to limited money completed.\n" +
+                $"PlayerMoney.m_Unlimited: {afterMoney.m_Unlimited}\n" +
+                $"PlayerMoney.money: {afterMoney.money}\n" +
+                $"CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}\n" +
+                $"CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
         }
 
         private void ApplyLimitedMoneyMode()
@@ -71,7 +84,9 @@ namespace CityWatchdog.Systems
 
         private void ClearLoadedUnlimitedMoneyFlag()
         {
-            FieldInfo? loadedUnlimitedMoneyField = typeof(CityConfigurationSystem).GetField("m_LoadedUnlimitedMoney", BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo? loadedUnlimitedMoneyField = typeof(CityConfigurationSystem).GetField(
+                "m_LoadedUnlimitedMoney",
+                BindingFlags.NonPublic | BindingFlags.Instance);
             if (loadedUnlimitedMoneyField == null)
             {
                 CityWatchdog.Mod.DebugLog(() => "m_LoadedUnlimitedMoney is null");
@@ -192,6 +207,7 @@ namespace CityWatchdog.Systems
                 return;
             }
 
+            // First press always applies once; held keys repeat only after the delay above.
             if (action.WasPressedThisFrame())
             {
                 ApplyMoneyChange(financeActionKind, Setting.Instance.ManualMoneyAmount);

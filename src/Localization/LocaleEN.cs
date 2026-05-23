@@ -76,23 +76,27 @@ namespace CityWatchdog
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "Use this amount with the Add Money and Subtract Money hotkeys.\n" +
                     "Default = 40,000.\n" +
-                    "This does nothing unless you use the hotkey in the city to add/subtract money.\n"+
+                    "This does nothing unless you use the hotkey to add/subtract money (in the city).\n"+
                     "For automated money, enable the Automatic Add Money option."
                 },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Add Money" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Hotkey for adding money inside the city." },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)),
+                    "Hotkey to <Add Money> inside the city." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.AddMoneyAction), "Add Money" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "Subtract Money" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "Hotkey for subtracting money inside the city." },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)),
+                    "Hotkey to <Subtrack Money> inside the city." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.SubtractMoneyAction), "Subtract Money" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoney)), "Automatic Add Money" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoney)),
                     "When enabled [ ✓ ], City Watchdog checks the city balance while a city is loaded.\n" +
-                    "If the balance is below the threshold, it adds the selected automatic amount.\n" +
-                    "Recommend to use Manual money with hotkey (<[> or <]>) as needed instead of this automated option, but this is here if you want it."
+                    "- If the balance is <below the threshold>, \n" +
+                    "  it adds the selected automatic amount.\n" +
+                    "- Recommend to use Manual money with hotkey (<[> or <]>) as needed" +
+                    "  instead of this automated option, but this is here if you want it."
                 },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)), "Automatic Money Threshold" },
@@ -123,7 +127,8 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "Open/Close Notification Panel" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)),
-                    "<Hotkey> for opening or closing the in-game notification panel.\n" +
+                    "<Hotkey> for opening or closing the\n" +
+                    "<notification panel> in the city.\n" +
                     "Works the same as clicking Top Left icon to open the full panel."
                 },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "Open/Close notification panel" },

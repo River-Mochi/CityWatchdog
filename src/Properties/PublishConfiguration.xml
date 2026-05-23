@@ -75,9 +75,11 @@ If you like free mods, give a Like, easy way to show support :)
 	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 <ChangeLog>
-- fix international format money view
+- Add/subtract hotkey, now can hold down to change instead of many clicks.
+- fix international format money
 - update images, instructions
 - internal cleanup: simplify, organize.
+- better localized tooltips
 </ChangeLog>
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />
