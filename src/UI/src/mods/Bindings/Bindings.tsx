@@ -6,6 +6,7 @@ export const moneyView$ = bindValue<boolean>(mod.id, "MoneyView", true);
 export const moneyViewMode$ = bindValue<number>(mod.id, "MoneyViewMode", 0);
 export const moneyTooltipMode$ = bindValue<number>(mod.id, "MoneyTooltipMode", 1);
 export const moneyTooltipFontScale$ = bindValue<number>(mod.id, "MoneyTooltipFontScale", 100);
+export const populationTooltipFontScale$ = bindValue<number>(mod.id, "PopulationTooltipFontScale", 100);
 
 export const ElectricityElectricityNotificationBinding$ = bindValue<boolean>(mod.id, "ElectricityElectricityNotification");
 export const ElectricityBottleneckNotificationBinding$ = bindValue<boolean>(mod.id, "ElectricityBottleneckNotification");

@@ -20,6 +20,7 @@ namespace CityWatchdog.Systems
         private ValueBinding<int>? moneyViewModeBinding;
         private ValueBinding<int>? moneyTooltipModeBinding;
         private ValueBinding<int>? moneyTooltipFontScaleBinding;
+        private ValueBinding<int>? populationTooltipFontScaleBinding;
 
         private BoolBinding electricityElectricityNotificationBinding = null!;
         private BoolBinding electricityBottleneckNotificationBinding = null!;
@@ -104,6 +105,7 @@ namespace CityWatchdog.Systems
             moneyViewModeBinding = AddValueBinding(nameof(Setting.MoneyViewMode), Setting.Instance.MoneyViewMode);
             moneyTooltipModeBinding = AddValueBinding(nameof(Setting.MoneyTooltipMode), Setting.Instance.MoneyTooltipMode);
             moneyTooltipFontScaleBinding = AddValueBinding(nameof(Setting.MoneyTooltipFontScale), Setting.Instance.MoneyTooltipFontScale);
+            populationTooltipFontScaleBinding = AddValueBinding(nameof(Setting.PopulationTooltipFontScale), Setting.Instance.PopulationTooltipFontScale);
 
             electricityElectricityNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.ElectricityElectricityNotification), Setting.Instance.Notification.ElectricityElectricityNotification, OnElectricityElectricityNotificationToggle);
             electricityBottleneckNotificationBinding = AddBoolBindingAndTriggerBinding(nameof(Setting.Instance.Notification.ElectricityBottleneckNotification), Setting.Instance.Notification.ElectricityBottleneckNotification, OnElectricityBottleneckNotificationToggle);
@@ -735,6 +737,8 @@ namespace CityWatchdog.Systems
         public void UpdateMoneyTooltipModeBinding(int value) => moneyTooltipModeBinding?.Update(value);
 
         public void UpdateMoneyTooltipFontScaleBinding(int value) => moneyTooltipFontScaleBinding?.Update(value);
+
+        public void UpdatePopulationTooltipFontScaleBinding(int value) => populationTooltipFontScaleBinding?.Update(value);
 
     }
 

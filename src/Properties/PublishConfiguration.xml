@@ -76,6 +76,7 @@ If you like free mods, give a Like, easy way to show support :)
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 <ChangeLog>
 - Add/subtract hotkey, can now hold down to change amounts instead of many clicks.
+- Population tooltip shows births, deaths, moving in, and moving out.
 - fix international format money
 - update images, instructions
 - internal: simplify, clean, organize.

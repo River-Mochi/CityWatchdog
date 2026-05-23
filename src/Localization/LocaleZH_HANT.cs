@@ -76,6 +76,11 @@ namespace CityWatchdog
                     "調整金錢視圖提示裡的數字大小。\n" +
                     "預設 = 100%。" },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "人口提示大小" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "調整人口提示裡額外數字的大小。\n" +
+                    "預設 = 100%。" },
+
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "金錢快捷鍵金額" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
@@ -212,6 +217,10 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "支出：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "淨額：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "總計：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "出生：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "死亡：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "遷入：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "遷出：" },
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "電力" },

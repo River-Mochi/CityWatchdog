@@ -1,6 +1,7 @@
 import type { ModuleRegistryExtend } from "cs2/modding";
 import { cloneElement, isValidElement, type ReactElement, type ReactNode } from "react";
 import { MoneyViewTooltipContent, isMoneyTooltip } from "./MoneyViewTooltip";
+import { PopulationViewTooltipContent, isPopulationTooltip } from "./PopulationViewTooltip";
 import { ToolbarMoneyDelta, ToolbarPopulationDelta } from "./ToolbarTrendAmount";
 import { MONEY_ICON, POPULATION_ICON } from "./moneyViewShared";
 
@@ -21,16 +22,25 @@ export const StatFieldMoneyViewExtension: ModuleRegistryExtend = (Component: any
 // Hook the shared DescriptionTooltip instead, then filter to the money toolbar child only.
 export const DescriptionTooltipMoneyViewExtension: ModuleRegistryExtend = (Component: any) => {
     return (props: any) => {
-        if (!isMoneyTooltip(props)) {
-            return Component(props);
+        if (isMoneyTooltip(props)) {
+            return Component({
+                ...props,
+                title: null,
+                description: null,
+                content: <MoneyViewTooltipContent baseContent={props.content} />,
+            });
         }
 
-        return Component({
-            ...props,
-            title: null,
-            description: null,
-            content: <MoneyViewTooltipContent baseContent={props.content} />,
-        });
+        if (isPopulationTooltip(props)) {
+            return Component({
+                ...props,
+                title: null,
+                description: null,
+                content: <PopulationViewTooltipContent baseContent={props.content} />,
+            });
+        }
+
+        return Component(props);
     };
 };
 

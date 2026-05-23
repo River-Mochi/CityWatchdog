@@ -76,6 +76,11 @@ namespace CityWatchdog
                     "Passt die Zahlen im Money-View-Tooltip an.\n" +
                     "Standard = 100%." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "Bevölkerungs-Tooltip-Größe" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "Passt die zusätzlichen Bevölkerungszahlen im Tooltip an.\n" +
+                    "Standard = 100%." },
+
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Geld-Hotkey-Betrag" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
@@ -212,6 +217,10 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "Ausgaben:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "Netto:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "Gesamt:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "Geburten:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "Todesfälle:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "Zuzüge:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "Wegzüge:" },
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "STROM" },

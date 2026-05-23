@@ -115,12 +115,18 @@ namespace CityWatchdog
         [SettingsUISetter(typeof(Setting), nameof(OnMoneyTooltipModeChanged))]
         public int MoneyTooltipMode { get; set; }
 
-        // Percent scale for Money View tooltip numbers; UI converts 90..130 into 0.90..1.30.
+        // UI converts 90..130 directly into 0.90em..1.30em for tooltip value text.
         [SettingsUISlider(min = 90, max = 130, step = 5, scalarMultiplier = 1, unit = Unit.kPercentage)]
         [SettingsUISection(Actions, MoneyViewGroup)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
         [SettingsUISetter(typeof(Setting), nameof(OnMoneyTooltipFontScaleChanged))]
         public int MoneyTooltipFontScale { get; set; }
+
+        [SettingsUISlider(min = 90, max = 130, step = 5, scalarMultiplier = 1, unit = Unit.kPercentage)]
+        [SettingsUISection(Actions, MoneyViewGroup)]
+        [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
+        [SettingsUISetter(typeof(Setting), nameof(OnPopulationTooltipFontScaleChanged))]
+        public int PopulationTooltipFontScale { get; set; }
 
         // --------------------------------------------------------------------
         // Actions tab - Money
@@ -405,6 +411,7 @@ namespace CityWatchdog
             MoneyViewMode = MoneyViewModeHourly;
             MoneyTooltipMode = MoneyTooltipModeCompact;
             MoneyTooltipFontScale = 100;
+            PopulationTooltipFontScale = 100;
 
             ManualMoneyAmount = 40000;
             AutomaticAddMoney = false;
@@ -447,6 +454,13 @@ namespace CityWatchdog
             World.DefaultGameObjectInjectionWorld?
                 .GetExistingSystemManaged<CityWatchdogUISystem>()?
                 .UpdateMoneyTooltipFontScaleBinding(value);
+        }
+
+        private void OnPopulationTooltipFontScaleChanged(int value)
+        {
+            World.DefaultGameObjectInjectionWorld?
+                .GetExistingSystemManaged<CityWatchdogUISystem>()?
+                .UpdatePopulationTooltipFontScaleBinding(value);
         }
 
         private bool GetMilestoneLevelStatus()

@@ -41,26 +41,26 @@
 // -----------------------------------------------------------------------------
 .tooltipRows {
     width: 255rem;
-    // Options slider writes this custom property through the tooltip root.
-    // Defaults stay here so the tooltip still looks normal if the binding is missing.
-    --moneyTooltipValueSizeFull: 1.15em;
-    --moneyTooltipValueSizeCompact: 1.20em;
-    --moneyTooltipValueSizeMini: 1.30em;
+    // Options slider writes these through the tooltip root.
+    // Fallbacks stay here so the tooltip still looks normal if the binding is missing.
+    --moneyTooltipValueSizeFull: 1em;
+    --moneyTooltipValueSizeCompact: 1em;
+    --moneyTooltipValueSizeMini: 1em;
 }
 
 // Full-size and Compact need room for Income / Expenses / Net groups.
 // Adjust these widths if you want those tooltip styles wider or narrower.
 .tooltipRowsFull {
-    width: 255rem;
+    width: 285rem;
 }
 
 .tooltipRowsCompact {
-    width: 250rem;
+    width: 260rem;
 }
 
 // Mini only shows Net, so it can be narrower without squeezing values.
 .tooltipRowsMini {
-    width: 190rem;
+    width: 240rem;
 }
 
 // -----------------------------------------------------------------------------
@@ -140,6 +140,40 @@
     font-size: var(--moneyTooltipValueSizeMini);
     font-weight: 600;
     line-height: 1.08;
+}
+
+// -----------------------------------------------------------------------------
+// Extra rows appended to the vanilla population tooltip.
+// Values use vanilla population infoview bindings: births, deaths, moved in/out.
+// -----------------------------------------------------------------------------
+.populationTooltipWrapper {
+    width: 255rem;
+    // Separate Options slider from Money View so KO/CN can be tuned without changing money.
+    --populationTooltipValueSize: 1em;
+}
+
+.populationTooltipExtra {
+    margin-top: 8rem;
+    padding-top: 6rem;
+    border-top: 1rem solid rgba(255, 255, 255, 0.16);
+}
+
+.populationTooltipGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14rem;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.populationTooltipValueLine {
+    flex: 0 0 auto;
+    font-size: var(--populationTooltipValueSize);
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
 }
 
 // -----------------------------------------------------------------------------

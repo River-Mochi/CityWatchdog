@@ -43,11 +43,11 @@ export const MoneyViewTooltipContent = ({ baseContent }: { readonly baseContent:
     const compact = moneyTooltipMode !== MONEY_TOOLTIP_MODE_DEFAULT;
     const mini = moneyTooltipMode === MONEY_TOOLTIP_MODE_MINI;
     const tooltipClassName = getTooltipRowsClassName(moneyTooltipMode);
-    const tooltipValueScale = getMoneyTooltipScale(moneyTooltipFontScale);
+    const tooltipValueSize = getTooltipValueSize(moneyTooltipFontScale);
     const tooltipStyle = {
-        "--moneyTooltipValueSizeFull": `${1.15 * tooltipValueScale}em`,
-        "--moneyTooltipValueSizeCompact": `${1.20 * tooltipValueScale}em`,
-        "--moneyTooltipValueSizeMini": `${1.30 * tooltipValueScale}em`,
+        "--moneyTooltipValueSizeFull": tooltipValueSize,
+        "--moneyTooltipValueSizeCompact": tooltipValueSize,
+        "--moneyTooltipValueSizeMini": tooltipValueSize,
     } as CSSProperties;
 
     return (
@@ -61,7 +61,10 @@ export const MoneyViewTooltipContent = ({ baseContent }: { readonly baseContent:
     );
 };
 
-const getMoneyTooltipScale = (value: number): number => Math.min(130, Math.max(90, Number(value) || 100)) / 100;
+const getTooltipValueSize = (value: number): string => {
+    const percent = Math.min(130, Math.max(90, Number(value) || 100));
+    return `${percent / 100}em`;
+};
 
 const getTooltipRowsClassName = (mode: number): string => {
     const classes = [styles.tooltipRows];

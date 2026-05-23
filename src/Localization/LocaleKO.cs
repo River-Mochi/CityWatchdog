@@ -76,6 +76,11 @@ namespace CityWatchdog
                     "머니 뷰 툴팁의 숫자 크기를 조정합니다.\n" +
                     "기본값 = 100%." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "인구 툴팁 크기" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "인구 툴팁의 추가 숫자 크기를 조정합니다.\n" +
+                    "기본값 = 100%." },
+
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "돈 단축키 금액" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
@@ -212,6 +217,10 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "지출:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "순액:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "합계:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "출생:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "사망:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "전입:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "전출:" },
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "전기" },

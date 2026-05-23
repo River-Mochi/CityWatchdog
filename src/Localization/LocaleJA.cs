@@ -76,6 +76,11 @@ namespace CityWatchdog
                     "マネービューのツールチップの数値サイズを調整します。\n" +
                     "既定 = 100%。" },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "人口ツールチップのサイズ" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "人口ツールチップに追加される数値のサイズを調整します。\n" +
+                    "既定 = 100%。" },
+
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "資金ホットキー額" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
@@ -212,6 +217,10 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "支出：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "純額：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "合計：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "出生：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "死亡：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "転入：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "転出：" },
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "電力" },
