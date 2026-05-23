@@ -218,6 +218,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "净额：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "总计：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipCurrentTrend"), "当前净额：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "当前趋势：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "出生：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "死亡：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "迁入：" },

@@ -218,6 +218,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "Líquido:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "Total:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipCurrentTrend"), "Líquido atual:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "Tendência atual:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "Nascimentos:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "Mortes:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "Chegadas:" },

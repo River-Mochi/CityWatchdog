@@ -2,7 +2,7 @@
 // Purpose: Adds CWD population flow rows to the vanilla population tooltip.
 
 import { useValue } from "cs2/api";
-import { infoview } from "cs2/bindings";
+import { infoview, toolbarBottom } from "cs2/bindings";
 import { LocalizedNumber, Unit, useLocalization, type Localization } from "cs2/l10n";
 import { Children, isValidElement, type CSSProperties, type ReactNode } from "react";
 import { moneyView$, populationTooltipFontScale$ } from "../Bindings/Bindings";
@@ -15,6 +15,7 @@ export const PopulationViewTooltipContent = ({ baseContent }: { readonly baseCon
     const localize = (key: string, fallback: string) => translate(`CityWatchdog.UI[${key}]`) ?? fallback;
     const moneyViewEnabled = useValue(moneyView$);
     const populationTooltipFontScale = useValue(populationTooltipFontScale$);
+    const currentTrend = getNumericValue(useValue(toolbarBottom.populationDelta$));
 
     // These come from vanilla PopulationInfoviewUISystem, so CWD does not need its own sim queries.
     const births = getNumericValue(useValue(infoview.birthRate$));
@@ -32,7 +33,11 @@ export const PopulationViewTooltipContent = ({ baseContent }: { readonly baseCon
 
     return (
         <div className={styles.populationTooltipWrapper} style={tooltipStyle}>
-            {baseContent}
+            <PopulationTooltipCurrentTrend
+                localization={localization}
+                label={localize("PopulationTooltipCurrentTrend", "Current trend:")}
+                value={currentTrend}
+            />
             <div className={styles.populationTooltipExtra}>
                 <PopulationTooltipFlow
                     localization={localization}
@@ -94,19 +99,45 @@ const PopulationTooltipFlow = ({
 }) => {
     const displayValue = getDisplayWholeValue(value);
     const signedValue = displayValue === 0 ? 0 : displayValue * direction;
-    const tone = getSignedAmountTone(signedValue);
-    const text = formatPopulationRateValue(localization, signedValue);
 
     return (
-        <div className={styles.populationTooltipGroup}>
-            <div className={styles.tooltipLabel}>{label}</div>
+        <PopulationTooltipRate
+            localization={localization}
+            label={label}
+            value={signedValue}
+            unit={Unit.IntegerPerMonth}
+        />
+    );
+};
+
+const PopulationTooltipCurrentTrend = ({ localization, label, value }: { readonly localization: Localization; readonly label: string; readonly value: number }) => {
+    const displayValue = getDisplayWholeValue(value);
+
+    return (
+        <PopulationTooltipRate
+            localization={localization}
+            label={label}
+            value={displayValue}
+            unit={Unit.IntegerPerHour}
+            topRow={true}
+        />
+    );
+};
+
+const PopulationTooltipRate = ({ localization, label, value, unit, topRow = false }: { readonly localization: Localization; readonly label: string; readonly value: number; readonly unit: Unit; readonly topRow?: boolean }) => {
+    const tone = getSignedAmountTone(value);
+    const text = formatPopulationRateValue(localization, value, unit);
+
+    return (
+        <div className={`${styles.populationTooltipGroup} ${topRow ? styles.populationTooltipTopTrend : ""}`}>
+            <div className={styles.tooltipLabel}>{trimLabelPunctuation(label)}</div>
             <div className={`${styles.populationTooltipValueLine} ${styles[tone]}`}>{text}</div>
         </div>
     );
 };
 
-const formatPopulationRateValue = (localization: Localization, value: number): string => {
-    const magnitude = formatLocalizedIntegerPerMonth(localization, Math.abs(value));
+const formatPopulationRateValue = (localization: Localization, value: number, unit: Unit): string => {
+    const magnitude = formatLocalizedIntegerRate(localization, Math.abs(value), unit);
     const spacer = "\u200A";
 
     if (value > 0) {
@@ -120,19 +151,23 @@ const formatPopulationRateValue = (localization: Localization, value: number): s
     return magnitude;
 };
 
-const formatLocalizedIntegerPerMonth = (localization: Localization, value: number): string => {
+const formatLocalizedIntegerRate = (localization: Localization, value: number, unit: Unit): string => {
     try {
         return LocalizedNumber.renderString(localization, {
             value,
-            unit: Unit.IntegerPerMonth,
+            unit,
             signed: false,
         });
     } catch {
-        return `${Math.round(Math.abs(value)).toString()} /mo`;
+        return `${Math.round(Math.abs(value)).toString()}${unit === Unit.IntegerPerMonth ? " /mo" : " /h"}`;
     }
 };
 
 const getTooltipValueSize = (value: number): string => {
     const percent = Math.min(130, Math.max(90, Number(value) || 100));
     return `${percent / 100}em`;
+};
+
+const trimLabelPunctuation = (label: string): string => {
+    return label.replace(/[\s:：]+$/u, "");
 };
