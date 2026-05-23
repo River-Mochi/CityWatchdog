@@ -60,6 +60,7 @@ If you like free mods, give a Like, easy way to show support :)
 	<!--Screenshot, can be set multiple times-->
     <Screenshot Value="Properties/image10-Notifications.jpg" />
     <Screenshot Value="Properties/image20-Hotkeys-Money.jpg" />
+    <Screenshot Value="Properties/image30-Money.jpg" />
     <Screenshot Value="Properties/image40-Languages.jpg" />
     <Screenshot Value="Properties/image50-Options.jpg" />
     <Screenshot Value="Properties/image60-InstructionsEN.jpg" />

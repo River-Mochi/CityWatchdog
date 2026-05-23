@@ -1,10 +1,10 @@
-// File: src/UI/src/mods/ToolbarMoneyView/ToolbarMoneyView.module.scss
+// File: src/UI/src/mods/MoneyView/MoneyView.module.scss
 // Purpose:
 //   Styles [CWD] Money View text added to the bottom toolbar
 //   and the custom money tooltip rows when hovering over the money field.
 //
 // Notes:
-//   - .moneyViewText is the small value shown directly in the bottom toolbar.
+//   - .moneyViewText is a small value shown directly in the bottom toolbar.
 //   - .tooltipRows and below are only for the hover tooltip panel.
 //   - Positive/negative/neutral colors are shared by toolbar text and tooltip values.
 
@@ -72,7 +72,7 @@
 // -----------------------------------------------------------------------------
 // Optional tooltip title
 // Example: WATCHDOG
-// To remove the title completely, remove the title row in ToolbarMoneyView.tsx.
+// To remove the title completely, remove the title row in MoneyView.tsx.
 // -----------------------------------------------------------------------------
 .tooltipTitle {
     margin-top: -2rem;

@@ -1,4 +1,4 @@
-// File: src/UI/src/mods/ToolbarMoneyView/moneyViewShared.ts
+// File: src/UI/src/mods/MoneyView/moneyViewShared.ts
 // Purpose: Shared Money View constants, number formatting, and sign/color helpers.
 
 import { LocalizedNumber, Unit, type Localization } from "cs2/l10n";
@@ -42,7 +42,7 @@ const formatLocalizedValue = (
     unit: Unit
 ): string => {
     try {
-        // Prefer the CS2 localization API for game numbers; browser-style number formatting does not reliably follow the selected game language.
+        // Prefer the CS2 localization API for game numbers; browser-style number formatting does not reliably follow selected game language.
         return LocalizedNumber.renderString(localization, { value, unit, signed: false });
     } catch {
         return formatWholeNumberMagnitude(value);
@@ -108,7 +108,7 @@ export const formatTooltipMoneyValue = (localization: Localization, value: numbe
     return formatSignedLocalizedValue(localization, value, Unit.Integer, false, true);
 };
 
-export const formatToolbarMoneyViewValue = (
+export const formatMoneyViewValue = (
     localization: Localization,
     value: number,
     unit: Unit

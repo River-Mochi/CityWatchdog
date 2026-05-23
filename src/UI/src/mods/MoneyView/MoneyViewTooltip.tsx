@@ -1,4 +1,4 @@
-// File: src/UI/src/mods/ToolbarMoneyView/MoneyViewTooltip.tsx
+// File: src/UI/src/mods/MoneyView/MoneyViewTooltip.tsx
 // Purpose: Custom hover tooltip for the bottom-toolbar money field.
 
 import { useValue } from "cs2/api";
@@ -6,7 +6,7 @@ import { economyBudget, toolbarBottom } from "cs2/bindings";
 import { Unit, useLocalization, type Localization } from "cs2/l10n";
 import { Children, isValidElement, type CSSProperties, type ReactNode } from "react";
 import { moneyTooltipFontScale$, moneyTooltipMode$, moneyView$ } from "../Bindings/Bindings";
-import styles from "./ToolbarMoneyView.module.scss";
+import styles from "./MoneyView.module.scss";
 import {
     formatTooltipMoneyValue,
     formatTooltipMoneyViewValue,
@@ -59,11 +59,45 @@ export const MoneyViewTooltipContent = ({ baseContent }: { readonly baseContent:
     return (
         <div className={tooltipClassName} style={tooltipStyle}>
             <div className={styles.tooltipTitle}>WATCHDOG</div>
-           
-            {!mini && <MoneyViewTooltipGroup localization={localization} label={localize("MoneyViewTooltipIncome", "Income:")} hourlyValue={hourlyIncome} monthlyValue={monthlyIncome} compact={compact} mode={moneyTooltipMode} />}
-            {!mini && <MoneyViewTooltipGroup localization={localization} label={localize("MoneyViewTooltipExpenses", "Expenses:")} hourlyValue={hourlyExpenses} monthlyValue={monthlyExpenses} compact={compact} mode={moneyTooltipMode} />}
-            {!mini && <MoneyViewTooltipGroup localization={localization} label={localize("MoneyViewTooltipNet", "Net:")} hourlyValue={hourlyNet} monthlyValue={monthlyBalance} compact={compact} mode={moneyTooltipMode} />}
-            {moneyTooltipMode === MONEY_TOOLTIP_MODE_FULL_DATA && <MoneyViewTooltipSingleValue localization={localization} label={localize("MoneyViewTooltipTotal", "Total:")} value={totalMoney} mode={moneyTooltipMode} />}
+
+            {!mini && (
+                <>
+                    <MoneyViewTooltipGroup
+                        localization={localization}
+                        label={localize("MoneyViewTooltipIncome", "Income:")}
+                        hourlyValue={hourlyIncome}
+                        monthlyValue={monthlyIncome}
+                        compact={compact}
+                        mode={moneyTooltipMode}
+                    />
+                    <MoneyViewTooltipGroup
+                        localization={localization}
+                        label={localize("MoneyViewTooltipExpenses", "Expenses:")}
+                        hourlyValue={hourlyExpenses}
+                        monthlyValue={monthlyExpenses}
+                        compact={compact}
+                        mode={moneyTooltipMode}
+                    />
+                    <div className={styles.tooltipDivider} />
+                </>
+            )}
+            <MoneyViewTooltipGroup
+                localization={localization}
+                label={localize("MoneyViewTooltipNet", "Net:")}
+                hourlyValue={hourlyNet}
+                monthlyValue={monthlyBalance}
+                compact={compact}
+                mode={moneyTooltipMode}
+            />
+            {moneyTooltipMode === MONEY_TOOLTIP_MODE_FULL_DATA && (
+                <MoneyViewTooltipSingleValue
+                    localization={localization}
+                    label={localize("MoneyViewTooltipTotal", "Total:")}
+                    value={totalMoney}
+                    mode={moneyTooltipMode}
+                />
+            )}
+          
         </div>
     );
 };

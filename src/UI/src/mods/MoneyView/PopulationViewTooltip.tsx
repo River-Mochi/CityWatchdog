@@ -1,4 +1,4 @@
-// File: src/UI/src/mods/ToolbarMoneyView/PopulationViewTooltip.tsx
+// File: src/UI/src/mods/MoneyView/PopulationViewTooltip.tsx
 // Purpose: Adds CWD population flow rows to the vanilla population tooltip.
 
 import { useValue } from "cs2/api";
@@ -6,7 +6,7 @@ import { infoview, toolbarBottom } from "cs2/bindings";
 import { LocalizedNumber, Unit, useLocalization, type Localization } from "cs2/l10n";
 import { Children, isValidElement, type CSSProperties, type ReactNode } from "react";
 import { moneyView$, populationTooltipFontScale$ } from "../Bindings/Bindings";
-import styles from "./ToolbarMoneyView.module.scss";
+import styles from "./MoneyView.module.scss";
 import { getDisplayWholeValue, getNumericValue, getSignedAmountTone, POPULATION_ICON } from "./moneyViewShared";
 
 export const PopulationViewTooltipContent = ({ baseContent }: { readonly baseContent: ReactNode }) => {

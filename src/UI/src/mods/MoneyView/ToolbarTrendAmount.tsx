@@ -1,13 +1,13 @@
-// File: src/UI/src/mods/ToolbarMoneyView/ToolbarTrendAmount.tsx
+// File: src/UI/src/mods/MoneyView/ToolbarTrendAmount.tsx
 // Purpose: Renders Money View trend amounts beside vanilla money and population fields.
 
 import { useValue } from "cs2/api";
 import { economyBudget, toolbarBottom } from "cs2/bindings";
 import { Unit, useLocalization, type Localization } from "cs2/l10n";
 import { moneyViewMode$, moneyView$ } from "../Bindings/Bindings";
-import styles from "./ToolbarMoneyView.module.scss";
+import styles from "./MoneyView.module.scss";
 import {
-    formatToolbarMoneyViewValue,
+    formatMoneyViewValue,
     getDisplayWholeValue,
     getNumericValue,
     getSignedAmountTone,
@@ -66,7 +66,7 @@ export const ToolbarPopulationDelta = () => {
 const ToolbarTrendAmount = ({ localization, value, unit }: { readonly localization: Localization; readonly value: number; readonly unit: Unit }) => {
     const displayValue = getDisplayWholeValue(value);
     const tone = getSignedAmountTone(displayValue);
-    const text = formatToolbarMoneyViewValue(localization, displayValue, unit);
+    const text = formatMoneyViewValue(localization, displayValue, unit);
 
     return (
         <div className={`${styles.moneyViewText} ${styles[tone]}`}>
