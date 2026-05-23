@@ -48,8 +48,8 @@
     --moneyTooltipValueSizeMini: 1em;
 }
 
-// Full-size and Compact need room for Income / Expenses / Net groups.
-// Adjust these widths if you want those tooltip styles wider or narrower.
+// Full-data and Compact need room for Income / Expenses / Net groups.
+// Adjust these widths for those tooltip styles wider or narrower.
 .tooltipRowsFull {
     width: 275rem;
 }
@@ -78,6 +78,7 @@
     margin-top: -2rem;
     margin-bottom: 6rem;
     color: var(--accentColorLight);
+    font-size: 0.9em;
     font-weight: 700;
     letter-spacing: 1.6rem;
     white-space: nowrap;

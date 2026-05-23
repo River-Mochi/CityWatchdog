@@ -59,15 +59,7 @@ export const MoneyViewTooltipContent = ({ baseContent }: { readonly baseContent:
     return (
         <div className={tooltipClassName} style={tooltipStyle}>
             <div className={styles.tooltipTitle}>WATCHDOG</div>
-            <MoneyViewTooltipCurrentTrend
-                localization={localization}
-                label={trimLabelPunctuation(topLabel)}
-                hourlyValue={hourlyNet}
-                monthlyValue={monthlyBalance}
-                compact={compact}
-                mode={moneyTooltipMode}
-                showDivider={!mini}
-            />
+           
             {!mini && <MoneyViewTooltipGroup localization={localization} label={localize("MoneyViewTooltipIncome", "Income:")} hourlyValue={hourlyIncome} monthlyValue={monthlyIncome} compact={compact} mode={moneyTooltipMode} />}
             {!mini && <MoneyViewTooltipGroup localization={localization} label={localize("MoneyViewTooltipExpenses", "Expenses:")} hourlyValue={hourlyExpenses} monthlyValue={monthlyExpenses} compact={compact} mode={moneyTooltipMode} />}
             {!mini && <MoneyViewTooltipGroup localization={localization} label={localize("MoneyViewTooltipNet", "Net:")} hourlyValue={hourlyNet} monthlyValue={monthlyBalance} compact={compact} mode={moneyTooltipMode} />}

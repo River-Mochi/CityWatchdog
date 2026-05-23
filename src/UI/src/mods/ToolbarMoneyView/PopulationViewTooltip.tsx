@@ -33,33 +33,35 @@ export const PopulationViewTooltipContent = ({ baseContent }: { readonly baseCon
 
     return (
         <div className={styles.populationTooltipWrapper} style={tooltipStyle}>
+            <div className={styles.tooltipTitle}>WATCHDOG</div>
             <PopulationTooltipCurrentTrend
                 localization={localization}
-                label={localize("PopulationTooltipCurrentTrend", "Current trend:")}
+                label={localize("PopulationTooltipCurrentTrend", "Current trend")}
                 value={currentTrend}
             />
             <div className={styles.populationTooltipExtra}>
+
                 <PopulationTooltipFlow
                     localization={localization}
-                    label={localize("PopulationTooltipBirths", "Births:")}
+                    label={localize("PopulationTooltipBirths", "Births")}
                     value={births}
                     direction={1}
                 />
                 <PopulationTooltipFlow
                     localization={localization}
-                    label={localize("PopulationTooltipDeaths", "Deaths:")}
+                    label={localize("PopulationTooltipDeaths", "Deaths")}
                     value={deaths}
                     direction={-1}
                 />
                 <PopulationTooltipFlow
                     localization={localization}
-                    label={localize("PopulationTooltipMovedIn", "Moved in:")}
+                    label={localize("PopulationTooltipMovedIn", "Moved in")}
                     value={movedIn}
                     direction={1}
                 />
                 <PopulationTooltipFlow
                     localization={localization}
-                    label={localize("PopulationTooltipMovedOut", "Moved out:")}
+                    label={localize("PopulationTooltipMovedOut", "Moved out")}
                     value={movedAway}
                     direction={-1}
                 />
