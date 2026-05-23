@@ -217,8 +217,8 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("EntryButtonTitle"), "CITY WATCHDOG" },
                 { m_Settings.GetUILocaleID("EntryButtonDescription"), "Open the notification icon panel." },
                 { m_Settings.GetUILocaleID("NotificationIconShowOrHide"),
-                    "Expand any row; [✓] check to show, uncheck to hide alerts.\n" +
-                    "This does not fix city problems, it hides icon clutter." },
+                    "Expand rows; [✓] check to show, uncheck to hide alerts.\n" +
+                    "This doesn't fix problems, it hides icon clutter." },
                 { m_Settings.GetUILocaleID("ToggleAll"), "Toggle All" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "Expand All" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "Collapse All Rows" },
