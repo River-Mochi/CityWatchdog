@@ -467,7 +467,7 @@ const NotificationPanelContent = () => {
 
             {/* Keeps the help icon pinned left and the three action buttons grouped right. */}
             <div className={styles.toolbar}>
-                <Tooltip tooltip={tooltipContent("NotificationIconShowOrHide", "Expand any row; [✓] check to show, uncheck to hide alerts.\nThis does not fix city problems, it hides icon clutter.")}>
+                <Tooltip tooltip={tooltipContent("NotificationIconShowOrHide", "Expand rows; [✓] check to show, uncheck to hide alerts.\nDoes not fix city problems, it hides messy icons.")}>
                     <div className={styles.infoButton}>
                         <img src={infoIconSrc} className={styles.infoIcon} />
                     </div>

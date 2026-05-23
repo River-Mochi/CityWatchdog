@@ -1,3 +1,6 @@
+// File: src/UI/src/mods/Checkbox/Checkbox.tsx
+// Purpose: Small checkbox wrapper used by City Watchdog panel rows.
+
 import { Icon } from "cs2/ui";
 import styles from "./Checkbox.module.scss";
 

@@ -1,10 +1,10 @@
-// File: src/UI/src/mods/ToolbarMoneyView/ToolbarMoneyView.module.scss
+// File: src/UI/src/mods/MoneyView/MoneyView.module.scss
 // Purpose:
 //   Styles [CWD] Money View text added to the bottom toolbar
 //   and the custom money tooltip rows when hovering over the money field.
 //
 // Notes:
-//   - .moneyViewText is the small value shown directly in the bottom toolbar.
+//   - .moneyViewText is a small value shown directly in the bottom toolbar.
 //   - .tooltipRows and below are only for the hover tooltip panel.
 //   - Positive/negative/neutral colors are shared by toolbar text and tooltip values.
 
@@ -41,12 +41,17 @@
 // -----------------------------------------------------------------------------
 .tooltipRows {
     width: 255rem;
+    // Options slider writes these through the tooltip root.
+    // Fallbacks stay here so the tooltip still looks normal if the binding is missing.
+    --moneyTooltipValueSizeFull: 1em;
+    --moneyTooltipValueSizeCompact: 1em;
+    --moneyTooltipValueSizeMini: 1em;
 }
 
-// Full-size and Compact need room for Income / Expenses / Net groups.
-// Adjust these widths if you want those tooltip styles wider or narrower.
+// Full-data and Compact need room for Income / Expenses / Net groups.
+// Adjust these widths for those tooltip styles wider or narrower.
 .tooltipRowsFull {
-    width: 255rem;
+    width: 275rem;
 }
 
 .tooltipRowsCompact {
@@ -55,21 +60,37 @@
 
 // Mini only shows Net, so it can be narrower without squeezing values.
 .tooltipRowsMini {
-    width: 190rem;
+    width: 205rem;
+}
+
+.tooltipRowsMini .tooltipTitle {
+    margin-bottom: 4rem;
+    font-size: 0.9em;
+    letter-spacing: 1.1rem;
 }
 
 // -----------------------------------------------------------------------------
 // Optional tooltip title
 // Example: WATCHDOG
-// To remove the title completely, remove the title row in ToolbarMoneyView.tsx.
+// To remove the title completely, remove title row in MoneyViewTooltip.tsx
+// and PopulationViewTooltip.tsx.
 // -----------------------------------------------------------------------------
 .tooltipTitle {
     margin-top: -2rem;
     margin-bottom: 6rem;
     color: var(--accentColorLight);
+    font-size: 0.9em;
     font-weight: 700;
     letter-spacing: 1.6rem;
     white-space: nowrap;
+}
+
+.tooltipDivider {
+    width: 100%;
+    height: 1rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    background-color: rgba(255, 255, 255, 0.18);
 }
 
 // -----------------------------------------------------------------------------
@@ -98,7 +119,7 @@
 // -----------------------------------------------------------------------------
 .tooltipLabel {
     flex: 0 0 auto;
-    font-weight: 700;
+    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -125,16 +146,55 @@
 // Per-mode value sizes. These affect only the money values inside the hover tooltip,
 // not the bottom toolbar number beside the vanilla money/population fields.
 .tooltipValueLineFull {
-    font-size: 1.15em;
+    font-size: var(--moneyTooltipValueSizeFull);
 }
 .tooltipValueLineCompact {
-    font-size: 1.20em;
+    font-size: var(--moneyTooltipValueSizeCompact);
 }
 
 .tooltipValueLineMini {
-    font-size: 1.30em;
+    font-size: var(--moneyTooltipValueSizeMini);
     font-weight: 600;
     line-height: 1.08;
+}
+
+// -----------------------------------------------------------------------------
+// Extra rows appended to the vanilla population tooltip.
+// Values use vanilla population infoview bindings: births, deaths, moved in/out.
+// -----------------------------------------------------------------------------
+.populationTooltipWrapper {
+    width: 255rem;
+    // Width knob for the population tooltip. Lower = narrower, higher = more room for KO/CN suffixes.
+    // Separate Options slider from Money View so KO/CN can be tuned without changing money.
+    --populationTooltipValueSize: 1em;
+}
+
+.populationTooltipExtra {
+    margin-top: 8rem;
+    padding-top: 6rem;
+    border-top: 1rem solid rgba(255, 255, 255, 0.16);
+}
+
+.populationTooltipGroup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14rem;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.populationTooltipTopTrend .tooltipLabel {
+    font-weight: 700;
+}
+
+.populationTooltipValueLine {
+    flex: 0 0 auto;
+    font-size: var(--populationTooltipValueSize);
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
 }
 
 // -----------------------------------------------------------------------------

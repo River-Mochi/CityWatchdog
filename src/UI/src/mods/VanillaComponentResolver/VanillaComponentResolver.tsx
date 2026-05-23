@@ -1,3 +1,6 @@
+// File: src/UI/src/mods/VanillaComponentResolver/VanillaComponentResolver.tsx
+// Purpose: Resolves vanilla CS2 UI components/themes used by City Watchdog.
+
 import { FocusKey, Theme, UniqueFocusKey } from "cs2/bindings";
 import { ModuleRegistry } from "cs2/modding";
 import { HTMLAttributes, ReactNode } from "react";

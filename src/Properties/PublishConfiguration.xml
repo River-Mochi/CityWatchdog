@@ -9,74 +9,87 @@
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
 
-- City Watchdog helps reduce city alert icon clutter and adds convenient city setup tools.
-- It's modeled on the original City Controller mod (retired)
-- Many expanded features and future plans.
+- City Watchdog helps reduce city alert icon clutter; includes handy city setup tools.
+- It's modeled on the original City Controller mod.
+- Many new features and future plans.
 
 ### Features
 
 - Show or hide notification alert icons.
-- Change the milestone you start with (Trains now! Yes you can!).
+- Start with a custom Milestone. Trains now! Yes you can!.
+- Open the notification panel from the top-left button or hotkey.
 
-#### Money
-- Manual add/subtract money with hotkeys ([ or ]).
-- Automatic add money option (manual is recommended over auto).
+#### Money tools
+- Manual: add/subtract money on the fly with hotkeys ([ or ]).
+- Optional automatic money refiller. Manual is still recommended.
 - Money view for toolbar values.
--  Convert saves from Unlimited money type to normal Limited money.
+- Convert saves from Unlimited money type to normal Limited money.
 
 Hotkeys
 - Shift+N = open/close panel (same as clicking on Top Left icon).
 - N    = toggle all notification icons on/off (same as clicking on Toggle All * star button)
 - [    = Add Money
 - ]    = Subtract Money
+- Hold the money hotkey to repeat instead of clicking many times.
 
 ### Important Notes
-- City Watchdog hides/shows alert icons; it does not fix the problem behind the icons. Good for reducing stress or screenshots.
+- Check **Show Instructions** on the About tab.
+- City Watchdog hides/shows alert icons; it does not fix the problem. Great for for reducing visual stress or just to have a cleaner UI.
 - Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
-- City Watchdog is a heavily rewritten redux/expansion of City Controller. It is not just a copy-paste release and nearly a whole rewrite.
-I hope you enjoy the new features, better performance, and safety guards!
-- CWD's Money View is a ground-up code write of similar money info to Show Text Trends (retired).
-MV uses new methods to implement vanilla CS2 component extensions, customizable new money layouts, settings options, and translations.
+- This is a heavily rewritten redux/expansion of City Controller. It is nearly a whole rewrite.
+- CWD's Money View is a redesigned ground-up code write of similar money info to Show Text Trends (retired).
+MV uses different methods to do vanilla CS2 extensions, 3 customizable money layouts, settings options, and translations.
+- Install Achievement Fixer mod if you want Achievements while using mods, it was removed from this mod.
+
+I hope you enjoy the new features, better performance, and safety checks!
 
 ### Support and feedback
 Feedback is welcome through GitHub or Discord links on the right.
-If you like free mods, give a Like, easy way to show support :)
+
+If you like free mods, give a Like :)
 
 ### Future
-- 9 languages supported now, more needed!
-- If anyone can make better Thumbnail and screenshots, please let me know.
+- 10 languages supported now, more in the future!
+- If anyone can make better thumbnail or  screenshots, please let me know.
 
 ### Credits
 - River Mochi - author/maintainer
-- Thanks to Mbyron26 for orig. City Controller mod.
-- Money View inspired by earlier mods by DanielNZ Show Text
+- Thanks to Mbyron26 for orig. City Controller mod (retired).
+- Money View inspired by earlier mods by DanielNZ Show Text.
 - Dorkington - tester/feature suggestion
 - Flightech, SonNathan - testers
-- Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
+- Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France:
+https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
 
 </LongDescription>
 	<!--Thumbnail-->
 	<Thumbnail Value="Properties/Thumbnail-dog-city01.jpg" />
 	<!--Screenshot, can be set multiple times-->
     <Screenshot Value="Properties/image10-Notifications.jpg" />
-    <Screenshot Value="Properties/image15-GTL-Hotkeys.jpg" />
-    <Screenshot Value="Properties/image20-Options.jpg" />
-    <Screenshot Value="Properties/image20-Options.jpg" />
-    <Screenshot Value="Properties/image40-Instructions.jpg" />
+    <Screenshot Value="Properties/image20-Hotkeys-Money.jpg" />
+    <Screenshot Value="Properties/image30-Money.jpg" />
+    <Screenshot Value="Properties/image40-Languages.jpg" />
+    <Screenshot Value="Properties/image60-InstructionsEN.jpg" />
 	<!--Tag, can be set multiple times-->
 	<Tag Value="Code Mod" />
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1924169/" />
 	<!--Version of the mod-->
-	<ModVersion Value="0.9.0" />
+	<ModVersion Value="0.9.1" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.5.*" />
 	<!--Dependency for the mod, can be set multiple times-->
 	<Dependency Id="74417" DisplayName="Unified Icon Library" />
 	<!--Change log for new version. Single line or multi line. Supports minimal markdown subset-->
 <ChangeLog>
-- removed built-in Achievement Fixer tools
-- just install Achievement Fixer mod if you want achievements, it's easier.
+- added: Italian translation.
+- added: Add/subtract money hotkeys, can now be held down to repeat.
+- added: Population tooltip now shows births, deaths, moved in, and moved out.
+- added: font-size sliders 90% - 130% for population + money tooltips. Fills request by player with visibility challenges.
+- improved: international money numbers using vanilla CS2 formatting.
+- improved: Money View tooltip layouts for - Mini, Compact, and Full Data.
+- updated: images, instructions
+- internal: simplified, cleaned, organized code.
 </ChangeLog>
 	<!--External link. supported types are discord, github, youtube, twitch, x, paypal, patreon, buymeacoffee, kofi, crowdin, gitlab-->
 	<ExternalLink Type="github" Url="https://github.com/River-Mochi/CityWatchdog" />

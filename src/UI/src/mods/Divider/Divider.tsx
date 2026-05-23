@@ -1,3 +1,6 @@
+// File: src/UI/src/mods/Divider/Divider.tsx
+// Purpose: Lightweight divider component for City Watchdog panel layout.
+
 import { CSSProperties } from "react";
 import styles from "../Divider/Divider.module.scss";
 

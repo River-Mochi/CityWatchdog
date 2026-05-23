@@ -48,29 +48,45 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "使用说明" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "金钱视图" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "金钱视图" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "在底部工具栏的原版金钱和人口箭头旁显示数字趋势值。\n" +
-                    "这只是轻量显示，不会改变城市金钱或人口。" },
+                    "这只是轻量工具栏显示，不会改变城市金钱或人口。" },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "金钱视图频率" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "金钱视图频率" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "选择底部工具栏的趋势文字显示金钱和人口的每小时值或每月值。\n" +
                     "每月金钱使用预算收入减去支出，人口使用 24 小时预测。" },
-
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "每小时 (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "每月 (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "每小时 (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "每月 (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "金钱提示样式" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
                     "选择鼠标悬停在金钱栏时提示中显示的详细程度。\n" +
-                    "<Mini> 只显示 /mo 和 /h 的两个净值。\n" +
-                    "<Compact> 缩短大数字（例如用 15.21M 代替 15,212,318）。\n" +
-                    "<Full size> 显示完整数值和总计字段。" },
+                    "紧凑 = 首次安装时的默认值。\n" +
+                    "<迷你> 只显示 /mo 和 /h 的两个净值。\n" +
+                    "<紧凑> 缩短大数字（例如用 15.21M 代替 15,212,318）。\n" +
+                    "<完整数据> 显示完整数值和总计字段。" },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "迷你" },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "紧凑" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeFullSize"), "完整大小" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeFullData"), "完整数据" },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipFontScale)), "金钱文字大小" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipFontScale)),
+                    "调整金钱视图提示中数字的<文字大小>。\n" +
+                    "游戏默认 = 100%\n" +
+                    "<模组默认 = 120%>\n" +
+                    "将鼠标悬停在屏幕底部的金钱上。\n" +
+                    "给觉得游戏小提示难看清的玩家使用。"
+                },
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "人口文字大小" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "调整人口提示中数字的<文字大小>。\n" +
+                    "游戏默认 = 100%\n" +
+                    "<模组默认 = 120%>\n" +
+                    "将鼠标悬停在屏幕底部的人口上。"
+                },
 
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "金钱快捷键金额" },
@@ -193,8 +209,8 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("EntryButtonTitle"), "CITY WATCHDOG" },
                 { m_Settings.GetUILocaleID("EntryButtonDescription"), "打开通知图标面板。" },
                 { m_Settings.GetUILocaleID("NotificationIconShowOrHide"),
-                    "展开任意行；勾选 [✓] 显示，取消勾选隐藏警报。\n" +
-                    "这不会修复城市问题，只会隐藏图标杂乱。" },
+                    "展开行；[✓] 显示，取消勾选隐藏警报。\n" +
+                    "不修复问题，只整理图标。" },
                 { m_Settings.GetUILocaleID("ToggleAll"), "全部切换" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "全部展开" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "折叠所有行" },
@@ -204,10 +220,17 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("ToggleAllTooltip"),
                     "显示/隐藏所有图标。\n" +
                     "颜色：绿色 = 全部开启；蓝色 = 混合；红色 = 全部关闭。" },
+
+                // --- Tooltip labels ---
                 { m_Settings.GetUILocaleID("MoneyViewTooltipIncome"), "收入：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "支出：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "净额：" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "总计：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "当前趋势：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "出生：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "死亡：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "迁入：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "迁出：" },  
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "电力" },

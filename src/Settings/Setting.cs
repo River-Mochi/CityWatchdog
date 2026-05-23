@@ -84,9 +84,9 @@ namespace CityWatchdog
             "Megalopolis",
         };
 
-        internal const int TrendDisplayModeHourly = 0;
-        internal const int TrendDisplayModeMonthly = 1;
-        internal const int MoneyTooltipModeFullSize = 0;
+        internal const int MoneyViewModeHourly = 0;
+        internal const int MoneyViewModeMonthly = 1;
+        internal const int MoneyTooltipModeFullData = 0;
         internal const int MoneyTooltipModeCompact = 1;
         internal const int MoneyTooltipModeMini = 2;
 
@@ -101,19 +101,32 @@ namespace CityWatchdog
 
         [SettingsUISection(Actions, MoneyViewGroup)]
         [SettingsUISetter(typeof(Setting), nameof(OnMoneyViewChanged))]
-        public bool TrendTracker { get; set; }
+        public bool MoneyView { get; set; }
 
-        [SettingsUIDropdown(typeof(Setting), nameof(GetMoneyViewDisplayModeItems))]
+        [SettingsUIDropdown(typeof(Setting), nameof(GetMoneyViewModeItems))]
         [SettingsUISection(Actions, MoneyViewGroup)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
-        [SettingsUISetter(typeof(Setting), nameof(OnMoneyViewDisplayModeChanged))]
-        public int TrendDisplayMode { get; set; }
+        [SettingsUISetter(typeof(Setting), nameof(OnMoneyViewModeChanged))]
+        public int MoneyViewMode { get; set; }
 
         [SettingsUIDropdown(typeof(Setting), nameof(GetMoneyTooltipModeItems))]
         [SettingsUISection(Actions, MoneyViewGroup)]
         [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
         [SettingsUISetter(typeof(Setting), nameof(OnMoneyTooltipModeChanged))]
         public int MoneyTooltipMode { get; set; }
+
+        // UI converts 90..130 directly into 0.90em..1.30em for tooltip value text.
+        [SettingsUISlider(min = 90, max = 130, step = 5, scalarMultiplier = 1, unit = Unit.kPercentage)]
+        [SettingsUISection(Actions, MoneyViewGroup)]
+        [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
+        [SettingsUISetter(typeof(Setting), nameof(OnMoneyTooltipFontScaleChanged))]
+        public int MoneyTooltipFontScale { get; set; }
+
+        [SettingsUISlider(min = 90, max = 130, step = 5, scalarMultiplier = 1, unit = Unit.kPercentage)]
+        [SettingsUISection(Actions, MoneyViewGroup)]
+        [SettingsUIDisableByCondition(typeof(Setting), nameof(EnsureMoneyViewEnabled))]
+        [SettingsUISetter(typeof(Setting), nameof(OnPopulationTooltipFontScaleChanged))]
+        public int PopulationTooltipFontScale { get; set; }
 
         // --------------------------------------------------------------------
         // Actions tab - Money
@@ -269,7 +282,7 @@ namespace CityWatchdog
 
         public bool EnsureMoneyViewEnabled()
         {
-            return !TrendTracker;
+            return !MoneyView;
         }
 
         private bool HideUsageText()
@@ -348,19 +361,19 @@ namespace CityWatchdog
             };
         }
 
-        public DropdownItem<int>[] GetMoneyViewDisplayModeItems()
+        public DropdownItem<int>[] GetMoneyViewModeItems()
         {
             return new[]
             {
                 new DropdownItem<int>
                 {
-                    value = TrendDisplayModeHourly,
-                    displayName = GetOptionLocaleID("MoneyViewDisplayModeHourly"),
+                    value = MoneyViewModeHourly,
+                    displayName = GetOptionLocaleID("MoneyViewModeHourly"),
                 },
                 new DropdownItem<int>
                 {
-                    value = TrendDisplayModeMonthly,
-                    displayName = GetOptionLocaleID("MoneyViewDisplayModeMonthly"),
+                    value = MoneyViewModeMonthly,
+                    displayName = GetOptionLocaleID("MoneyViewModeMonthly"),
                 },
             };
         }
@@ -381,8 +394,8 @@ namespace CityWatchdog
                 },
                 new DropdownItem<int>
                 {
-                    value = MoneyTooltipModeFullSize,
-                    displayName = GetOptionLocaleID("MoneyTooltipModeFullSize"),
+                    value = MoneyTooltipModeFullData,
+                    displayName = GetOptionLocaleID("MoneyTooltipModeFullData"),
                 },
             };
         }
@@ -394,9 +407,12 @@ namespace CityWatchdog
 
         public override void SetDefaults()
         {
-            TrendTracker = true;
-            TrendDisplayMode = TrendDisplayModeHourly;
+            MoneyView = true;
+            MoneyViewMode = MoneyViewModeHourly;
             MoneyTooltipMode = MoneyTooltipModeCompact;
+            // If defaults change, also update bindValue fallbacks /UI/src/mods/Bindings/Bindings.tsx
+            MoneyTooltipFontScale = 120;
+            PopulationTooltipFontScale = 120;
 
             ManualMoneyAmount = 40000;
             AutomaticAddMoney = false;
@@ -420,11 +436,11 @@ namespace CityWatchdog
                 .UpdateMoneyViewBinding(value);
         }
 
-        private void OnMoneyViewDisplayModeChanged(int value)
+        private void OnMoneyViewModeChanged(int value)
         {
             World.DefaultGameObjectInjectionWorld?
                 .GetExistingSystemManaged<CityWatchdogUISystem>()?
-                .UpdateMoneyViewDisplayModeBinding(value);
+                .UpdateMoneyViewModeBinding(value);
         }
 
         private void OnMoneyTooltipModeChanged(int value)
@@ -432,6 +448,20 @@ namespace CityWatchdog
             World.DefaultGameObjectInjectionWorld?
                 .GetExistingSystemManaged<CityWatchdogUISystem>()?
                 .UpdateMoneyTooltipModeBinding(value);
+        }
+
+        private void OnMoneyTooltipFontScaleChanged(int value)
+        {
+            World.DefaultGameObjectInjectionWorld?
+                .GetExistingSystemManaged<CityWatchdogUISystem>()?
+                .UpdateMoneyTooltipFontScaleBinding(value);
+        }
+
+        private void OnPopulationTooltipFontScaleChanged(int value)
+        {
+            World.DefaultGameObjectInjectionWorld?
+                .GetExistingSystemManaged<CityWatchdogUISystem>()?
+                .UpdatePopulationTooltipFontScaleBinding(value);
         }
 
         private bool GetMilestoneLevelStatus()

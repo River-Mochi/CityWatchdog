@@ -15,13 +15,20 @@ namespace CityWatchdog.Systems
 
     public partial class CityFinanceSystem : GameSystemBaseExtension
     {
+        // Counts this system's OnUpdate passes. Higher = automatic money checks less often.
         private const int AutomaticMoneyCheckIntervalUpdates = 128;
+        // Hold-to-repeat delay for [ and ]. Higher = easier single-taps before repeat begins.
+        private const int ManualMoneyRepeatInitialDelayUpdates = 20;
+        // Hold-to-repeat speed for [ and ] after the delay. Lower = faster repeated money changes.
+        private const int ManualMoneyRepeatIntervalUpdates = 9;
 
         private CitySystem citySystem = null!;
         private CityConfigurationSystem cityConfigurationSystem = null!;
         private ProxyAction? addMoneyAction;
         private ProxyAction? subtractMoneyAction;
         private int automaticMoneyCheckCooldown;
+        private int addMoneyRepeatCooldown;
+        private int subtractMoneyRepeatCooldown;
 
         public enum FinanceActionKind
         {
@@ -40,7 +47,12 @@ namespace CityWatchdog.Systems
                 return;
             }
 
-            LogUtils.Info(() => $"Starting set unlimited money to limited money, PlayerMoney.m_Unlimited: {beforeMoney.m_Unlimited}, PlayerMoney.money: {beforeMoney.money}, CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}, CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
+            LogUtils.Info(() =>
+                "Starting set unlimited money to limited money.\n" +
+                $"PlayerMoney.m_Unlimited: {beforeMoney.m_Unlimited}\n" +
+                $"PlayerMoney.money: {beforeMoney.money}\n" +
+                $"CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}\n" +
+                $"CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
 
             ApplyLimitedMoneyMode();
             ClearLoadedUnlimitedMoneyFlag();
@@ -50,7 +62,12 @@ namespace CityWatchdog.Systems
                 return;
             }
 
-            LogUtils.Info(() => $"Set unlimited money to limited money completed, PlayerMoney.m_Unlimited: {afterMoney.m_Unlimited}, PlayerMoney.money: {afterMoney.money}, CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}, CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
+            LogUtils.Info(() =>
+                "Set unlimited money to limited money completed.\n" +
+                $"PlayerMoney.m_Unlimited: {afterMoney.m_Unlimited}\n" +
+                $"PlayerMoney.money: {afterMoney.money}\n" +
+                $"CityConfigurationSystem.unlimitedMoney: {cityConfigurationSystem.unlimitedMoney}\n" +
+                $"CityConfigurationSystem.overrideUnlimitedMoney: {cityConfigurationSystem.overrideUnlimitedMoney}");
         }
 
         private void ApplyLimitedMoneyMode()
@@ -67,7 +84,9 @@ namespace CityWatchdog.Systems
 
         private void ClearLoadedUnlimitedMoneyFlag()
         {
-            FieldInfo? loadedUnlimitedMoneyField = typeof(CityConfigurationSystem).GetField("m_LoadedUnlimitedMoney", BindingFlags.NonPublic | BindingFlags.Instance);
+            FieldInfo? loadedUnlimitedMoneyField = typeof(CityConfigurationSystem).GetField(
+                "m_LoadedUnlimitedMoney",
+                BindingFlags.NonPublic | BindingFlags.Instance);
             if (loadedUnlimitedMoneyField == null)
             {
                 CityWatchdog.Mod.DebugLog(() => "m_LoadedUnlimitedMoney is null");
@@ -115,6 +134,7 @@ namespace CityWatchdog.Systems
             citySystem = World.GetOrCreateSystemManaged<CitySystem>();
             cityConfigurationSystem = World.GetOrCreateSystemManaged<CityConfigurationSystem>();
             automaticMoneyCheckCooldown = 0;
+            ResetManualMoneyRepeat();
 
             addMoneyAction = TryGetAction(Setting.AddMoneyAction);
             if (addMoneyAction != null)
@@ -165,20 +185,56 @@ namespace CityWatchdog.Systems
             if (!InGame)
             {
                 automaticMoneyCheckCooldown = 0;
+                ResetManualMoneyRepeat();
                 return;
             }
 
             UpdateAutomaticAddMoney();
+            UpdateManualMoneyHotkeys();
+        }
 
-            if (addMoneyAction != null && addMoneyAction.WasPerformedThisFrame())
+        private void UpdateManualMoneyHotkeys()
+        {
+            UpdateManualMoneyHotkey(addMoneyAction, FinanceActionKind.ManualAdd, ref addMoneyRepeatCooldown);
+            UpdateManualMoneyHotkey(subtractMoneyAction, FinanceActionKind.ManualSubtract, ref subtractMoneyRepeatCooldown);
+        }
+
+        private void UpdateManualMoneyHotkey(ProxyAction? action, FinanceActionKind financeActionKind, ref int repeatCooldown)
+        {
+            if (action == null)
             {
-                OnAddMoney();
+                repeatCooldown = 0;
+                return;
             }
 
-            if (subtractMoneyAction != null && subtractMoneyAction.WasPerformedThisFrame())
+            // First press always applies once; held keys repeat only after the delay above.
+            if (action.WasPressedThisFrame())
             {
-                OnSubtractMoney();
+                ApplyMoneyChange(financeActionKind, Setting.Instance.ManualMoneyAmount);
+                repeatCooldown = ManualMoneyRepeatInitialDelayUpdates;
+                return;
             }
+
+            if (!action.IsPressed())
+            {
+                repeatCooldown = 0;
+                return;
+            }
+
+            if (repeatCooldown > 0)
+            {
+                repeatCooldown--;
+                return;
+            }
+
+            ApplyMoneyChange(financeActionKind, Setting.Instance.ManualMoneyAmount);
+            repeatCooldown = ManualMoneyRepeatIntervalUpdates;
+        }
+
+        private void ResetManualMoneyRepeat()
+        {
+            addMoneyRepeatCooldown = 0;
+            subtractMoneyRepeatCooldown = 0;
         }
 
         private void UpdateAutomaticAddMoney()

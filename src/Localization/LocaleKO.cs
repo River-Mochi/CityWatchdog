@@ -48,28 +48,45 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "사용법" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "머니 뷰" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
-                    "하단 툴바의 바닐라 돈/인구 화살표 옆에 숫자 추세 값을 추가합니다.\n" +
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "머니 뷰" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
+                    "하단 툴바의 기본 돈/인구 화살표 옆에 숫자 추세 값을 추가합니다.\n" +
                     "가벼운 툴바 표시 기능일 뿐이며 도시 자금이나 인구를 변경하지 않습니다." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "머니 뷰 주기" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "머니 뷰 주기" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "하단 툴바의 추세 텍스트를 돈과 인구에 대해 시간당 또는 월간 값으로 표시할지 선택합니다.\n" +
                     "월간 돈은 예산 수입에서 지출을 뺀 값이며, 인구는 24시간 예측을 사용합니다." },
-
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "시간당 (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "월간 (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "시간당 (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "월간 (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "돈 툴팁 스타일" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
-                    "돈 툴팁에 표시할 상세 정보를 선택합니다.\n" +
-                    "<Mini>는 /mo 및 /h 순액 값 2개만 표시합니다.\n" +
-                    "<Compact>는 큰 값을 짧게 표시합니다(15,212,318 대신 15.21M).\n" +
-                    "<Full size>는 긴 값과 총액 항목을 표시합니다." },
+                    "돈 호버 툴팁에 표시할 상세 정보를 선택합니다.\n" +
+                    "간단 = 처음 설치 시 기본값.\n" +
+                    "<미니>는 /mo 및 /h 순액 값 2개만 표시합니다.\n" +
+                    "<간단>은 큰 값을 짧게 표시합니다(15,212,318 대신 15.21M).\n" +
+                    "<전체 데이터>는 긴 값과 총액 항목을 표시합니다." },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "미니" },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "간단" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeFullSize"), "전체 크기" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeFullData"), "전체 데이터" },
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipFontScale)), "돈 글자 크기" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipFontScale)),
+                    "Money View 툴팁 숫자의 <글자 크기>를 조정합니다.\n" +
+                    "게임 기본값 = 100%\n" +
+                    "<모드 기본값 = 120%>\n" +
+                    "화면 아래의 돈에 마우스를 올리세요.\n" +
+                    "게임의 작은 툴팁을 보기 어려운 플레이어를 위한 옵션입니다."
+                },
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "인구 글자 크기" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "인구 툴팁 숫자의 <글자 크기>를 조정합니다.\n" +
+                    "게임 기본값 = 100%\n" +
+                    "<모드 기본값 = 120%>\n" +
+                    "화면 아래의 인구에 마우스를 올리세요."
+                },
 
 
                 // --- Money helpers ---
@@ -193,8 +210,8 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("EntryButtonTitle"), "CITY WATCHDOG" },
                 { m_Settings.GetUILocaleID("EntryButtonDescription"), "알림 아이콘 패널을 엽니다." },
                 { m_Settings.GetUILocaleID("NotificationIconShowOrHide"),
-                    "아무 행이나 펼치세요. [✓] 체크하면 표시, 체크 해제하면 알림을 숨깁니다.\n" +
-                    "도시 문제를 해결하지는 않고, 아이콘 clutter만 줄입니다." },
+                    "행을 펼치세요. [✓]는 표시, 해제하면 숨깁니다.\n" +
+                    "문제 해결은 아니고, 아이콘만 정리합니다." },
                 { m_Settings.GetUILocaleID("ToggleAll"), "모두 전환" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "모두 펼치기" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "모든 행 접기" },
@@ -204,10 +221,17 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("ToggleAllTooltip"),
                     "모든 아이콘을 표시/숨깁니다.\n" +
                     "색상: 초록 = 모두 켜짐, 파랑 = 혼합, 빨강 = 모두 꺼짐." },
+
+                // --- Tooltip labels ---
                 { m_Settings.GetUILocaleID("MoneyViewTooltipIncome"), "수입:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "지출:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "순액:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "합계:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "현재 추세:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "출생:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "사망:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "전입:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "전출:" },
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "전기" },

@@ -1,3 +1,6 @@
+// File: src/UI/src/mods/InfoCheckbox/InfoCheckbox.tsx
+// Purpose: Icon + label + checkbox row used by older notification panel pieces.
+
 import { CSSProperties } from "react";
 import { Checkbox } from "../Checkbox/Checkbox";
 import styles from "./InfoCheckbox.module.scss";

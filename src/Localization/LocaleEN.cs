@@ -48,17 +48,17 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "USAGE" },
 
                 // --- Money View ---
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendTracker)), "Money View" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendTracker)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "Money View" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
                     "Adds numeric trend values beside the vanilla bottom-toolbar money and population arrows.\n" +
                     "This is a lightweight toolbar display only; it does not change city money or population." },
 
-                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.TrendDisplayMode)), "Money View Frequency" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.TrendDisplayMode)),
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "Money View Frequency" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyViewMode)),
                     "Choose whether the bottom-toolbar trend text shows hourly or monthly values for money and population.\n" +
                     "Monthly uses budget income minus expenses for money, and a 24-hour projection for population." },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeHourly"), "Hourly (/h)" },
-                { m_Settings.GetOptionLocaleID("MoneyViewDisplayModeMonthly"), "Monthly (/mo)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeHourly"), "Hourly (/h)" },
+                { m_Settings.GetOptionLocaleID("MoneyViewModeMonthly"), "Monthly (/mo)" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipMode)), "Money Tooltip Style" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipMode)),
@@ -66,33 +66,55 @@ namespace CityWatchdog
                     "Compact = default on first install.\n"+
                     "<Mini> shows only 2 Net values for /mo and /h.\n" +
                     "<Compact> shortens large values (15.21M instead of 15,212,318).\n" +
-                    "<Full size> shows long values and Total fields." },
+                    "<Full data> shows long values and Total fields." },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeMini"), "Mini" },
                 { m_Settings.GetOptionLocaleID("MoneyTooltipModeCompact"), "Compact" },
-                { m_Settings.GetOptionLocaleID("MoneyTooltipModeFullSize"), "Full size" },
+                { m_Settings.GetOptionLocaleID("MoneyTooltipModeFullData"), "Full data" },
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyTooltipFontScale)), "Money font size" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyTooltipFontScale)),
+                    "Adjusts <font size> of Money View tooltip numbers.\n" +
+                    "Game default = 100%\n" +
+                    "<Mod default = 120%>\n" +
+                    "Hover over Money at bottom of the screen.\n"+
+                    "Requested by players who have hard time seeing smaller tooltips in the game."
+
+                },
+
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.PopulationTooltipFontScale)), "Population font size" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.PopulationTooltipFontScale)),
+                    "Adjusts <font size> of population tooltip numbers.\n" +
+                    "Game default = 100%\n" +
+                    "<Mod default = 120%>\n" +
+                    "Hover over Population at bottom of the screen."   
+                },
 
                 // --- Money helpers ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ManualMoneyAmount)), "Money Hotkey Amount" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ManualMoneyAmount)),
                     "Use this amount with the Add Money and Subtract Money hotkeys.\n" +
-                    "Default = 40,000.\n" +
-                    "This does nothing unless you use the hotkey in the city to add/subtract money.\n"+
+                    "<Mod default = 40,000>\n" +
+                    "This does nothing unless you use the hotkey to add/subtract money (in the city).\n"+
                     "For automated money, enable the Automatic Add Money option."
                 },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Add Money" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)), "Hotkey for adding money inside the city." },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.AddMoneyKeyboardBinding)),
+                    "Hotkey to <Add Money> inside the city." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.AddMoneyAction), "Add Money" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "Subtract Money" },
-                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)), "Hotkey for subtracting money inside the city." },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.SubtractMoneyKeyboardBinding)),
+                    "Hotkey to <Subtract Money> inside the city." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.SubtractMoneyAction), "Subtract Money" },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoney)), "Automatic Add Money" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoney)),
                     "When enabled [ ✓ ], City Watchdog checks the city balance while a city is loaded.\n" +
-                    "If the balance is below the threshold, it adds the selected automatic amount.\n" +
-                    "Recommend to use Manual money with hotkey (<[> or <]>) as needed instead of this automated option, but this is here if you want it."
+                    "- If the balance is <below the threshold>, \n" +
+                    "  it adds the selected automatic amount.\n" +
+                    "- Recommend to use Manual money with hotkey (<[> or <]>) as needed" +
+                    "  instead of this automated option, but this is here if you want it."
                 },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyThreshold)), "Automatic Money Threshold" },
@@ -123,7 +145,8 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)), "Open/Close Notification Panel" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationPanelKeyboardBinding)),
-                    "<Hotkey> for opening or closing the in-game notification panel.\n" +
+                    "<Hotkey> for opening or closing the\n" +
+                    "<notification panel> in the city.\n" +
                     "Works the same as clicking Top Left icon to open the full panel."
                 },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationPanelAction), "Open/Close notification panel" },
@@ -194,8 +217,8 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("EntryButtonTitle"), "CITY WATCHDOG" },
                 { m_Settings.GetUILocaleID("EntryButtonDescription"), "Open the notification icon panel." },
                 { m_Settings.GetUILocaleID("NotificationIconShowOrHide"),
-                    "Expand any row; [✓] check to show, uncheck to hide alerts.\n" +
-                    "This does not fix city problems, it hides icon clutter." },
+                    "Expand rows; [✓] check to show, uncheck to hide alerts.\n" +
+                    "This doesn't fix problems, it hides icon clutter." },
                 { m_Settings.GetUILocaleID("ToggleAll"), "Toggle All" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "Expand All" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "Collapse All Rows" },
@@ -205,10 +228,17 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("ToggleAllTooltip"),
                     "Show/hide all icons.\n" +
                     "Color: green = all on; blue = mixed; red = all off." },
+
+                // Tooltip labels.
                 { m_Settings.GetUILocaleID("MoneyViewTooltipIncome"), "Income:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipExpenses"), "Expenses:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipNet"), "Net:" },
                 { m_Settings.GetUILocaleID("MoneyViewTooltipTotal"), "Total:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "Current trend:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "Births:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "Deaths:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "Moved in:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "Moved out:" },
 
                 // --- Electricity notifications ---
                 { m_Settings.GetUILocaleID("Electricity"), "ELECTRICITY" },
