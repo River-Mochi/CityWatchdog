@@ -1,13 +1,16 @@
 // File: src/UI/src/mods/MoneyView/PopulationViewTooltip.tsx
 // Purpose: Adds CWD population flow rows to the vanilla population tooltip.
 
-import { useValue } from "cs2/api";
+import { bindValue, useValue } from "cs2/api";
 import { infoview, toolbarBottom } from "cs2/bindings";
 import { LocalizedNumber, Unit, useLocalization, type Localization } from "cs2/l10n";
 import { Children, isValidElement, type CSSProperties, type ReactNode } from "react";
 import { moneyView$, populationTooltipFontScale$ } from "../Bindings/Bindings";
 import styles from "./MoneyView.module.scss";
 import { getDisplayWholeValue, getNumericValue, getSignedAmountTone, POPULATION_ICON } from "./moneyViewShared";
+
+// Vanilla exposes this binding, but the generated cs2/bindings type does not currently list it.
+const homeless$ = bindValue<number>("populationInfo", "homeless", 0);
 
 export const PopulationViewTooltipContent = ({ baseContent }: { readonly baseContent: ReactNode }) => {
     const localization = useLocalization();
@@ -20,7 +23,7 @@ export const PopulationViewTooltipContent = ({ baseContent }: { readonly baseCon
     // These come from vanilla PopulationInfoviewUISystem, so CWD does not need its own sim queries.
     const births = getNumericValue(useValue(infoview.birthRate$));
     const deaths = getNumericValue(useValue(infoview.deathRate$));
-    const homeless = getNumericValue(useValue(infoview.homeless$));
+    const homeless = getNumericValue(useValue(homeless$));
     const movedIn = getNumericValue(useValue(infoview.movedIn$));
     const movedAway = getNumericValue(useValue(infoview.movedAway$));
 
@@ -106,7 +109,7 @@ const PopulationTooltipFlow = ({
 }) => {
     const displayValue = getDisplayWholeValue(value);
 
-    // Births/moved-in are positive flows; deaths/moved-out are shown as outgoing flows.
+    // Births/moved-in add population; deaths/moved-out subtract population.
     const signedValue = displayValue === 0 ? 0 : displayValue * direction;
 
     return (
@@ -136,7 +139,7 @@ const PopulationTooltipCount = ({
             label={label}
             value={displayValue}
             unit={Unit.Integer}
-            toneOverride={displayValue > 0 ? "negative" : "neutral"}
+            toneOverride="neutral"
             showSign={false}
         />
     );

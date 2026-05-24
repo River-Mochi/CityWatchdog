@@ -229,6 +229,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "Aktueller Trend:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "Geburten:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "Todesfälle:" },
+                { m_Settings.GetUILocaleID("PopulationTooltipHomeless"), "Obdachlos:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "Zuzüge:" },
                 { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "Wegzüge:" },
 

@@ -229,6 +229,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("PopulationTooltipCurrentTrend"), "現在のトレンド：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipBirths"), "出生：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipDeaths"), "死亡：" },
+                { m_Settings.GetUILocaleID("PopulationTooltipHomeless"), "住居なし：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipMovedIn"), "転入：" },
                 { m_Settings.GetUILocaleID("PopulationTooltipMovedOut"), "転出：" },
 

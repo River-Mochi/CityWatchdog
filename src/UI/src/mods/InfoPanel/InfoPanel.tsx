@@ -5,6 +5,8 @@ import { CSSProperties, ReactNode, useState } from "react";
 import { Button } from "cs2/ui";
 import styles from "../InfoPanel/InfoPanel.module.scss";
 
+type SummaryState = "off" | "partial" | "on";
+
 export interface InfoPanelProps {
     className?: string;
     style?: CSSProperties;
@@ -15,7 +17,7 @@ export interface InfoPanelProps {
     expanded?: boolean;
     onExpandedChange?: (expanded: boolean) => void;
     summary?: string;
-    summaryState?: "off" | "partial" | "on";
+    summaryState?: SummaryState;
     renderChildren?: () => ReactNode;
 }
 
@@ -31,7 +33,6 @@ export const InfoPanel = ({
     summary,
     summaryState = "off",
     renderChildren,
-
 }: InfoPanelProps) => {
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
     const isExpanded = expanded ?? internalExpanded;
@@ -64,12 +65,13 @@ export const InfoPanel = ({
                     onClick={toggleExpanded}
                 >
                     <span className={styles.infoPanelTitle}>{title}</span>
-                    <span className={`${styles.infoPanelSummary} ${summaryStateClass}`}>{summary}</span>
+                    {summary && <span className={`${styles.infoPanelSummary} ${summaryStateClass}`}>{summary}</span>}
                     <span className={styles.infoPanelToggle}>{isExpanded ? "-" : "+"}</span>
                 </Button>
             )}
 
             {title && !collapsible && <div className={styles.infoPanelTitle}>{title}</div>}
+
             {showBody && (
                 <div className={styles.infoPanelBody}>
                     {renderChildren ? renderChildren() : children}

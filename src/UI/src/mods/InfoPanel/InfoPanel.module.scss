@@ -38,6 +38,7 @@
         text-transform: none;
     }
 
+// Creates space between a section header and the first checkbox row.
 .infoPanelBody {
     margin-top: 6rem;
 }
@@ -55,18 +56,21 @@
     text-align: center;
 }
 
+// 0 selected: quiet neutral pill.
 .infoPanelSummaryOff {
     border-color: rgba(255, 255, 255, 0.18);
     background-color: rgba(255, 255, 255, 0.10);
     color: rgba(254, 254, 254, 0.70);
 }
 
+// Some selected: same blue family as Toggle All mixed state.
 .infoPanelSummaryPartial {
     border-color: rgba(84, 215, 255, 0.9);
     background-color: rgba(36, 88, 112, 0.42);
     color: rgba(210, 245, 255, 0.95);
 }
 
+// All selected: same green family as Toggle All on state.
 .infoPanelSummaryOn {
     border-color: rgba(95, 220, 120, 0.9);
     background-color: rgba(40, 110, 62, 0.42);
@@ -87,6 +91,7 @@
     line-height: 1;
 }
 
+// Hover makes the +/- box read more like an interactive control.
 .infoPanelHeader:hover .infoPanelToggle {
     border-color: rgba(255, 255, 255, 0.38);
     background-color: rgba(255, 255, 255, 0.20);
