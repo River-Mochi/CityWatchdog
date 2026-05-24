@@ -117,7 +117,7 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.AutomaticAddMoneyAmount)), "Automatischer Betrag" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.AutomaticAddMoneyAmount)),
-                    "Betrag, der jedes Mal hinzugefügt wird, wenn Automatisch Geld hinzufügen auslöst.\n" +
+                    "Betrag, der jedes Mal hinzugefügt wird, wenn die Option <Automatisch Geld hinzufügen> ausgelöst wird.\n" +
                     "Wähle einen Wert, der die Stadt sicher über den Schwellenwert bringt." },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.InitialMoney)), "Startgeld" },
