@@ -70,10 +70,10 @@
     color: rgba(210, 245, 255, 0.95);
 }
 
-// All selected: same green family as Toggle All on state.
+// All selected: green outline/text, neutral fill to avoid too many bright green pills.
 .infoPanelSummaryOn {
     border-color: rgba(95, 220, 120, 0.9);
-    background-color: rgba(40, 110, 62, 0.42);
+    background-color: rgba(255, 255, 255, 0.10);
     color: rgba(215, 255, 220, 0.95);
 }
 
