@@ -160,11 +160,11 @@
 
 // -----------------------------------------------------------------------------
 // Extra rows appended to the vanilla population tooltip.
-// Values use vanilla population infoview bindings: births, deaths, moved in/out.
+// vanilla population infoview bindings: births, deaths, homeless, moved in/out.
 // -----------------------------------------------------------------------------
 .populationTooltipWrapper {
     width: 255rem;
-    // Width knob for the population tooltip. Lower = narrower, higher = more room for KO/CN suffixes.
+    // Width knob for population tooltip. Lower = narrower, higher = more room for KO/CN suffixes.
     // Separate Options slider from Money View so KO/CN can be tuned without changing money.
     --populationTooltipValueSize: 1em;
 }

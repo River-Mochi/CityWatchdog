@@ -50,7 +50,7 @@ namespace CityWatchdog
                 // --- Money View ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyView)), "Geldansicht" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.MoneyView)),
-                    "Löst nichts, räumt nur Icon-Chaos auf.\n" +
+                    "Fügt numerische Trendwerte neben den Vanilla-Pfeilen für Geld und Bevölkerung in der unteren Leiste hinzu.\n" +
                     "Dies ist nur eine leichte Anzeige in der Werkzeugleiste; sie ändert weder Stadtgeld noch Bevölkerung." },
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.MoneyViewMode)), "Geldansicht-Häufigkeit" },
