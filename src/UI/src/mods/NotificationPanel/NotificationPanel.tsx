@@ -1,5 +1,5 @@
 // File: src/UI/src/mods/NotificationPanel/NotificationPanel.tsx
-// Purpose: In-city CWD notification icon panel.
+// Purpose: In-city CWD notification icon panel and buttons.
 
 import { useValue } from "cs2/api";
 import { game } from "cs2/bindings";
@@ -26,7 +26,13 @@ import { useAllNotificationValues, useSectionValues } from "./notificationHooks"
 // Title icon is a custom mod image emitted by webpack to coui://ui-mods/images/.
 import TitleBarIconPath from "../../../images/NotificationIcon_TitleBar.svg";
 
+// Sort icons are custom mod images emitted by webpack to coui://ui-mods/images/.
+import SortArrowUpPath from "../../../images/sort-arrow-up.svg";
+import SortArrowDownPath from "../../../images/sort-arrow-down.svg";
+
 const modIconSrc = TitleBarIconPath;
+const sortArrowUpSrc = SortArrowUpPath;
+const sortArrowDownSrc = SortArrowDownPath;
 
 // Info icon uses the built-in game media path.
 const infoIconSrc = "Media/Game/Icons/AdvisorInfoViewWhite.svg";
@@ -67,6 +73,7 @@ const NotificationPanelContent = () => {
             : styles.toggleAllOff;
 
     const allSectionsExpanded = sections.every((section) => expandedSections[section.localeId] === true);
+    const sortIconSrc = sortAscending ? sortArrowUpSrc : sortArrowDownSrc;
 
     const localize: Localize = (localeId, fallback, raw = false) => {
         if (raw) {
@@ -133,13 +140,29 @@ const NotificationPanelContent = () => {
                 </div>
             }
         >
-            {/* Keeps the help icon pinned left and the three action buttons grouped right. */}
+            {/* Left side: help + sort. Right side: mass actions. */}
             <div className={styles.toolbar}>
-                <Tooltip tooltip={tooltipContent("NotificationIconShowOrHide", "Expand rows; [✓] check to show, uncheck to hide alerts.\nDoes not fix city problems, it hides messy icons.")}>
-                    <div className={styles.infoButton}>
-                        <img src={infoIconSrc} className={styles.infoIcon} />
-                    </div>
-                </Tooltip>
+                <div className={styles.toolbarLeft}>
+                    <Tooltip tooltip={tooltipContent("NotificationIconShowOrHide", "Expand rows; [✓] check to show, uncheck to hide alerts.\nDoes not fix city problems, it hides messy icons.")}>
+                        <div className={styles.infoButton}>
+                            <img src={infoIconSrc} className={styles.infoIcon} />
+                        </div>
+                    </Tooltip>
+
+                    <Tooltip tooltip={localize("SortOrderTooltip", "Sort order")}>
+                        <Button
+                            className={`${styles.toolbarButton} ${styles.sortButton}`}
+                            onClick={() => { setSortAscending(!sortAscending); }}
+                            focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
+                        >
+                            <img
+                                src={sortIconSrc}
+                                className={`${styles.toolbarIcon} ${styles.sortIcon}`}
+                                alt=""
+                            />
+                        </Button>
+                    </Tooltip>
+                </div>
 
                 <div className={styles.toolbarButtons}>
                     <Tooltip tooltip={allSectionsExpanded ? localize("CollapseAll", "Collapse All Rows") : localize("ExpandAll", "Expand All Rows")}>
@@ -153,16 +176,6 @@ const NotificationPanelContent = () => {
                                 className={`${styles.toolbarIcon} ${styles.expandCollapseIcon}`}
                                 alt=""
                             />
-                        </Button>
-                    </Tooltip>
-
-                    <Tooltip tooltip={localize("SortOrderTooltip", "Sort order")}>
-                        <Button
-                            className={styles.toolbarButton + " " + styles.sortButton}
-                            onClick={() => { setSortAscending(!sortAscending); }}
-                            focusKey={VanillaComponentResolver.instance.FOCUS_DISABLED}
-                        >
-                            {sortAscending ? localize("SortAscending", "ASC ↑") : localize("SortDescending", "DESC ↓")}
                         </Button>
                     </Tooltip>
 

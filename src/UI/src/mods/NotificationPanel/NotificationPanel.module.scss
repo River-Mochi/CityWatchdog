@@ -32,7 +32,7 @@
     // Actual vanilla Panel content wrapper.
     // This is the main large panel body behind toolbar + notification rows.
     > div[class*="content_"] {
-        background-image: linear-gradient( to bottom, rgba(55, 82, 96, 0.72), rgba(31, 45, 60, 0.66) ) !important;
+        background-image: linear-gradient(to bottom, rgba(55, 82, 96, 0.72), rgba(31, 45, 60, 0.66)) !important;
         background-color: transparent !important;
     }
     // Keep only the original padding/close-button positioning fixes.
@@ -59,7 +59,7 @@
     align-items: center;
     padding: 0 4rem;
     border-radius: 0;
-    background-color: transparent;  // hide the inner title bar on the header
+    background-color: transparent; // hide the inner title bar on the header
 }
 
 .headerTitleArea {
@@ -103,7 +103,9 @@
     color: rgba(254, 254, 254, 0.9);
 }
 
-// Info icon on left, buttons on right. Gap between them is 8rem.
+// Toolbar layout:
+// left = help + sort
+// right = expand/collapse + toggle all
 .toolbar {
     display: flex;
     flex-direction: row;
@@ -113,7 +115,7 @@
     padding: 10rem;
 }
 
-// Keeps all 3 buttons grouped together
+.toolbarLeft,
 .toolbarButtons {
     display: flex;
     flex-direction: row;
@@ -125,7 +127,7 @@
     white-space: pre-line;
 }
 
-//gives info icon the same framed button style
+// Gives info icon the same framed button style.
 .infoButton {
     width: 32rem;
     height: 32rem;
@@ -141,7 +143,6 @@
         background-color: rgba(55, 78, 94, 0.74);
     }
 }
-
 
 .infoIcon {
     width: 28rem;
@@ -183,6 +184,19 @@
     vertical-align: middle;
 }
 
+.sortButton {
+    width: 34rem;
+    min-width: 34rem;
+    flex: 0 0 34rem;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sortIcon {
+    width: 24rem;
+    height: 24rem;
+}
+
 .toggleAllIcon {
     width: 28rem;
     height: 28rem;
@@ -193,21 +207,12 @@
     transform-origin: center;
 }
 
-
 .expandButton {
     width: 34rem;
     min-width: 34rem;
     flex: 0 0 34rem;
     padding-left: 0;
     padding-right: 0;
-}
-
-.sortButton {
-    width: auto;
-    min-width: 64rem;
-    flex: 0 0 auto;
-    padding-left: 6rem;
-    padding-right: 6rem;
 }
 
 .toggleButton {
