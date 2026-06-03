@@ -20,7 +20,7 @@
     // Actual vanilla Panel header wrapper.
     // Higher alpha = darker/less see-through. Lower alpha = lighter/more see-through.
     > div[class*="header_"] {
-        min-height: 24rem !important;
+        min-height: 22rem !important;
         background-color: rgba(36, 54, 66, 0.72) !important;
         background-image: none !important;
         transition: background-color 120ms ease-out;
@@ -53,7 +53,7 @@
 .header {
     width: 100%;
     min-width: 0;
-    height: 24rem;
+    height: 22rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -72,8 +72,8 @@
 }
 
 .headerModIcon {
-    width: 26rem;
-    height: 26rem;
+    width: 24rem;
+    height: 24rem;
     margin-right: 10rem;
     object-fit: contain;
 }
@@ -91,9 +91,9 @@
 }
 
 .headerCloseButton {
-    flex: 0 0 22rem;
-    width: 22rem;
-    height: 22rem;
+    flex: 0 0 20rem;
+    width: 20rem;
+    height: 20rem;
     margin-left: 8rem;
 }
 
@@ -220,22 +220,22 @@
 }
 
 .toggleButton {
-    width: 82rem;
-    min-width: 82rem;
-    max-width: 96rem;
-    flex: 0 0 auto;
-    padding-left: 6rem;
-    padding-right: 6rem;
+    width: auto;
+    min-width: 74rem;
+    max-width: 122rem;
+    flex: 0 1 auto;
+    padding-left: 4rem;
+    padding-right: 4rem;
     box-sizing: border-box;
 }
 
 .toggleButtonText {
-    max-width: 84rem;
+    max-width: 114rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: var(--fontSizeXS);
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1;
 }
 

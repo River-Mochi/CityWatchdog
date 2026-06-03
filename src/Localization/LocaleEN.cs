@@ -139,7 +139,7 @@ namespace CityWatchdog
                 // --- Notifications ---
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ToggleNotificationsKeyboardBinding)), "Toggle Notification Icons" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ToggleNotificationsKeyboardBinding)),
-                    "<Hotkey> for the same action as the in-game <[Toggle All]> icon button.\n" +
+                    "<Hotkey> for the same action as the in-game <[TOGGLE ALL]> icon button.\n" +
                     "It shows or hides all listed city notification icons instantly." },
                 { m_Settings.GetBindingKeyLocaleID(Setting.ToggleNotificationsAction), "Instant Show/Hide all notification icons" },
 
@@ -220,7 +220,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("NotificationIconShowOrHide"),
                     "Expand rows; [✓] check to show, uncheck to hide alerts.\n" +
                     "This doesn't fix problems, it hides icon clutter." },
-                { m_Settings.GetUILocaleID("ToggleAll"), "Toggle All" },
+                { m_Settings.GetUILocaleID("ToggleAll"), "TOGGLE ALL" },
                 { m_Settings.GetUILocaleID("ExpandAll"), "Expand All" },
                 { m_Settings.GetUILocaleID("CollapseAll"), "Collapse All Rows" },
 
