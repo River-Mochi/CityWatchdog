@@ -4,26 +4,27 @@
 	<!--Name of the mod to display to players-->
 	<DisplayName Value="City Watchdog" />
 	<!--Short description of the mod-->
-	<ShortDescription Value="Show/Hide notification alert icons, add/remove Money, view Money, set Milestones." />
+	<ShortDescription Value="Show/Hide notification alert icons, add/remove Money, set Milestones, Better Money Tooltip bottom menu." />
 	<!--Long description of the mod. Single line or multi line. Supports minimal markdown subset-->
 	<!--LongDescription Value="This is a long description" /-->
 	<LongDescription>
 
-- City Watchdog helps reduce city alert icon clutter and includes handy city setup tools.
-- It's modeled on the original City Controller mod.
+- Instant on/off toggle for all city alert icons.
+- Great for reducing visual stress or just a cleaner UI.
+- Modeled on the original City Controller mod.
 - Many new features and future plans.
 
 ### Features
 
 - Show or hide notification alert icons.
-- Start with a custom Milestone. Trains now! Yes you can!.
 - Open the notification panel from the top-left button or hotkey.
+- Start with a custom Milestone. Trains now! Yes you can!.
 
 #### Money tools
+- Quick handy info: hover over bottom menu money/population tooltips for instant info chart (faster than opening Info view).
 - Manual: add/subtract money on the fly with hotkeys ([ or ]).
 - Optional automatic money refiller. Manual is still recommended.
-- Money view for toolbar values.
-- Convert saves from Unlimited money type to normal Limited money.
+- Convert saves from Unlimited Money type to normal Limited Money.
 
 Hotkeys
 - Shift+N = open/close panel (same as clicking on Top Left icon).
@@ -34,21 +35,21 @@ Hotkeys
 
 ### Important Notes
 - Check **Show Instructions** on the About tab.
-- City Watchdog hides/shows alert icons; it does not fix the problem. Great for for reducing visual stress or just a cleaner UI.
-- Make a backup before converting an Unlimited Money save. Mod cannot undo that conversion.
-- This is a heavily rewritten redux/expansion of City Controller. It is nearly a whole rewrite.
-- CWD's Money View is a redesigned ground-up code write of similar money info to Show Text Trends (retired).
-MV uses different methods to do vanilla CS2 extensions, 3 customizable money layouts, settings options, and translations.
+- City Watchdog hides/shows alert icons and does not fix the underlying problem; get a break until you are ready to fix it.
+- Unlimited Money save: make a backup before converting the save. Mod cannot undo that conversion.
+- This is heavily rewritten and explansion of City Controller, nearly a whole rewrite.
+- CWD's Money View is a ground-up code write of similar money info to Show Text Trends (retired).
+Money viewer uses new designed methods to do customizable money layouts, settings options, and adds translations.
 - Install Achievement Fixer mod if you want Achievements while using mods, it was removed from this mod.
 
 I hope you enjoy the new features, better performance, and safety checks!
 
 ### Support and feedback
 Feedback is welcome through GitHub or Discord links on the right.
-If you like mods, give a Like :)
+If you like effort put into free mods, give a Like :)
 
 ### Future
-- 10 languages supported now, more in the future!
+- 15 languages supported now, more in the future.
 - If anyone can make better thumbnail or  screenshots, please let me know.
 
 ### Credits
@@ -60,6 +61,8 @@ If you like mods, give a Like :)
 - UnMaestro - German translation editing
 - Thumbnail photograph by Maryia Shedava at Mont Saint-Michel in Normandy, France:
 https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
+
+tags: Visual, UI organize icons
 
 </LongDescription>
 	<!--Thumbnail-->
@@ -77,7 +80,7 @@ https://unsplash.com/photos/a-dog-poses-in-front-of-a-distant-castle-bEpjaU_CTcM
 	<!--Link to the forum post where the mod can be discussed-->
 	<ForumLink Value="https://forum.paradoxplaza.com/forum/threads/city-watchdog.1924169/" />
 	<!--Version of the mod-->
-	<ModVersion Value="0.9.3" />
+	<ModVersion Value="0.9.4" />
 	<!--Recommended version of the base game to use the mod-->
 	<GameVersion Value="1.5.*" />
 	<!--Dependency for the mod, can be set multiple times-->
