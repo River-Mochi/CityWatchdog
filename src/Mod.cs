@@ -4,6 +4,7 @@
 namespace CityWatchdog
 {
     using CityWatchdog.Systems;
+    using CS2Shared.RiverMochi;
     using Colossal;
     using Colossal.IO.AssetDatabase;
     using Colossal.Localization;

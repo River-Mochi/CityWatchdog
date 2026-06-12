@@ -1,22 +1,40 @@
+// Copyright (c) River Mochi. See LICENSE file in the project root for full license information.
+// <copyright file="LogUtils.cs" company="River-Mochi. MIT License">
+// </copyright>
+
 // File: Utils/LogUtils.cs
-// Version: 0.6.4 based on River-Mochi shared CS2 utilities.
+// Version: 0.6.5 based on River-Mochi shared CS2 utilities.
 // Purpose: popup-safe direct-file logging helpers for CS2 mods.
-// Why: routine Info/Warn are written with .NET FileStream/StreamWriter
+// Why: routine Info/Warn/Error are written with .NET FileStream/StreamWriter
 //   instead of sending every message through Colossal's logger write path, which
 //   can surface UI popups if its internal stream fails.
-// Usage:
-// 1. Create your mod logger normally in Mod.cs:
-//    static readonly ILog s_Log = LogManager.GetLogger("YourModId").SetShowsErrorsInUI(false);
-// 2. Optional: call LogUtils.Configure("YourModId") once on load for fallback file naming.
-// 3. Log with explicit logger: LogUtils.Info(s_Log, () => "message");
-// The logger variable can be named anything; s_Log is just the name used in River-Mochi mods.
+//
+// Setup in Mod.cs:
+//   public static readonly ILog s_Log =
+//       LogManager.GetLogger(ModId).SetShowsErrorsInUI(false);
+//
+//   public void OnLoad(UpdateSystem updateSystem)
+//   {
+//       LogUtils.Configure(ModId, s_Log);
+//       LogUtils.Info("Mod loaded.");
+//   }
+//
+// How to use:
+//   Simple one-time logs:       LogUtils.Info("message");
+//   Warnings/errors:            LogUtils.Warn("message", ex); / LogUtils.Error("message", ex);
+//   Inside loops/update/render:  LogUtils.Info(() => $"message {value}");
+//   Warn once:                  LogUtils.WarnOnce("key", () => "message");
+//
+// Simple string overloads are easiest to read.
+// Func<string> overloads are lazy: the message is built only after the log level check.
+// Use lazy messages in hot paths such as OnUpdate, rendering, tool hover, or entity loops.
 
-namespace CityWatchdog
+namespace CS2Shared.RiverMochi
 {
-    using Colossal.Logging;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Colossal.Logging;
 
     public static class LogUtils
     {
@@ -32,8 +50,8 @@ namespace CityWatchdog
         // Used only if the passed ILog is null or its metadata throws during early startup/shutdown.
         private static string s_FallbackLogName = string.Empty;
 
-        // Optional default logger for River-Mochi mods that prefer concise LogUtils.Info(() => ...)
-        // call sites after configuring once in Mod.OnLoad.
+        // Optional default logger for short calls such as LogUtils.Info("message").
+        // It is remembered when a mod calls Configure("ModId", s_Log) or SetDefaultLog(s_Log).
         private static ILog? s_DefaultLog;
 
         // Optional one-time setup: pass your mod id so fallback writes can still find ModName.log.
@@ -51,13 +69,14 @@ namespace CityWatchdog
             }
         }
 
-        // Optional one-time setup with a default logger for concise local call sites.
+        // Optional one-time setup with a default logger for concise LogUtils.Info("message") calls.
         public static void Configure(string fallbackLogName, ILog? defaultLog)
         {
             Configure(fallbackLogName);
             s_DefaultLog = defaultLog;
         }
 
+        // Sets or replaces the remembered logger used by short calls.
         public static void SetDefaultLog(ILog? log)
         {
             s_DefaultLog = log;
@@ -72,7 +91,151 @@ namespace CityWatchdog
             }
         }
 
-        // Logs a warning only once per logger+key so hot update loops cannot spam the log.
+        // Simple one-time info log.
+        public static void Info(string message)
+        {
+            TryLog(s_DefaultLog, Level.Info, () => message);
+        }
+
+        // Simple one-time info log with explicit logger.
+        public static void Info(ILog? log, string message)
+        {
+            TryLog(log, Level.Info, () => message);
+        }
+
+        // Lazy info log for hot paths or expensive message construction.
+        public static void Info(Func<string> messageFactory)
+        {
+            TryLog(s_DefaultLog, Level.Info, messageFactory);
+        }
+
+        // Lazy info log with explicit logger.
+        public static void Info(ILog? log, Func<string> messageFactory)
+        {
+            TryLog(log, Level.Info, messageFactory);
+        }
+
+        // Simple recoverable warning.
+        public static void Warn(string message, Exception? exception = null)
+        {
+            TryLog(s_DefaultLog, Level.Warn, () => message, exception);
+        }
+
+        // Simple recoverable warning with explicit logger.
+        public static void Warn(ILog? log, string message, Exception? exception = null)
+        {
+            TryLog(log, Level.Warn, () => message, exception);
+        }
+
+        // Lazy recoverable warning.
+        public static void Warn(Func<string> messageFactory, Exception? exception = null)
+        {
+            TryLog(s_DefaultLog, Level.Warn, messageFactory, exception);
+        }
+
+        // Lazy recoverable warning with explicit logger.
+        public static void Warn(ILog? log, Func<string> messageFactory, Exception? exception = null)
+        {
+            TryLog(log, Level.Warn, messageFactory, exception);
+        }
+
+        // Simple serious error.
+        public static void Error(string message, Exception? exception = null)
+        {
+            TryLog(s_DefaultLog, Level.Error, () => message, exception);
+        }
+
+        // Simple serious error with explicit logger.
+        public static void Error(ILog? log, string message, Exception? exception = null)
+        {
+            TryLog(log, Level.Error, () => message, exception);
+        }
+
+        // Lazy serious error.
+        public static void Error(Func<string> messageFactory, Exception? exception = null)
+        {
+            TryLog(s_DefaultLog, Level.Error, messageFactory, exception);
+        }
+
+        // Lazy serious error with explicit logger.
+        public static void Error(ILog? log, Func<string> messageFactory, Exception? exception = null)
+        {
+            TryLog(log, Level.Error, messageFactory, exception);
+        }
+
+        // Simple debug log.
+        public static void Debug(string message)
+        {
+            TryLog(s_DefaultLog, Level.Debug, () => message);
+        }
+
+        // Simple debug log with explicit logger.
+        public static void Debug(ILog? log, string message)
+        {
+            TryLog(log, Level.Debug, () => message);
+        }
+
+        // Lazy debug log.
+        public static void Debug(Func<string> messageFactory)
+        {
+            TryLog(s_DefaultLog, Level.Debug, messageFactory);
+        }
+
+        // Lazy debug log with explicit logger.
+        public static void Debug(ILog? log, Func<string> messageFactory)
+        {
+            TryLog(log, Level.Debug, messageFactory);
+        }
+
+        // Simple trace log.
+        public static void Trace(string message)
+        {
+            TryLog(s_DefaultLog, Level.Trace, () => message);
+        }
+
+        // Simple trace log with explicit logger.
+        public static void Trace(ILog? log, string message)
+        {
+            TryLog(log, Level.Trace, () => message);
+        }
+
+        // Lazy trace log.
+        public static void Trace(Func<string> messageFactory)
+        {
+            TryLog(s_DefaultLog, Level.Trace, messageFactory);
+        }
+
+        // Lazy trace log with explicit logger.
+        public static void Trace(ILog? log, Func<string> messageFactory)
+        {
+            TryLog(log, Level.Trace, messageFactory);
+        }
+
+        // Simple verbose log.
+        public static void Verbose(string message)
+        {
+            TryLog(s_DefaultLog, Level.Verbose, () => message);
+        }
+
+        // Simple verbose log with explicit logger.
+        public static void Verbose(ILog? log, string message)
+        {
+            TryLog(log, Level.Verbose, () => message);
+        }
+
+        // Lazy verbose log.
+        public static void Verbose(Func<string> messageFactory)
+        {
+            TryLog(s_DefaultLog, Level.Verbose, messageFactory);
+        }
+
+        // Lazy verbose log with explicit logger.
+        public static void Verbose(ILog? log, Func<string> messageFactory)
+        {
+            TryLog(log, Level.Verbose, messageFactory);
+        }
+
+        // Logs a warning only once per remembered logger+key so hot update loops cannot spam the log.
         public static bool WarnOnce(string key, Func<string> messageFactory, Exception? exception = null)
         {
             return WarnOnce(s_DefaultLog, key, messageFactory, exception);
@@ -111,76 +274,10 @@ namespace CityWatchdog
             return true;
         }
 
-        // Routine status/debugging info. Pass your mod's s_Log explicitly for clear call sites.
-        public static void Info(ILog? log, Func<string> messageFactory)
+        // Central safe entrypoint using the remembered logger.
+        public static void TryLog(Level level, Func<string> messageFactory, Exception? exception = null)
         {
-            TryLog(log, Level.Info, messageFactory);
-        }
-
-        // Routine status/debugging info using the configured default logger.
-        public static void Info(Func<string> messageFactory)
-        {
-            TryLog(s_DefaultLog, Level.Info, messageFactory);
-        }
-
-        // Recoverable problem worth showing in the mod log, optionally with an exception stack trace.
-        public static void Warn(ILog? log, Func<string> messageFactory, Exception? exception = null)
-        {
-            TryLog(log, Level.Warn, messageFactory, exception);
-        }
-
-        // Recoverable problem using the configured default logger.
-        public static void Warn(Func<string> messageFactory, Exception? exception = null)
-        {
-            TryLog(s_DefaultLog, Level.Warn, messageFactory, exception);
-        }
-
-        // Serious problem that should still avoid Colossal logger UI popups when possible.
-        public static void Error(ILog? log, Func<string> messageFactory, Exception? exception = null)
-        {
-            TryLog(log, Level.Error, messageFactory, exception);
-        }
-
-        // Serious problem using the configured default logger.
-        public static void Error(Func<string> messageFactory, Exception? exception = null)
-        {
-            TryLog(s_DefaultLog, Level.Error, messageFactory, exception);
-        }
-
-        // Debug output obeys the logger's enabled level before building the message string.
-        public static void Debug(ILog? log, Func<string> messageFactory)
-        {
-            TryLog(log, Level.Debug, messageFactory);
-        }
-
-        // Debug output using the configured default logger.
-        public static void Debug(Func<string> messageFactory)
-        {
-            TryLog(s_DefaultLog, Level.Debug, messageFactory);
-        }
-
-        // Very detailed diagnostics for rare deep investigations.
-        public static void Trace(ILog? log, Func<string> messageFactory)
-        {
-            TryLog(log, Level.Trace, messageFactory);
-        }
-
-        // Very detailed diagnostics using the configured default logger.
-        public static void Trace(Func<string> messageFactory)
-        {
-            TryLog(s_DefaultLog, Level.Trace, messageFactory);
-        }
-
-        // Player-enabled verbose logs: useful for test builds without making normal logs noisy.
-        public static void Verbose(ILog? log, Func<string> messageFactory)
-        {
-            TryLog(log, Level.Verbose, messageFactory);
-        }
-
-        // Player-enabled verbose logs using the configured default logger.
-        public static void Verbose(Func<string> messageFactory)
-        {
-            TryLog(s_DefaultLog, Level.Verbose, messageFactory);
+            TryLog(s_DefaultLog, level, messageFactory, exception);
         }
 
         // Central safe entrypoint: checks level first, builds message safely, then direct-appends.
@@ -337,29 +434,19 @@ namespace CityWatchdog
         private static string GetLevelName(Level level)
         {
             if (level == Level.Warn)
-            {
-                return "WARN";
-            }
+            { return "WARN"; }
 
             if (level == Level.Error)
-            {
-                return "ERROR";
-            }
+            { return "ERROR"; }
 
             if (level == Level.Debug)
-            {
-                return "DEBUG";
-            }
+            {    return "DEBUG"; }
 
             if (level == Level.Trace)
-            {
-                return "TRACE";
-            }
+            {    return "TRACE"; }
 
             if (level == Level.Verbose)
-            {
-                return "VERBOSE";
-            }
+            { return "VERBOSE"; }
 
             return "INFO";
         }

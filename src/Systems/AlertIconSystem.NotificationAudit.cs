@@ -3,6 +3,7 @@
 
 namespace CityWatchdog.Systems
 {
+    using CS2Shared.RiverMochi;
     using Game.Notifications;
     using Game.Economy;
     using Game.Prefabs;

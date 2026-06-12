@@ -5,6 +5,7 @@
 
 namespace CityWatchdog
 {
+    using CS2Shared.RiverMochi;
     using Colossal.Logging;
     using System;
     using System.Diagnostics;

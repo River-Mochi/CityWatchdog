@@ -3,6 +3,7 @@
 
 namespace CityWatchdog.Systems
 {
+    using CS2Shared.RiverMochi;
     using Colossal.Serialization.Entities;
     using Game;
     using Game.City;

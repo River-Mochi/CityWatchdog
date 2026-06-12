@@ -4,6 +4,7 @@
 namespace CityWatchdog.Systems
 {
     using CityWatchdog.Data;
+    using CS2Shared.RiverMochi;
     using Colossal.UI.Binding;
     using Game;
     using Game.Input;
