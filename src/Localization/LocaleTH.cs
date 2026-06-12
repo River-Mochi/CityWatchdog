@@ -45,6 +45,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "ปุ่มลัด" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
+                { m_Settings.GetOptionGroupLocaleID(Setting.AboutDiagnostics), "DIAGNOSTICS" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "วิธีใช้" },
 
                 // --- Money View ---
@@ -194,7 +195,15 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "เปิดหน้า Paradox Mods ของผู้สร้าง" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.WriteNotificationAuditLog)), "Debug Audit to Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.WriteNotificationAuditLog)),
+                    "Not needed for normal gameplay.\n" +
+                    "For testers and post-patch checks: writes a CityWatchdog.log report comparing live game notification prefabs with the notification icons City Watchdog currently controls." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenLog)), "Open Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenLog)),
+                    "Opens CityWatchdog.log if it exists.\n" +
+                    "If the log file is missing, opens the Logs folder instead." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "แสดงคำแนะนำ" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "แสดงหรือซ่อนคำแนะนำด้านล่าง" },
 
@@ -289,6 +298,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TrafficShipConnectionNotification"), "ไม่มีทางน้ำเชื่อม" },
                 { m_Settings.GetUILocaleID("TrafficTrainConnectionNotification"), "ไม่มีรางเชื่อม" },
                 { m_Settings.GetUILocaleID("TrafficPedestrianConnectionNotification"), "คนเดินเข้าไม่ได้" },
+                { m_Settings.GetUILocaleID("TrafficBicycleConnectionNotification"), "จักรยานเข้าไม่ได้" },
 
                 // --- Company notifications ---
                 { m_Settings.GetUILocaleID("Company"), "บริษัท" },
@@ -337,7 +347,9 @@ namespace CityWatchdog
 
                 // --- Resource and route notifications ---
                 { m_Settings.GetUILocaleID("ResourceConsumer"), "ใช้ทรัพยากร" },
-                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "ของสำหรับศูนย์พักพิงหมด" },
+                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "ทรัพยากรไม่พอ" },
+                { m_Settings.GetUILocaleID("ResourceConnection"), "การเชื่อมต่อทรัพยากร" },
+                { m_Settings.GetUILocaleID("ResourceConnectionWarningNotification"), "สายทรัพยากรไม่ได้เชื่อมต่อ" },
                 { m_Settings.GetUILocaleID("Route"), "เส้นทาง" },
                 { m_Settings.GetUILocaleID("RoutePathfindNotification"), "หาเส้นทางไม่ได้" },
 

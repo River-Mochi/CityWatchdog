@@ -37,12 +37,14 @@ import {
     OnRoutePathfindNotificationBindingToggle,
     OnTrafficBottleneckNotificationBindingToggle,
     OnTrafficCarConnectionNotificationBindingToggle,
+    OnTrafficBicycleConnectionNotificationBindingToggle,
     OnTrafficDeadEndNotificationBindingToggle,
     OnTrafficPedestrianConnectionNotificationBindingToggle,
     OnTrafficRoadConnectionNotificationBindingToggle,
     OnTrafficShipConnectionNotificationBindingToggle,
     OnTrafficTrackConnectionNotificationBindingToggle,
     OnTrafficTrainConnectionNotificationBindingToggle,
+    OnResourceConnectionWarningNotificationBindingToggle,
     OnTransportLineVehicleNotificationBindingToggle,
     OnToggleAllNotifications,
     OnWaterPipeDirtyWaterNotificationBindingToggle,
@@ -58,7 +60,9 @@ import {
     PoliceCrimeSceneNotificationBinding$, PoliceTrafficAccidentNotificationBinding$,
     PollutionAirPollutionNotificationBinding$, PollutionGroundPollutionNotificationBinding$, PollutionNoisePollutionNotificationBinding$,
     ResourceConsumerNoResourceNotificationBinding$,
+    ResourceConnectionWarningNotificationBinding$,
     RoutePathfindNotificationBinding$,
+    TrafficBicycleConnectionNotificationBinding$,
     TrafficBottleneckNotificationBinding$,
     TrafficCarConnectionNotificationBinding$,
     TrafficDeadEndNotificationBinding$,
@@ -140,6 +144,7 @@ export const gameTitleKeys: Record<string, string> = {
     TrafficShipConnectionNotification: "Notifications.TITLE[No Watercraft Access]",
     TrafficTrainConnectionNotification: "Notifications.TITLE[No Train Access]",
     TrafficPedestrianConnectionNotification: "Notifications.TITLE[No Pedestrian Access]",
+    TrafficBicycleConnectionNotification: "Notifications.TITLE[No Bicycle Access]",
 
     CompanyNoInputsNotification: "Notifications.TITLE[No Inputs]",
     CompanyNoCustomersNotification: "Notifications.TITLE[No Customers]",
@@ -170,7 +175,6 @@ export const gameTitleKeys: Record<string, string> = {
     PollutionNoisePollutionNotification: "Notifications.TITLE[Noise Pollution]",
     PollutionGroundPollutionNotification: "Notifications.TITLE[Ground Pollution]",
 
-    ResourceConsumerNoResourceNotification: "Notifications.TITLE[No Emergency Shelter Supplies]",
     RoutePathfindNotification: "Notifications.TITLE[Pathfind Failed]",
     TransportLineVehicleNotification: "Notifications.TITLE[No Vehicles]",
 };
@@ -227,6 +231,7 @@ export const sections: NotificationSection[] = [
             { icon: icon("NoBoatAccess"), localeId: "TrafficShipConnectionNotification", binding: TrafficShipConnectionNotificationBinding$, onToggle: OnTrafficShipConnectionNotificationBindingToggle },
             { icon: icon("NoTrainAccess"), localeId: "TrafficTrainConnectionNotification", binding: TrafficTrainConnectionNotificationBinding$, onToggle: OnTrafficTrainConnectionNotificationBindingToggle },
             { icon: icon("NoPedestrianAccess"), localeId: "TrafficPedestrianConnectionNotification", binding: TrafficPedestrianConnectionNotificationBinding$, onToggle: OnTrafficPedestrianConnectionNotificationBindingToggle },
+            { icon: icon("NoBikeAccess"), localeId: "TrafficBicycleConnectionNotification", binding: TrafficBicycleConnectionNotificationBinding$, onToggle: OnTrafficBicycleConnectionNotificationBindingToggle },
         ],
     },
     {
@@ -294,6 +299,12 @@ export const sections: NotificationSection[] = [
         localeId: "ResourceConsumer",
         items: [
             { icon: icon("NotEnoughIndustrialGoods"), localeId: "ResourceConsumerNoResourceNotification", binding: ResourceConsumerNoResourceNotificationBinding$, onToggle: OnResourceConsumerNoResourceNotificationBindingToggle },
+        ],
+    },
+    {
+        localeId: "ResourceConnection",
+        items: [
+            { icon: icon("OilPipeNotConnected"), localeId: "ResourceConnectionWarningNotification", binding: ResourceConnectionWarningNotificationBinding$, onToggle: OnResourceConnectionWarningNotificationBindingToggle },
         ],
     },
     {

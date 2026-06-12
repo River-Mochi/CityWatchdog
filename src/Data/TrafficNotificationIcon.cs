@@ -13,5 +13,6 @@ namespace CityWatchdog.Data
         ShipConnectionNotification,
         TrainConnectionNotification,
         PedestrianConnectionNotification,
+        BicycleConnectionNotification,
     }
 }

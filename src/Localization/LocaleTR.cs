@@ -45,6 +45,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Kısayollar" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
+                { m_Settings.GetOptionGroupLocaleID(Setting.AboutDiagnostics), "DIAGNOSTICS" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "KULLANIM" },
 
                 // --- Money View ---
@@ -194,7 +195,15 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "Yazarın Paradox Mods sayfasını aç." },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.WriteNotificationAuditLog)), "Debug Audit to Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.WriteNotificationAuditLog)),
+                    "Not needed for normal gameplay.\n" +
+                    "For testers and post-patch checks: writes a CityWatchdog.log report comparing live game notification prefabs with the notification icons City Watchdog currently controls." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenLog)), "Open Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenLog)),
+                    "Opens CityWatchdog.log if it exists.\n" +
+                    "If the log file is missing, opens the Logs folder instead." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "Talimatları Göster" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "Aşağıdaki kullanım talimatlarını göster/gizle." },
 
@@ -289,6 +298,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TrafficShipConnectionNotification"), "Su yolu bağlantısı yok" },
                 { m_Settings.GetUILocaleID("TrafficTrainConnectionNotification"), "Ray bağlantısı yok" },
                 { m_Settings.GetUILocaleID("TrafficPedestrianConnectionNotification"), "Yaya erişimi yok" },
+                { m_Settings.GetUILocaleID("TrafficBicycleConnectionNotification"), "Bisiklet erişimi yok" },
 
                 // --- Company notifications ---
                 { m_Settings.GetUILocaleID("Company"), "ŞİRKET" },
@@ -337,7 +347,9 @@ namespace CityWatchdog
 
                 // --- Resource and route notifications ---
                 { m_Settings.GetUILocaleID("ResourceConsumer"), "KAYNAK TÜKETİCİ" },
-                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "Acil sığınak stoğu yok" },
+                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "Yetersiz kaynak" },
+                { m_Settings.GetUILocaleID("ResourceConnection"), "KAYNAK BAĞLANTISI" },
+                { m_Settings.GetUILocaleID("ResourceConnectionWarningNotification"), "Kaynak hattı bağlı değil" },
                 { m_Settings.GetUILocaleID("Route"), "ROTA" },
                 { m_Settings.GetUILocaleID("RoutePathfindNotification"), "Rota bulunamadı" },
 

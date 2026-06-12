@@ -45,6 +45,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "ホットキー" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
+                { m_Settings.GetOptionGroupLocaleID(Setting.AboutDiagnostics), "DIAGNOSTICS" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "使い方" },
 
                 // --- Money View ---
@@ -186,7 +187,15 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "作者の Paradox Mods ページを開きます。" },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.WriteNotificationAuditLog)), "Debug Audit to Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.WriteNotificationAuditLog)),
+                    "Not needed for normal gameplay.\n" +
+                    "For testers and post-patch checks: writes a CityWatchdog.log report comparing live game notification prefabs with the notification icons City Watchdog currently controls." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenLog)), "Open Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenLog)),
+                    "Opens CityWatchdog.log if it exists.\n" +
+                    "If the log file is missing, opens the Logs folder instead." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "使い方を表示" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "下の使用説明を表示/非表示にします。" },
 
@@ -276,6 +285,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TrafficShipConnectionNotification"), "水路接続なし" },
                 { m_Settings.GetUILocaleID("TrafficTrainConnectionNotification"), "線路接続なし" },
                 { m_Settings.GetUILocaleID("TrafficPedestrianConnectionNotification"), "歩行者アクセスなし" },
+                { m_Settings.GetUILocaleID("TrafficBicycleConnectionNotification"), "自転車アクセスなし" },
 
                 // --- Company notifications ---
                 { m_Settings.GetUILocaleID("Company"), "企業" },
@@ -324,7 +334,9 @@ namespace CityWatchdog
 
                 // --- Resource and route notifications ---
                 { m_Settings.GetUILocaleID("ResourceConsumer"), "資源消費者" },
-                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "緊急避難所の物資なし" },
+                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "資源不足" },
+                { m_Settings.GetUILocaleID("ResourceConnection"), "資源接続" },
+                { m_Settings.GetUILocaleID("ResourceConnectionWarningNotification"), "資源ライン未接続" },
                 { m_Settings.GetUILocaleID("Route"), "ルート" },
                 { m_Settings.GetUILocaleID("RoutePathfindNotification"), "経路探索失敗" },
 

@@ -43,6 +43,7 @@ export const TrafficCarConnectionNotificationBinding$ = bindValue<boolean>(mod.i
 export const TrafficShipConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficShipConnectionNotification");
 export const TrafficTrainConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficTrainConnectionNotification");
 export const TrafficPedestrianConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficPedestrianConnectionNotification");
+export const TrafficBicycleConnectionNotificationBinding$ = bindValue<boolean>(mod.id, "TrafficBicycleConnectionNotification");
 export const CompanyNoInputsNotificationBinding$ = bindValue<boolean>(mod.id, "CompanyNoInputsNotification");
 export const CompanyNoCustomersNotificationBinding$ = bindValue<boolean>(mod.id, "CompanyNoCustomersNotification");
 export const WorkProviderUneducatedNotificationBinding$ = bindValue<boolean>(mod.id, "WorkProviderUneducatedNotification");
@@ -65,6 +66,7 @@ export const PollutionAirPollutionNotificationBinding$ = bindValue<boolean>(mod.
 export const PollutionNoisePollutionNotificationBinding$ = bindValue<boolean>(mod.id, "PollutionNoisePollutionNotification");
 export const PollutionGroundPollutionNotificationBinding$ = bindValue<boolean>(mod.id, "PollutionGroundPollutionNotification");
 export const ResourceConsumerNoResourceNotificationBinding$ = bindValue<boolean>(mod.id, "ResourceConsumerNoResourceNotification");
+export const ResourceConnectionWarningNotificationBinding$ = bindValue<boolean>(mod.id, "ResourceConnectionWarningNotification");
 export const RoutePathfindNotificationBinding$ = bindValue<boolean>(mod.id, "RoutePathfindNotification");
 export const TransportLineVehicleNotificationBinding$ = bindValue<boolean>(mod.id, "TransportLineVehicleNotification");
 
@@ -103,6 +105,7 @@ export const OnTrafficCarConnectionNotificationBindingToggle = (enable: boolean)
 export const OnTrafficShipConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficShipConnectionNotification", enable);
 export const OnTrafficTrainConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficTrainConnectionNotification", enable);
 export const OnTrafficPedestrianConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficPedestrianConnectionNotification", enable);
+export const OnTrafficBicycleConnectionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TrafficBicycleConnectionNotification", enable);
 export const OnCompanyNoInputsNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "CompanyNoInputsNotification", enable);
 export const OnCompanyNoCustomersNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "CompanyNoCustomersNotification", enable);
 export const OnWorkProviderUneducatedNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "WorkProviderUneducatedNotification", enable);
@@ -125,5 +128,6 @@ export const OnPollutionAirPollutionNotificationBindingToggle = (enable: boolean
 export const OnPollutionNoisePollutionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PollutionNoisePollutionNotification", enable);
 export const OnPollutionGroundPollutionNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "PollutionGroundPollutionNotification", enable);
 export const OnResourceConsumerNoResourceNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "ResourceConsumerNoResourceNotification", enable);
+export const OnResourceConnectionWarningNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "ResourceConnectionWarningNotification", enable);
 export const OnRoutePathfindNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "RoutePathfindNotification", enable);
 export const OnTransportLineVehicleNotificationBindingToggle = (enable: boolean) => trigger(mod.id, "TransportLineVehicleNotification", enable);

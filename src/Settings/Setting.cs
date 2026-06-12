@@ -18,15 +18,9 @@ namespace CityWatchdog
     using UnityEngine;
 
     [FileLocation("ModsSettings/CityWatchdog/CityWatchdog")]
-#if DEBUG
     [SettingsUITabOrder(Actions, About, Debug)]
-    [SettingsUIGroupOrder(Notifications, Money, MoneyViewGroup, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage, Serialize)]
-    [SettingsUIShowGroupName(Notifications, Money, MoneyViewGroup, Milestone, SaveConversion, AboutUsage, Serialize)]
-#else
-    [SettingsUITabOrder(Actions, About)]
-    [SettingsUIGroupOrder(Notifications, Money, MoneyViewGroup, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutUsage)]
-    [SettingsUIShowGroupName(Notifications, Money, MoneyViewGroup, Milestone, SaveConversion, AboutUsage)]
-#endif
+    [SettingsUIGroupOrder(Notifications, Money, MoneyViewGroup, Milestone, SaveConversion, AboutInfo, AboutLinks, AboutDiagnostics, AboutUsage, Serialize)]
+    [SettingsUIShowGroupName(Notifications, Money, MoneyViewGroup, Milestone, SaveConversion, AboutDiagnostics, AboutUsage, Serialize)]
     public partial class Setting : ModSetting
     {
         internal static Setting Instance { get; set; } = null!;
@@ -53,9 +47,11 @@ namespace CityWatchdog
         internal const string HotkeyActions = nameof(HotkeyActions);
         internal const string AboutInfo = nameof(AboutInfo);
         internal const string AboutLinks = nameof(AboutLinks);
+        internal const string AboutDiagnostics = nameof(AboutDiagnostics);
         internal const string AboutUsage = nameof(AboutUsage);
 
         private const string AboutLinksRow = nameof(AboutLinksRow);
+        private const string DebugButtonsRow = nameof(DebugButtonsRow);
         private const string UsageIconPath = "coui://ui-mods/images/CWDNotificationIcon_white02.svg";
         private const string UrlParadox =
             "https://mods.paradoxplaza.com/authors/River-mochi/cities_skylines_2?games=cities_skylines_2&orderBy=desc&sortBy=best&time=alltime";
@@ -247,13 +243,62 @@ namespace CityWatchdog
             }
         }
 
-        [SettingsUISection(About, AboutUsage)]
+        // --------------------------------------------------------------------
+        // Actions tab - Usage
+        // --------------------------------------------------------------------
+
+        [SettingsUISection(Actions, AboutUsage)]
         public bool ShowUsage { get; set; }
 
         [SettingsUIMultilineText(UsageIconPath)]
         [SettingsUIHideByCondition(typeof(Setting), nameof(HideUsageText))]
-        [SettingsUISection(About, AboutUsage)]
+        [SettingsUISection(Actions, AboutUsage)]
         public string UsageText => string.Empty;
+
+        // --------------------------------------------------------------------
+        // Debug tab
+        // --------------------------------------------------------------------
+
+        [SettingsUIButtonGroup(DebugButtonsRow)]
+        [SettingsUIButton]
+        [SettingsUISection(Debug, AboutDiagnostics)]
+        public bool WriteNotificationAuditLog
+        {
+            set
+            {
+                if (!value)
+                {
+                    return;
+                }
+
+                AlertIconSystem? alertIconSystem = World.DefaultGameObjectInjectionWorld?
+                    .GetExistingSystemManaged<AlertIconSystem>();
+
+                if (alertIconSystem == null)
+                {
+                    Mod.DebugLog("Notification audit skipped: AlertIconSystem is not available.");
+                    return;
+                }
+
+                alertIconSystem.WriteNotificationAuditLog();
+            }
+        }
+
+        [SettingsUIButtonGroup(DebugButtonsRow)]
+        [SettingsUIButton]
+        [SettingsUISection(Debug, AboutDiagnostics)]
+        public bool OpenLog
+        {
+            set
+            {
+                if (!value)
+                {
+                    return;
+                }
+
+                ShellOpen.OpenModLogOrLogsFolder();
+            }
+        }
 
         // --------------------------------------------------------------------
         // Conditions and helpers

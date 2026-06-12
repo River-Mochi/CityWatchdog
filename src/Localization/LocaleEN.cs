@@ -45,6 +45,7 @@ namespace CityWatchdog
                 { m_Settings.GetOptionGroupLocaleID(Setting.HotkeyActions), "Hotkeys" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutInfo), "" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutLinks), "" },
+                { m_Settings.GetOptionGroupLocaleID(Setting.AboutDiagnostics), "DIAGNOSTICS" },
                 { m_Settings.GetOptionGroupLocaleID(Setting.AboutUsage), "USAGE" },
 
                 // --- Money View ---
@@ -194,7 +195,15 @@ namespace CityWatchdog
 
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenParadox)), "Paradox Mods" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenParadox)), "Open the author's Paradox Mods page." },
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.WriteNotificationAuditLog)), "Debug Audit to Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.WriteNotificationAuditLog)),
+                    "Not needed for normal gameplay.\n" +
+                    "For testers and post-patch checks: writes a CityWatchdog.log report comparing live game notification prefabs with the notification icons City Watchdog currently controls." },
 
+                { m_Settings.GetOptionLabelLocaleID(nameof(Setting.OpenLog)), "Open Log" },
+                { m_Settings.GetOptionDescLocaleID(nameof(Setting.OpenLog)),
+                    "Opens CityWatchdog.log if it exists.\n" +
+                    "If the log file is missing, opens the Logs folder instead." },
                 { m_Settings.GetOptionLabelLocaleID(nameof(Setting.ShowUsage)), "Show Instructions" },
                 { m_Settings.GetOptionDescLocaleID(nameof(Setting.ShowUsage)), "Show or hide the usage instructions below." },
 
@@ -289,6 +298,7 @@ namespace CityWatchdog
                 { m_Settings.GetUILocaleID("TrafficShipConnectionNotification"), "No waterway connection" },
                 { m_Settings.GetUILocaleID("TrafficTrainConnectionNotification"), "No track connection" },
                 { m_Settings.GetUILocaleID("TrafficPedestrianConnectionNotification"), "No pedestrian access" },
+                { m_Settings.GetUILocaleID("TrafficBicycleConnectionNotification"), "No bicycle access" },
 
                 // --- Company notifications ---
                 { m_Settings.GetUILocaleID("Company"), "COMPANY" },
@@ -337,7 +347,9 @@ namespace CityWatchdog
 
                 // --- Resource and route notifications ---
                 { m_Settings.GetUILocaleID("ResourceConsumer"), "RESOURCE CONSUMER" },
-                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "No Emergency Shelter Supplies" },
+                { m_Settings.GetUILocaleID("ResourceConsumerNoResourceNotification"), "Low resources" },
+                { m_Settings.GetUILocaleID("ResourceConnection"), "RESOURCE CONNECTION" },
+                { m_Settings.GetUILocaleID("ResourceConnectionWarningNotification"), "Resource line not connected" },
                 { m_Settings.GetUILocaleID("Route"), "ROUTE" },
                 { m_Settings.GetUILocaleID("RoutePathfindNotification"), "Pathfinding failed" },
 

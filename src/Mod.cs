@@ -46,6 +46,7 @@ namespace CityWatchdog
         public void OnLoad(UpdateSystem updateSystem)
         {
             LogUtils.Configure(ModId, s_Log);
+            ShellOpen.Configure(s_Log, ModId, ModTag);
             LogStartupBanner();
 
             if (GameManager.instance == null)
